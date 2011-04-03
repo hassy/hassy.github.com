@@ -19,7 +19,7 @@
       body {
       margin: 0;
       padding: 40px 60px;
-      font: 12pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font: 10pt "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.5em;
       background-color: #fff;
       }
@@ -43,13 +43,11 @@
       }
       
       a {
-/*      color: #666;*/
-        color: #667;
+      color: #33f;
       }
       
       a:hover {
-      /*color: #424242;*/
-      color: #999;
+      color: #c03;
       }
       
       kbd {
@@ -115,6 +113,10 @@
       .washedout {
         color: #999;
       }
+
+      .noUnderline {
+      text-decoration: none;
+      }
       
     </style>
     
@@ -133,108 +135,23 @@
     </script>
   </head>
   <body>
-    <h1 style="letter-spacing: -1px; font-size: 18pt; margin: 0 0 10px 0; color: #515151;">Hasan Veldstra</h1>
-    <table border="0">
-      <tr>
+    <h1 style="letter-spacing: -1px; font-size: 15pt; margin: 0 0 10px 0; color: #515151;">
+      <span style="color: #121212">veldstra.org</span>
+      <span style="font-size: 10pt; font-weight: normal;
+                   letter-spacing: normal; padding-left: 25px;">
+        <a href="http://twitter.com/hhv1" class="noUnderline">@hhv1</a> on Twitter -
+        <a href="http://github.com/hassy" class="noUnderline">hassy</a> on Github -
+        <a href="http://news.ycombinator.com/user?id=hassy" class="noUnderline">hassy</a> on Hacker News
+      </span>
+    </h1>
+    
+    <table width="100%">
+      <tr valign="top">
+        <td width="250px;">
+          <p style="color: #666; font-size: 8pt;">
         <td>
-    <div class="s2" style="width: 360px;">
-      <p>I live in Scotland and work on vidiowiki.com and some other things. One day I'll live somewhere warm near a beach and be a surfer dude (<a href="http://en.wikipedia.org/wiki/A_Coru%C3%B1a">A Coruña</a> seems nice).
-      </p>
-      
-      <p>Interests: programming languages, distributed applications, emergent systems, machine learning, data &amp; information visualization, creating products, marine archaeology, boxing, simplicity, flexibility, low entry barriers, high low tech.</p>
-              
-      <p>
-        You can find me on Twitter (<a href="https://twitter.com/hhv1">@hhv1</a>), Hacker News (<a href="http://news.ycombinator.com/user?id=hassy">hassy</a>), Github (<a href="https://github.com/hassy">hassy</a>). Send email to <script type="text/javascript">document.write(
-            "u\100ivqvbjvxv\056pbz".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
-          </script>.
-      </p>
-    </div>
-      </td>
-      <td>
-        <img src="images/IMG_3355.jpg" width="250" alt="" title="" />
-      </td>
+        </td>
       </tr>
     </table>
-    
-    <div id="wrapper">
-      <div class="box col3" style="margin-bottom: 20px;">
-        <h2>my stuff</h2>
-      </div>
-
-      
-      <div class="box col3 s1">
-        <img src="images/vidiowiki.png" width="75" height="94" align="left" style="margin-right: 10px; margin-top: -20px;" />
-        <h2 style="display: inline;"><a href="http://vidiowiki.com">vidiowiki</a></h2> - making high-quality information easier to find, and working on a better way to find, consume and explore information (keywords: fast, visual, and engaging).
-      </div>
-
-      <div class="box col1 s2">
-        I have a <a href="http://hassy.posterous.com">blog/notes here</a>
-      </div>
-
-      <div class="box col1 s2">
-        <img src="images/erlang.png" width="36" height="26" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="http://veldstra.org/whyerlang/">Why Erlang</a></h2> - Erlang advocacy. <em>&lt;3 Erlang</em>
-      </div>
-      
-      <div class="box col1 s2">
-        <img src="images/erlanggear.png" width="48" height="47" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="http://whyerlang.com/gear">Erlang Gear</a></h2> - show your love of Erlang, in style&trade;&copy;
-      </div>
-
-      <div class="box col1 s3">
-        <img src="images/breukelen.png" width="36" height="57" align="left" style="margin-right: 10px; margin-top: -10px;" />
-        <h2 style="display: inline; font-weight: normal;"><a href="http://hassy.posterous.com/breukelen">looking for the infamous Breukelen t-shirt?</a></h2>
-      </div>
-
-      <div class="box col1 s2">
-        <img src="images/icerl.png" width="35" height="35" align="left" style="margin-right: 10px; margin-top: -10px;" />
-        <h2 style="display: inline;"><a href="https://github.com/hassy/icerl">icerl</a></h2> - Unicode and i18n support libraries for Erlang.
-      </div>
-
-
-      <div class="box col2 s2">
-        <img src="images/startupcookbook.png" width="96" height="48" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="http://startupcookbook.tumblr.com/">startup cookbook</a></h2> - all that pizza and ramen is killing your startup, you know.
-      </div>
-
-      <div class="box col3 s2">
-        <img src="images/oss.png" width="37" height="32" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="https://github.com/hassy">open-source bits &amp; bobs</a></h2> - <a href="https://github.com/hassy/http-twiddle">http-twiddle</a> - debug/explore HTTP apps from Emacs; <a href="https://github.com/mxcl/homebrew">Homebrew</a> - contributed some recipes for my favorite OSX package manager; <a href="https://github.com/hassy/Mowars">mowars</a> - source for <a href="http://moustachewars.com">moustache wars</a>, can be used to create <em>anything</em>-wars;
-      </div>
-
-
-      <div class="box col2 s2">
-        <img src="images/kayakdb.png" width="102" height="33" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="http://soon">kayakdb</a></h2> <span style="color: maroon;"><sup>coming soon</sup></span> - a key-value db that speaks the Redis protocol with transparent distribution and replication
-        </div>
-
-      <div class="box col1 s3">
-        <img src="images/.png" width="28" height="34" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline;"><a href="http://moustachewars.com">moustache wars</a></h2> - <a href="http://blog.latentflip.com/">a friend</a> and I built this for <a href="http://www.movember.com/">Movember</a> 2009, and also ran it for Movember 2010.
-      </div>
-
-      <div class="box col2 s3">
-        <img src="images/.png" width="28" height="34" align="left" style="margin-right: 10px;" />
-        <h2 style="display: inline"><a href="https://github.com/hassy/informatics-explorer">Informatics Explorer</a></h2> - a tool to explore and visualize research at <a href="http://www.ed.ac.uk/schools-departments/informatics/">School Of Informatics</a> (an <a href="http://idea.ed.ac.uk">IDEA lab</a> project).
-      </div>
-
-      <div class="box col3">
-        <h2 style="">some time previously</h2>
-      </div>
-
-      <div class="box col3 s2">
-        <ul>
-        <li>
-          Worked on <a href="http://hypernumbers.com">Hypernumbers</a> (a <a href="http://seedcamp.com">Seedcamp</a> startup) in 2007-2009, mainly writing Erlang and some Ruby, and learning about really large scale automated testing (and how awesome code generation can be), and how writing compilers and DSLs isn't that hard (designing a language on the other hand...) Hypernumbers is a truly web-native spreadsheet, unlike any others - head over to <a href="http://hypernumbers.com">hypernumbers.com</a> to see it.
-        </li>
-        
-        <li>
-         Studied CS and business at <a href="http://www.ed.ac.uk">Edinburgh University</a> (left a year early &amp; joined Hypernumbers).
-       </li>
-       </ul>
-      </div>
-
-      
-    </div>
   </body>
 </html>
