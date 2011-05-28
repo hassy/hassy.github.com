@@ -40,7 +40,7 @@
       FB.getLoginStatus(handleSessionResponse);
 
       $('#login').bind('click', function() {
-        FB.login(handleSessionResponse);
+        FB.login(handleSessionResponse, {perms: "user_location,friends_location"});
       });
 
       $('#logout').bind('click', function() {
