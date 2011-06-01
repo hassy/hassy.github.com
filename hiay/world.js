@@ -1,3 +1,5 @@
+var locationCounts = {};
+var sortedLocations = [];
 
 // ascending
 var sortByValue = function(keys, obj) {
@@ -47,7 +49,6 @@ var doStuff = function() {
     var sgclient = new simplegeo.ContextClient("7vjnXKDbSQUMAxZxXwYSYduyADt28j6d")
 
     var locations = [];
-    var locationCounts = {};
     FB.api({method: "fql.query", 
             query: "SELECT current_location,uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1="+FB.getSession().uid+")"},
             function(resp) {
