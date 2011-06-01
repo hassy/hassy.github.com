@@ -155,6 +155,7 @@
         clearDisplay();
         return;
       }
+      
 
       // if we have a session, query for the user's profile picture and name
       FB.api(
@@ -169,6 +170,32 @@
       );
       
       // aaaaaaaaaaaaand
+      
+      // ascending
+      var sortByValue = function(keys, obj) {
+          return keys.sort(function(a, b) { 
+              return obj[a] - obj[b];
+          });
+      }
+      
+      function load(e) {
+        var r = 5;
+        for (var i = 0; i < e.features.length; i++) {
+          var c = n$(e.features[i].element),
+              g = c.parent().add("svg:g", c);
+
+          g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+
+          var h = Math.floor(150-(150*locationCounts[sortedLocations[0]]/e.features[0].data.properties.count));
+
+          g.add(c
+              .attr("fill", "hsl(" + h + ", 100%, 50%)")
+              .attr("r", r)
+              .attr("cx", null)
+              .attr("cy", null));
+        }
+      }
+      
       var po = org.polymaps;
 
       var map = po.map()
@@ -187,10 +214,15 @@
       // map.add(po.compass()
       //     .pan("none"));
 
+      // this should be after Polymaps is inited inside that div
+      var svg = n$("#map").add("svg:svg");
+
       var sgclient = new simplegeo.ContextClient("7vjnXKDbSQUMAxZxXwYSYduyADt28j6d")
 
       var locations = [];
       var locationCounts = {};
+      var locationNames = [];
+      var locationCoords = {};
       FB.api({method: "fql.query", 
               query: "SELECT current_location,uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1="+FB.getSession().uid+")"},
               function(resp) {
@@ -208,55 +240,26 @@
                           }
                       }
                   });
+                  
+                  $.each(locationCounts, function(k,v) { locationNames.push(k) });
+                  sortedLocations = (sortByValue(locationNames, locationCounts)).reverse();
+                 
+                  $.each(locationCounts, function(key, val) {
+                      sgclient.getContextFromAddress(key, function(err, data) {
+                          if(err) {
+                              console.error(err);
+                          } else {
+                              //console.info(key);
+                              //console.info(data.query);
+                              locationCoords[key] = data.query;
+                              var gf = { geometry: {coordinates: [data.query.longitude, data.query.latitude], type: "Point"}, properties: {count: val} };
+                              map.add(po.geoJson().features([gf]).on("load", load));
+                          }
+                      });
+                  }); 
+                  
+                  
               });
-
-      // ascending
-      var sortByValue = function(keys, obj) {
-          return keys.sort(function(a, b) { 
-              return obj[a] - obj[b];
-          });
-      }
-
-      var locationNames = [];
-      $.each(locationCounts, function(k,v) { locationNames.push(k) });
-      sortedLocations = (sortByValue(locationNames, locationCounts)).reverse();
-
-      var locationCoords = {};
-      //var geoFeatures = [];
-      $.each(locationCounts, function(key, val) {
-          sgclient.getContextFromAddress(key, function(err, data) {
-              if(err) {
-                  console.error(err);
-              } else {
-                  //console.info(key);
-                  //console.info(data.query);
-                  locationCoords[key] = data.query;
-                  var gf = { geometry: {coordinates: [data.query.longitude, data.query.latitude], type: "Point"}, properties: {count: val} };
-                  map.add(po.geoJson().features([gf]).on("load", load));
-              }
-          });
-      });
-
-      // this should be after Polymaps is inited inside that div
-      var svg = n$("#map").add("svg:svg");
-
-      function load(e) {
-        var r = 5;
-        for (var i = 0; i < e.features.length; i++) {
-          var c = n$(e.features[i].element),
-              g = c.parent().add("svg:g", c);
-
-          g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
-
-          var h = Math.floor(150-(150*locationCounts[sortedLocations[0]]/e.features[0].data.properties.count));
-
-          g.add(c
-              .attr("fill", "hsl(" + h + ", 100%, 50%)")
-              .attr("r", r)
-              .attr("cx", null)
-              .attr("cy", null));
-        }
-      }
     }
   </script>
 	
