@@ -179,6 +179,8 @@
       }
       
       function load(e) {
+        console.info("loading:");
+        console.info(e);
         var r = 5;
         for (var i = 0; i < e.features.length; i++) {
           var c = n$(e.features[i].element),
@@ -241,16 +243,21 @@
                       }
                   });
                   
+                  console.info(locations);
+                  console.info(locationCounts);
+                  
                   $.each(locationCounts, function(k,v) { locationNames.push(k) });
                   sortedLocations = (sortByValue(locationNames, locationCounts)).reverse();
+                 
+                  console.info(sortedLocations);
                  
                   $.each(locationCounts, function(key, val) {
                       sgclient.getContextFromAddress(key, function(err, data) {
                           if(err) {
                               console.error(err);
                           } else {
-                              //console.info(key);
-                              //console.info(data.query);
+                              console.info(key);
+                              console.info(data.query);
                               locationCoords[key] = data.query;
                               var gf = { geometry: {coordinates: [data.query.longitude, data.query.latitude], type: "Point"}, properties: {count: val} };
                               map.add(po.geoJson().features([gf]).on("load", load));
