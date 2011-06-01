@@ -1,1 +1,174 @@
-<h1> h i a y</h1>
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>How international are you?</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="stylesheet" href="css/style.css?v=2">
+
+	<script src="js/libs/jquery-1.5.1.min.js"></script>
+	<script src="http://cdn.simplegeo.com/js/1.3/simplegeo.all.jq.min.js"></script>
+
+
+	<script src="js/libs/modernizr-1.7.min.js"></script>
+	<script src="nns.js"></script>
+	
+  <script type="text/javascript" src="polymaps.js"></script>
+      <style type="text/css">
+
+  @import url("example.css");
+
+  #map {
+    background: #012;
+  }
+
+  .compass .fore, .compass .chevron {
+    stroke: #666;
+  }
+
+  .layer path {
+    fill: #ccc;
+    fill-opacity: .85;
+    stroke: #012;
+  }
+
+  #copy, #copy a {
+    color: #aaa;
+  }
+
+      </style>
+</head>
+<body>
+	<div id="container">
+		<header>
+		</header>
+
+		<div id="main" role="main">
+		  
+      <div>
+        <button id="login">Login</button>
+        <button id="logout">Logout</button>
+        <button id="disconnect">Disconnect</button>
+      </div>
+      <div id="user-info" style="display: none;"></div>
+
+		  
+		  <div style="width: 960px; margin: 5em auto; text-align: center;">
+		    <h1 class="name"></h1>
+		    <h2 class="howintareyou">how international are you?</h2>
+		    <div style="height: 4pt; width: 99%; background-color: #454545; margin: 0 auto 45px auto;">&nbsp;</div>
+
+        <div class="intsummary">
+          Your friendships span <span class="bignum"></span> cities, <span class="bignum"></span> countries, and <span class="bignum"></span> continents
+        </div>
+
+        <table style="width: 900px; text-align: center;">
+          <tr>
+            <td>
+              <h3 class="topcities" style="text-align: center;">your top cities</h3>
+                            
+              <ul class="locationname topcitiesUl" style="text-align: left;">
+              </ul>
+            </td>
+
+            <td>
+        		  <h3 class="topcities" style="text-align: center;">your top countries &amp; states</h3>
+        		  <ul class="locationname topcitiesUl">
+        	    </ul>
+            </td>
+          </tr>
+        </table>
+
+		    <div style="height: 4pt; width: 99%; background-color: #454545; margin: 45px auto 0 auto;">&nbsp;</div>
+
+        <h2 class="intsummary" style="font-weight: normal; margin-bottom: 0;">Your friends mapped</h2>
+        <p class="intsummary" style="margin: 0 0 18pt 0; color: #aaa; font-size: 12pt;">(114 friends with location specified out of 203)</p>
+
+        <div id="map">
+          <script type="text/javascript" src="world.js"></script>
+        </div>
+        
+		    <div style="height: 4pt; width: 99%; background-color: #454545; margin: 45px auto 0 auto;">&nbsp;</div>
+
+        <h2 class="intsummary" style="font-weight: normal">Bonus!</h2>
+        
+        <p class="intsummary" style="font-size: 18pt; text-align: left;"><kbd>¯\_(ツ)_/¯</kbd></p>
+        
+		  </div>
+		</div>
+		
+		<footer>
+
+		</footer>
+	</div>
+	<script src="js/plugins.js"></script>
+	<script src="js/script.js"></script>
+	<!--[if lt IE 7 ]>
+	<script src="js/libs/dd_belatedpng.js"></script>
+	<script> DD_belatedPNG.fix('img, .png_bg');</script>
+	<![endif]-->
+	
+	<div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script>
+    // initialize the library with the API key
+    FB.init({ apiKey: '213b03bfcb7675c021c0ce1baa76297f' });
+
+    // fetch the status on load
+    FB.getLoginStatus(handleSessionResponse);
+
+    $('#login').bind('click', function() {
+      FB.login(handleSessionResponse, {perms: "user_location,friends_location"});
+    });
+
+    $('#logout').bind('click', function() {
+      FB.logout(handleSessionResponse);
+    });
+
+    $('#disconnect').bind('click', function() {
+      FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+        clearDisplay();
+      });
+    });
+
+    // no user, clear display
+    function clearDisplay() {
+      $('#user-info').hide('fast');
+    }
+
+    // handle a session response from any of the auth related calls
+    function handleSessionResponse(response) {
+      // if we dont have a session, just hide the user info
+      if (!response.session) {
+        clearDisplay();
+        return;
+      }
+
+      // if we have a session, query for the user's profile picture and name
+      FB.api(
+        {
+          method: 'fql.query',
+          query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+        },
+        function(response) {
+          var user = response[0];
+          $('#user-info').html('<img src="' + user.pic + '">' + user.name).show('fast');
+        }
+      );
+    }
+  </script>
+	
+</body>
+</html>
