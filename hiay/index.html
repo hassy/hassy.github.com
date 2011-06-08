@@ -31,8 +31,6 @@
   <script type="text/javascript" src="polymaps.js"></script>
       <style type="text/css">
 
-  @import url("example.css");
-
   #map {
     background: #012;
   }
@@ -124,7 +122,242 @@
 	
 	<div id="fb-root"></div>
   <script>
-  FB.init({apiKey:'213b03bfcb7675c021c0ce1baa76297f'});FB.getLoginStatus(handleSessionResponse);$('#login').bind('click',function(){FB.login(handleSessionResponse,{perms:"user_location,friends_location"});});$('#logout').bind('click',function(){FB.logout(handleSessionResponse);});$('#disconnect').bind('click',function(){FB.api({method:'Auth.revokeAuthorization'},function(response){clearDisplay();});});function clearDisplay(){}function handleSessionResponse(response){if(!response.session){clearDisplay();return;}FB.api({method:'fql.query',query:'SELECT name, pic FROM profile WHERE id='+FB.getSession().uid},function(response){var user=response[0];$("#fbname").html(user.name);$("#fbpic").attr("src",user.pic);});var countryInfo={"United Kingdom":{"continent":"EU","iso3":"GBR"},"United States":{"continent":"NA","iso3":"USA"},"United States Minor Outlying Islands":{"continent":"OC","iso3":"UMI"},"Uruguay":{"continent":"SA","iso3":"URY"},"Uzbekistan":{"continent":"AS","iso3":"UZB"}};var locationImages={"California":"us_cl","United Kingdom":"gb"};var sortByValue=function(keys,obj){return keys.sort(function(a,b){return obj[a]-obj[b];});}String.prototype.repeat=function(n){return new Array(n+1).join(this);}if(!Object.keys){Object.keys=function(obj){var keys=new Array();for(k in obj)if(obj.hasOwnProperty(k))keys.push(k);return keys;};}function load(e){var r=5;for(var i=0;i<e.features.length;i++){var c=n$(e.features[i].element),g=c.parent().add("svg:g",c);g.attr("transform","translate("+c.attr("cx")+","+c.attr("cy")+")");var h=Math.floor(150-(150*locationCounts[sortedLocations[0]]/e.features[0].data.properties.count));g.add(c.attr("fill","hsl("+h+", 80%, 80%)").attr("r",r).attr("cx",null).attr("cy",null));}}var po=org.polymaps;var map=po.map().container(document.getElementById("map").appendChild(po.svg("svg"))).center({lat:40,lon:0}).zoomRange([1,4]).zoom(3).add(po.interact());map.add(po.image().url(po.url("http://{S}tile.cloudmade.com"+"/1a1b06b230af4efdbb989ea99e9841af"+"/998/256/{Z}/{X}/{Y}.png").hosts(["a.","b.","c.",""])));var svg=n$("#map").add("svg:svg");var sgclient=new simplegeo.ContextClient("7vjnXKDbSQUMAxZxXwYSYduyADt28j6d")var locations=[];var locationCounts={};var locationNames=[];var locationCoords={};var countryCounts=[];var countryNames=[];var continentCounts=[];var continentNames=[];FB.api({method:"fql.query",query:"SELECT current_location,uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1="+FB.getSession().uid+")"},function(resp){$.each(resp,function(i,o){if(o.current_location!=null){locations.push(o.current_location);if(o.current_location.name!=undefined){if(!(o.current_location.name in locationCounts)){locationCounts[o.current_location.name]=1;}else{locationCounts[o.current_location.name]+=1;}}if(o.current_location.country!=undefined){if(!(o.current_location.country in countryCounts)){countryCounts[o.current_location.country]=1;}else{countryCounts[o.current_location.country]+=1;}var continent=countryInfo[o.current_location.country].continent;if(!(continent in continentCounts)){continentCounts[continent]=1;}else{continentCounts[continent]+=1;}}}});$.each(locationCounts,function(k,v){locationNames.push(k);});sortedLocations=(sortByValue(locationNames,locationCounts)).reverse();$.each(countryCounts,function(k,v){countryNames.push(k);});sortedCountries=(sortByValue(countryNames,countryCounts)).reverse();$.each(continentCounts,function(k,v){continentNames.push(k);});sortedContinents=(sortByValue(continentNames,continentCounts)).reverse();$("#fbcities").html(Object.keys(locationCounts).length);$("#fbcountries").html(Object.keys(countryCounts).length);$("#fbcontinents").html(Object.keys(continentCounts).length);for(var i=0;i<5;i++){var repeats=(locationCounts[sortedLocations[i]]*30)/locationCounts[sortedLocations[0]];$("#fbTopcities").append("<li>"+sortedLocations[i]+"<span style='background-color: #a69; font-size: 10pt;'>"+"&nbsp;".reapeat(repeats)+"</span><span class='num'>"+locationCounts[sortedLocations[i]]+"</span>"+"</li>");}for(var i=0;i<5;i++){var html="<nobr>";if(locationImages[sortedCountries[i]]!=undefined){html+="<img src='http://veldstra.org/hiay/images/locations/"+locationImages[sortedCountries[i]]+".png' /> ";}html+="<strong>"+locationImages[sortedCountries[i]]+"</strong></nobr>";if(i<4){html+=", ";}}$("#fbTopcountries").append("<li>"+html+"</li>");$.each(locationCounts,function(key,val){sgclient.getContextFromAddress(key,function(err,data){if(err){console.error(err);}else{locationCoords[key]=data.query;var gf={geometry:{coordinates:[data.query.longitude,data.query.latitude],type:"Point"},properties:{count:val}};map.add(po.geoJson().features([gf]).on("load",load));}});});});}
+    // initialize the library with the API key
+    FB.init({ apiKey: '213b03bfcb7675c021c0ce1baa76297f' });
+
+    // fetch the status on load
+    FB.getLoginStatus(handleSessionResponse);
+
+    $('#login').bind('click', function() {
+      FB.login(handleSessionResponse, {perms: "user_location,friends_location"});
+    });
+
+    $('#logout').bind('click', function() {
+      FB.logout(handleSessionResponse);
+    });
+
+    $('#disconnect').bind('click', function() {
+      FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+        clearDisplay();
+      });
+    });
+
+    // no user, clear display
+    function clearDisplay() {
+      // TODO: Show login/info in an overlay
+      
+    }
+
+    // handle a session response from any of the auth related calls
+    function handleSessionResponse(response) {
+      // if we dont have a session, just hide the user info
+      if (!response.session) {
+        clearDisplay();
+        return;
+      }
+      
+
+      // if we have a session, query for the user's profile picture and name
+      FB.api(
+        {
+          method: 'fql.query',
+          query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+        },
+        function(response) {
+          var user = response[0];
+          $("#fbname").html(user.name);
+          $("#fbpic").attr("src", user.pic);
+        }
+      );
+      
+      // aaaaaaaaaaaaand
+      
+      // for continent lookups
+      var countryInfo = {
+      "United Kingdom": 
+      {"continent": "EU", "iso3": "GBR"}, 
+      "United States": 
+      {"continent": "NA", "iso3": "USA"}, 
+      "United States Minor Outlying Islands": 
+      {"continent": "OC", "iso3": "UMI"}, 
+      "Uruguay": 
+      {"continent": "SA", "iso3": "URY"}, 
+      "Uzbekistan": 
+      {"continent": "AS", "iso3": "UZB"}
+      };
+      
+      var locationImages = {
+        "California": "us_cl", // code for California
+        "United Kingdom": "gb" // iso3
+      };
+      
+      // ascending
+      var sortByValue = function(keys, obj) {
+          return keys.sort(function(a, b) { 
+              return obj[a] - obj[b];
+          });
+      }
+      
+      String.prototype.repeat = function(n) {
+        return new Array(n+1).join(this);
+      }
+      
+      if(!Object.keys) {
+          Object.keys = function(obj) {
+              var keys = new Array();
+              for (k in obj) if (obj.hasOwnProperty(k)) keys.push(k);
+              return keys;
+          };
+      }
+      
+      function load(e) {
+        //console.info("loading:");
+        //console.info(e);
+        var r = 5;
+        for (var i = 0; i < e.features.length; i++) {
+          var c = n$(e.features[i].element),
+              g = c.parent().add("svg:g", c);
+
+          g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+
+          var h = Math.floor(150-(150*locationCounts[sortedLocations[0]]/e.features[0].data.properties.count));
+
+          g.add(c
+              .attr("fill", "hsl(" + h + ", 80%, 80%)")
+              .attr("r", r)
+              .attr("cx", null)
+              .attr("cy", null));
+        }
+      }
+      
+      var po = org.polymaps;
+
+      var map = po.map()
+          .container(document.getElementById("map").appendChild(po.svg("svg")))
+          .center({lat: 40, lon: 0})
+          .zoomRange([1, 4])
+          .zoom(3)
+          .add(po.interact());
+
+      map.add(po.image()
+          .url(po.url("http://{S}tile.cloudmade.com"
+          + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
+          + "/998/256/{Z}/{X}/{Y}.png")
+          .hosts(["a.", "b.", "c.", ""])));
+
+      // map.add(po.compass()
+      //     .pan("none"));
+
+      // this should be after Polymaps is inited inside that div
+      var svg = n$("#map").add("svg:svg");
+
+      var sgclient = new simplegeo.ContextClient("7vjnXKDbSQUMAxZxXwYSYduyADt28j6d")
+
+      var locations = [];
+      var locationCounts = {};
+      var locationNames = []; // for "top" lookups
+      var locationCoords = {};
+      var countryCounts = [];
+      var countryNames = []; // for "top" lookups
+      var continentCounts = [];
+      var continentNames = []; // for "top" lookups
+      
+      FB.api({method: "fql.query", 
+              query: "SELECT current_location,uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1="+FB.getSession().uid+")"},
+              function(resp) {
+                  $.each(resp, function(i, o) {
+                      if(o.current_location != null) {
+                          locations.push(o.current_location);
+
+                          // Using .name to count because there's more than one London for example (in USA).
+                          if(o.current_location.name != undefined) {
+                              if(!(o.current_location.name in locationCounts)) {
+                                  locationCounts[o.current_location.name] = 1;
+                              } else {
+                                  locationCounts[o.current_location.name] += 1;
+                              }
+                          }
+                          
+                          // count countries
+                          // TODO: if country == US, count the STATE not the whole country
+                          if(o.current_location.country != undefined) {
+                            if(!(o.current_location.country in countryCounts)) {
+                              countryCounts[o.current_location.country] = 1;
+                            } else {
+                              countryCounts[o.current_location.country] += 1;
+                            }
+                            
+                            // look up continent, add to counts
+                            var continent = countryInfo[o.current_location.country].continent;
+                            if(!(continent in continentCounts)) {
+                              continentCounts[continent] = 1;
+                            } else {
+                              continentCounts[continent] += 1;
+                            }
+                          }
+                      }
+                  });
+                  
+                  //console.info(locations);
+                  //console.info(locationCounts);
+                  
+                  $.each(locationCounts, function(k,v) { locationNames.push(k); });
+                  sortedLocations = (sortByValue(locationNames, locationCounts)).reverse();
+                 
+                  $.each(countryCounts, function(k, v) { countryNames.push(k); });
+                  sortedCountries = (sortByValue(countryNames, countryCounts)).reverse();
+                  
+                  // not used?
+                  $.each(continentCounts, function(k, v) { continentNames.push(k); });
+                  sortedContinents = (sortByValue(continentNames, continentCounts)).reverse();
+                 
+                  //console.info(sortedLocations);
+                  
+                  // Fill in counts in the sentence
+                  $("#fbcities").html(Object.keys(locationCounts).length);
+                  $("#fbcountries").html(Object.keys(countryCounts).length);
+                  $("#fbcontinents").html(Object.keys(continentCounts).length);
+                  
+                  // Create list items for cities.
+                  // TODO: Insert "HOME TOWN!"
+                  for(var i = 0; i < 5; i++) {
+                    // top -> 30
+                    // this -> X
+                    // X = (this*30)/top
+                    var repeats = (locationCounts[sortedLocations[i]]*30)/locationCounts[sortedLocations[0]];
+                    $("#fbTopcities").append("<li>" + sortedLocations[i] + "<span style='background-color: #a69; font-size: 10pt;'>" + "&nbsp;".reapeat(repeats) + "</span><span class='num'>" + locationCounts[sortedLocations[i]] + "</span>" + "</li>");
+                  }
+                  
+                  // Create items for top contries/states.
+                  for(var i = 0; i < 5; i++) {
+                    // look up if we have an image for the country (if not US) or state (if US)
+                    var html = "<nobr>";
+                    if(locationImages[sortedCountries[i]] != undefined) {
+                      html += "<img src='http://veldstra.org/hiay/images/locations/" + locationImages[sortedCountries[i]] + ".png' /> ";
+                    }
+                    html += "<strong>" + locationImages[sortedCountries[i]] + "</strong></nobr>";
+                    if(i < 4) {
+                      html += ", ";
+                    }
+                  }
+                  $("#fbTopcountries").append("<li>" + html + "</li>");
+                  
+                  // TODO: Use my GAE lib here
+                  $.each(locationCounts, function(key, val) {
+                      sgclient.getContextFromAddress(key, function(err, data) {
+                          if(err) {
+                              console.error(err);
+                          } else {
+                              //console.info(key);
+                              //console.info(data.query);
+                              locationCoords[key] = data.query;
+                              var gf = { geometry: {coordinates: [data.query.longitude, data.query.latitude], type: "Point"}, properties: {count: val} };
+                              map.add(po.geoJson().features([gf]).on("load", load));
+                          }
+                      });
+                  });
+              });
+    }
   </script>
 	
 </body>
