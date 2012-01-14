@@ -6,32 +6,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>veldstra.org</title>
 
-    <script type="text/javascript" src="jquery.tools.min.js"></script>
-    <script type="text/javascript" src="jquery.masonry.min.js"></script>
-
-    <script>
-      $(function() {
-        $("#wrapper").masonry({ columnWidth: 240, itemSelector: ".box" });
-      });
-    </script>
-
     <style>
+
+      html {
+      font-size:100.01%;
+      }
+
       body {
+      font-size: 75%;
+      color: #000;
+      background: #e5e6e7;
+      -webkit-font-smoothing: antialiased;
+      font-weight: lighter;
       margin: 0;
-      padding: 40px 60px;
-      font: 10pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding: 0;
+      font: 12pt "Palatino", "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.5em;
-      background-color: #fff;
       }
       
       h1, h2, h3 {
-      font-family: "Helvetica Neue", sans-serif;
+      font-family: "Palatino", Times, "Helvetica Neue", sans-serif;
       font-weight: normal;
       color: #333;
       }
       
       h1 {
-      font-size: 15pt;
+      font-size: 18pt;
       font-weight: bold;
       color: #333;
       }
@@ -55,65 +55,6 @@
       font-size: 12pt;
       }
       
-      #wrapper {
-        /*background: #FFF;*/
-        border: 0px solid #456;
-        padding: 10px;
-      	margin-bottom: 20px;
-      	border-radius: 5px;
-      	clear: both;
-      	-webkit-border-radius: 5px;
-      	   -moz-border-radius: 5px;
-      	        border-radius: 5px;
-      }
-      
-      .box {
-        margin: 5px;
-        padding: 5px;
-        background: #D8D5D2;
-        float: left;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        background-color: #fff;
-      }
-
-      .col1 { width: 220px; }
-      .col2 { width: 460px; }
-      .col3 { width: 700px; }
-
-      .col1 img { max-width: 220px; }
-      .col2 img { max-width: 460px; }
-      .col3 img { max-width: 700px; }
-      
-      .s1 {
-        font-size: 12pt;
-      }
-      
-      .s1 h2 {
-        font-size: 14pt;
-      }
-      
-      .s2 {
-        font-size: 10pt;
-      }
-      
-      .s2 h2 {
-        font-size: 11pt;
-      }
-      
-      .s3 {
-        font-size: 8pt;
-      }
-      
-      .s3 h2 {
-        font-size: 10pt;
-      }
-      
-      .washedout {
-        color: #999;
-      }
-
       .noUnderline {
       text-decoration: none;
       }
@@ -121,7 +62,6 @@
     </style>
     
     <script type="text/javascript">
-
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-2143105-6']);
       _gaq.push(['_trackPageview']);
@@ -131,27 +71,20 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
     </script>
   </head>
-  <body>
-    <h1 style="letter-spacing: -1px; font-size: 15pt; margin: 0 0 10px 0; color: #515151;">
-      <span style="color: #121212">veldstra.org</span>
-      <span style="font-size: 10pt; font-weight: normal;
-                   letter-spacing: normal; padding-left: 25px;">
-        <a href="http://twitter.com/hhv1" class="noUnderline">@hhv1</a> on Twitter -
-        <a href="http://github.com/hassy" class="noUnderline">hassy</a> on Github -
-        <a href="http://news.ycombinator.com/user?id=hassy" class="noUnderline">hassy</a> on Hacker News
-      </span>
-    </h1>
-    
-    <table width="100%">
-      <tr valign="top">
-        <td width="250px;">
-          <p style="color: #666; font-size: 8pt;">
-        <td>
-        </td>
-      </tr>
-    </table>
+  <body>    
+    <div style="margin: 3em; width: 650px;">
+
+      <h1><strong>veldstra.org</strong></h1>
+      
+      <p><img src="images/skysaltire.jpg" title="" alt="" style="border: 24px solid #fff; margin: 20px 0 45px 0;" /></p>
+
+      <p>
+        ~~ twitter <a href="http://twitter.com/hhv1">@hhv1</a>, hacker news <a href="http://news.ycombinator.com/user?id=hassy">hassy</a>, github <a href="http://github.com/hassy">hassy</a>, <a href="http://hassy.posterous.com">(old) blog</a>
+      </p>
+
+      <p>Are you a scientist and a fan of Feynman? Then you should take a look at <a href="http://vidiowiki.com">vidiowiki</a>. Not a scientist? Then perhaps you work for a business that depends on too many Excel spreadsheets? If so, you should check out <a href="http://hypernumbers.com">hypernumbers</a>.
+      </p>
   </body>
 </html>
