@@ -5,58 +5,98 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>veldstra.org</title>
-
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jquery.masonry.min.js"></script>
     <style>
-
       html {
-      font-size:100.01%;
+      font-size:100%;
       }
 
       body {
-      font-size: 75%;
-      color: #000;
-      background: #e5e6e7;
+      color: #333;
+      background: #eee;
       -webkit-font-smoothing: antialiased;
-      font-weight: lighter;
-      margin: 0;
-      padding: 0;
-      font: 12pt "Palatino", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -font-weight: lighter;
+      font-family: Courier, "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.5em;
+      margin: 30px;
+      font-size: 11pt;
+      }
+
+      p {
+      font-size: 11pt;
+      line-height: 1.5em;
+      margin-top: 1.5em;
       }
       
       h1, h2, h3 {
-      font-family: "Palatino", Times, "Helvetica Neue", sans-serif;
-      font-weight: normal;
+      font-family: "Helvetica Neue", sans-serif;
+      font-weight: bold;
+      -webkit-font-smoothing: antialiased;
       color: #333;
       }
       
       h1 {
-      font-size: 18pt;
-      font-weight: bold;
+      font-size: 21pt;
       color: #333;
+      letter-spacing: -1px;
       }
 
       h2 {
-      font-size: 13pt;
-      font-weight: bold;
+      font-size: 15pt;
       margin: 0;
       }
       
       a {
-      color: #33f;
+      color: #00c;
+      padding: 1px 3px;
       }
       
       a:hover {
-      color: #c03;
+      -color: #c03;
+      color: #eee;
+      background-color: #00c;
+      text-decoration: none;
+      }
+
+      a.dkt {
+      color: #666;
+      }
+
+      a.dkt:hover {
+      color: #fff;
       }
       
       kbd {
       font-family: Monaco, Inconsolata, Consolas, monospace;
-      font-size: 12pt;
+      font-size: 10pt;
       }
       
       .noUnderline {
       text-decoration: none;
+      }
+
+      pre {
+      font-family: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",  "Droid Sans Mono", "Consolas", monospace;
+      }
+
+      li {
+      color: #333;
+      }
+
+      s {
+      color: #696969;
+      }
+
+      .grey1 {
+      color: #999;
+      }
+
+      .collageItem {
+      width: 90px;
+      margin: 3px 3px 0 0;
+      float: left;
       }
       
     </style>
@@ -71,20 +111,66 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+      var shuffle = function(o){ //v1.0
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+      };      
+
+      $(function() {
+      var $cc = $('#collageContainer');
+      idxs = [];
+      for(var i = 1; i < 24; i++) { idxs.push(i) };
+      shuffle(idxs);
+                         
+      for(var i = 1; i < 12; i++) {
+        var n = idxs[i];
+        $i=$("<img />").attr("src", "images/collage/"+n+".jpg").attr("class","collageItem");
+        $cc.append($i);
+      }
+      
+        $cc.imagesLoaded(function() {
+          $cc.masonry({
+            itemSelector : '.collageItem',
+            columnWidth : 100
+          });
+        });
+      });
     </script>
   </head>
   <body>    
-    <div style="margin: 3em; width: 650px;">
 
-      <h1><strong>veldstra.org</strong></h1>
-      
-      <p><img src="images/skysaltire.jpg" title="" alt="" style="border: 24px solid #fff; margin: 20px 0 45px 0;" /></p>
+    <div class="row">
+      <div class="span9">
+        <p><strong>Hasan Veldstra</strong> -- About: &lt;3 Edinburgh, software, dogs, ale served at room temperature, bicycles, &amp; bbqs. Currently working on <a href="http://engage101.com">Engage101</a> and living in London.</p>
 
-      <p>
-        ~~ twitter <a href="http://twitter.com/hhv1">@hhv1</a>, hacker news <a href="http://news.ycombinator.com/user?id=hassy">hassy</a>, github <a href="http://github.com/hassy">hassy</a>, <a href="http://hassy.posterous.com">(old) blog</a>
-      </p>
+        <p><a href="http://hassy.posterous.com">blog</a> | <a href="http://twitter.com/hhv1">@hhv1</a> | github: <a href="http://github.com/hassy">hassy</a> | hacker news: <a href="http://news.ycombinator.com/user?id=hassy">hassy</a></p>
 
-      <p>Are you a scientist and a fan of Feynman? Then you should take a look at <a href="http://vidiowiki.com">vidiowiki</a>. Not a scientist? Then perhaps you work for a business that depends on too many Excel spreadsheets? If so, you should check out <a href="http://hypernumbers.com">hypernumbers</a>.
-      </p>
+        <p>Links to some other stuff I've done, in no particular order:</p>
+      <a href="http://zkombinator.com">ZKombinator</a> - internet satire, what if Samwers cloned YC? (2012);
+      <a href="http://vidiowiki.com">Vidiowiki</a> - platform to connect &amp; engage academia and public (2009-);
+      <a href="https://github.com/hassy/http-twiddle">http-twiddle</a> - HTTP debugging mode for Emacs (2009-);
+      <a href="https://github.com/hassy/obf-onion">Onion</a> - an exercise in obfuscating Erlang, <a class="dkt" href="http://spawnfest.com/">Spawnfest</a> 2011 special prize winner;
+      <a href="http://veldstra.org/whyerlang/">Why Erlang</a> - an attempt at Erlang advocacy (2010);
+      <a href="images/hiay.png">How International Are You?</a> - a Facebook app to visualize where your friends live (2011);
+      <a href="http://confbuzz.com">Confbuzz</a> - an app to make it easier to meet useful &amp; interesting people at conferences (2010-2011);
+      <a href="http://techmeetup.co.uk">Edinburgh Techmeetup</a> - helped run monthly beer, pizza, and tech talks (2010-2011)
+      <a href="https://github.com/hassy/informatics-explorer">Informatics Explorer</a> - a data mining and viz project for IDEA lab (2010);
+      <a href="http://hassy.posterous.com/google-app-engine-is-this-generations-basic">MoustacheWars</a> - <a href="http://kittenwar.com/" class="dkt">KittenWar</a> for photos of moustaches grown for Movember. Got a lot of traffic while it was live. (2009)</a>
+      <a href="http://hypernumbers.com">Hypernumbers</a> - the next generation spreadsheet (2007-2009);
+
+      </div>
+      <div class="span7">
+        <img src="images/skysaltire.jpg" style="width: 400px;" />
+        <div id="collageContainer" style="">
+        </div> <!-- #collageContainer -->
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="span10">
+        <p style="margin-top: 65px;"><strong>FIN</strong></p>
+      </div>
   </body>
 </html>
+
