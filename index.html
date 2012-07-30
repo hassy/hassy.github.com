@@ -18,13 +18,14 @@
       background: #eee;
       -webkit-font-smoothing: antialiased;
       -font-weight: lighter;
-      font-family: Courier, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.5em;
       margin: 30px;
       font-size: 10pt;
       }
 
       p {
+      font-size: 10pt;
       line-height: 1.5em;
       margin-top: 1.5em;
       }
@@ -113,38 +114,14 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
-      var shuffle = function(o){ //v1.0
-        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
-      };      
-
-      $(function() {
-      var $cc = $('#collageContainer');
-      idxs = [];
-      for(var i = 1; i < 24; i++) { idxs.push(i) };
-      shuffle(idxs);
-                         
-      for(var i = 1; i < 12; i++) {
-        var n = idxs[i];
-        $i=$("<img />").attr("src", "images/collage/"+n+".jpg").attr("class","collageItem");
-        $cc.append($i);
-      }
-      
-        $cc.imagesLoaded(function() {
-          $cc.masonry({
-            itemSelector : '.collageItem',
-            columnWidth : 100
-          });
-        });
-      });
     </script>
   </head>
   <body>    
 
     <div class="row">
       <div class="span9">
-        <p><strong>Hasan Veldstra</strong><br/>
+        <h1>Hasan Veldstra</h1>
+          <p>
           Bio: I studied CS at Edinburgh and been working for startups since 2007. I like building software, bulldogs, cycling, and ale served at room temperature. I'm currently working on <a href="http://vidiowiki.com">Vidiowiki</a>, an academic publishing startup.</p>
 
         <p>In 2007-2009 I worked on <a href="http://hypernumbers.com">Hypernumbers</a> - an online spreadsheet that allows users to build webapps without programming.</p>
@@ -162,12 +139,13 @@
       <a href="http://confbuzz.com">Confbuzz</a> - an app to make it easier to meet useful &amp; interesting people at conferences (2010-2011);
       <a href="http://techmeetup.co.uk">Edinburgh Techmeetup</a> - helped run monthly beer, pizza, and tech talks (2010-2011)
       <a href="https://github.com/hassy/informatics-explorer">Informatics Explorer</a> - a data mining and viz project for IDEA lab (2010);
-      <a href="http://hassy.posterous.com/google-app-engine-is-this-generations-basic">MoustacheWars</a> - <a href="http://kittenwar.com/" class="dkt">KittenWar</a> for photos of moustaches grown for Movember. Got a lot of traffic while it was live. (2009)</a>
+      <a href="http://hassy.posterous.com/google-app-engine-is-this-generations-basic">MoustacheWars</a> - <a href="http://kittenwar.com/" class="dkt">KittenWar</a> for photos of moustaches grown for Movember. (2009)</a>
       </div>
       <div class="span7">
         <img src="images/skysaltire.jpg" style="width: 400px;" />
-        <div id="collageContainer" style="">
-        </div> <!-- #collageContainer -->
+        <!-- <div id="collageContainer" style=""> -->
+        <!-- </div> -->
+      <!-- #collageContainer -->
       </div>
     </div>
     
