@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Footnotes</title>
+
+
+   <link rel="stylesheet" href="css/syntax.css" type="text/css" />
+   <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection" />
+   <link href="http://fonts.googleapis.com/css?family=Duru+Sans" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="site">
+  <div class="title">
+    <h1>Footnotes</h1> by HH Veldstra<br/>
+  </div>
+  
+  <div id="home">
+    
+    <div>
+      <h2>Spotify talk at Techmeetup</h2>
+
+      <p>Slides from my talk at Edinburgh Techmeetup.</p>
+
+<script async class="speakerdeck-embed" data-id="5076b1709d1165000202d64b" data-ratio="1.4143646408839778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>The code is on Github: <a href="http://github.com/hassy/music_hipster">Music Hipster</a>.</p>
+
+
+      <div class="permalink"><a href="/2012/10/17/spotify-talk.html">17 Oct 2012</a></div>
+    </div>
+    <hr />
+    
+    <div>
+      <h2>Hello again</h2>
+
+      <p>Here goes my 4th attempt at keeping a blog. Posts from Posterous to be moved when I can be bothered. I have also salvaged two posts that might be of interest to someone from my previous Jekyll blog.</p>
+
+
+      <div class="permalink"><a href="/2012/10/17/hello.html">17 Oct 2012</a></div>
+    </div>
+    <hr />
+    
+    <div>
+      <h2>the future of Lisp...</h2>
+
+      <p>&#8230;is <a href="http://clojure.org/">Clojure</a>, <a href="http://github.com/rvirding/lfe/tree"><span class="caps">LFE</span></a> etc, i.e. implementations of Lisp running on top of popular virtual machines. There are two advantages to this approach:</p>
+<ol>
+	<li>You get a lot of libraries for free, as long as the author spent a bit of time thinking about interop.</li>
+	<li>(new) Lisp code can live side-by-side with (older) Java, Erlang &amp;c code. There is no need for a radical rewrite or any interop difficulties &#8212; you simply write parts of your system in Lisp where it makes sense, perhaps gradually replacing older non-Lisp code.</li>
+</ol>
+<p>This would also mean that:</p>
+<p><a href="http://en.wikipedia.org/wiki/Common_Lisp">Common Lisp</a> is not going to get mainstream for three reasons:</p>
+<ol>
+	<li>It&#8217;s full of what looks like cruft to beginners.</li>
+	<li>It&#8217;s not straightforward to get started with. Advising newbies to learn Emacs &amp; <span class="caps">SLIME</span> is not wise and doesn&#8217;t work. Choosing an implementation to start with can be tricky too.</li>
+	<li>The community is not making an effort to make CL seem cool.</li>
+</ol>
+<p><a href="http://www.plt-scheme.org/"><span class="caps">PLT</span> Scheme</a> is not a contender either, because it&#8217;s perceived as little more than a Lisp for teaching, which isn&#8217;t true, but the community isn&#8217;t doing much to shatter this perception.</p>
+<p><strong>Update</strong> discussion over at <a href="http://news.ycombinator.com/item?id=443948">Hacker News</a></p>
+
+      <div class="permalink"><a href="/2009/05/19/future-of-lisp.html">19 May 2009</a></div>
+    </div>
+    <hr />
+    
+    <div>
+      <h2>Erlang is pragmatic</h2>
+
+      <p>Yeah, Erlang <a href="http://james-iry.blogspot.com/2009/05/erlang-is-not-functional.html">is not</a> a functional programming language.</p>
+<p>Erlang is a language that makes it easier to write fault-tolerant applications. (And <span class="caps">OTP</span> is the platform that makes it even easier, but not &#8220;easy&#8221; of course.)</p>
+<p>It&#8217;s all about the context.  From day one, the goal of the project that resulted in Erlang as we know it today was to come up with something that made it cheaper and faster to develop telephony systems &#8212; <span class="caps">ATM</span> switches and the like.  There was a lot of tinkering, rewriting, and questioning everything &#8212; even the most basic of assumptions.  There was a solid business requirement, which the Erlang team at Ericsson&#8217;s CS Lab understood well.  They were experienced hackers, with expertise in Prolog, C, Lisp and other programming languages.  They were also experienced in building fault-tolerant systems, and ruthlessly pragmatic.  It was simple: if something helped them get closer to their objective, it went into the language.  If it didn&#8217;t, it got thrown out.</p>
+<p>It turned out that discouraging mutable state brought the language closer to the goal.  Cheap lightweight isolated processes at the core of the language did too.  Currying, algebraic data types and many other features didn&#8217;t.</p>
+<p>Erlang is highly pragmatic, and this seems to get overlooked by many newcomers to the language.  It may be considered functional, and it may also be considered object-oriented, but that does not really matter.  (Some people also call it concurrency-oriented, which is my favorite classification of Erlang.)</p>
+<p><a href="http://www.cs.chalmers.se/Cs/Grundutb/Kurser/ppxt/HT2007/general/languages/armstrong-erlang_history.pdf">This paper</a> helps understand Erlang better.  It sheds light on why Erlang is the way it is, and explains why it&#8217;s by far the best choice for solving certain problems.</p>
+
+      <div class="permalink"><a href="/2009/05/16/erlang-is-pragmatic.html">16 May 2009</a></div>
+    </div>
+    <hr />
+    
+</div>
+  
+  <div class="footer">
+  </div>
+</div>
+</body>
+</html>
