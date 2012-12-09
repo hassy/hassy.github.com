@@ -4,7 +4,7 @@
  <title>Footnotes by HH Veldstra</title>
  <link href="http://veldstra.org/footnotes/atom.xml" rel="self"/>
  <link href="http://veldstra.org/"/>
- <updated>2012-10-18T17:03:52+01:00</updated>
+ <updated>2012-11-07T18:51:31+00:00</updated>
  <id>http://veldstra.org/</id>
  <author>
    <name>HH Veldstra</name>
@@ -21,6 +21,10 @@
 
 &lt;script async class=&quot;speakerdeck-embed&quot; data-id=&quot;5076b1709d1165000202d64b&quot; data-ratio=&quot;1.4143646408839778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 
+
+&lt;p&gt;and a photo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/spotifytalk.jpg&quot; alt=&quot;Hasan Veldstra at Techmeetup&quot; title=&quot;Hasan Veldstra at Techmeetup&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The code is on Github: &lt;a href=&quot;http://github.com/hassy/music_hipster&quot;&gt;Music Hipster&lt;/a&gt;.&lt;/p&gt;
 </content>

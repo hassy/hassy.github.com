@@ -4,61 +4,126 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Hasan Veldstra, HH Veldstra, hassy, hhv1" />
+    <meta name="description" content="HH Veldstra's homepage" />
     <title>veldstra.org</title>
     <link rel="stylesheet" href="bootstrap.min.css">
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-    <!-- <script src="jquery.masonry.min.js"></script> -->
     <style>
       html {
       font-size:100%;
       }
 
       body {
-      color: #333;
-      background: #fff;
-      font-family: Chalkboard, "Comic Sans Ms", Helvetica, Arial, sans-serif;
+      color: #454545;
+      background: #fff url("images/texture1.png");
+      font-family: Lato, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.5em;
       margin: 30px;
       }
 
       body, p {
-      font-size: 10pt;
+      font-size: 14pt;
       }
 
       p {
       line-height: 1.5em;
+      margin-top: 0.8em;
       }
 
       h1, h2, h3 {
+      font-family: Lato, "Helvetica Neue", Arial, sans-serif;
       letter-spacing: -1px;
-      font-weight: bold;
+      font-weight: normal;
       -webkit-font-smoothing: antialiased;
       color: #333;
+      line-height: 200%;
       }
 
       h1 {
-      font-size: 16pt;
+      font-size: 27pt;
       color: #333;
       letter-spacing: -1px;
       }
 
       h2 {
-      font-size: 14pt;
-      margin: 0;
+      font-size: 18pt;
+      font-weight: bold;
+      }
+
+      h3 {
+        font-size: 15pt;
+        font-weight: bold;
       }
 
       a {
-      color: #00c;
-      padding: 1px 3px;
+      color: #00f;
       }
 
       a:hover {
-      color: #c03;
+      color: #d03;
       text-decoration: none;
       }
 
       .small {
-      font-size: 0.8em;
+      font-size: 0.7em;
+      color: #696969;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        color: #333;
+        list-style: circle;
+        margin-left: 1em;
+      line-height: 1.5em;
+      }
+
+      .subtle {
+        color: #4f4f4f;
+        border-bottom: 1px dotted #999;
+        text-decoration: none;
+      }
+      .subtle:hover {
+        color: #454545;
+      }
+
+      .sidebar, .sidebar p, .sidebar ul {
+        font-size: 90%;
+      }
+
+      #pic {
+        height: 128px;
+        width: 128px;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        display: inline-block;
+        border: 4px solid #fff;
+        border-radius: 160px;
+        -webkit-box-shadow: 5px 5px 9px #aaa;
+        background-size: cover;
+        background-image: url("images/nstag.jpg");
+      }
+
+      #pic:hover {
+
+      }
+
+      #sidebar p {
+        margin: 1em 0px 0.5em 0px;
+      }
+
+      #sidebar p, #sidebar li {
+        font-size: 10pt;
+      }
+
+      hr {
+        border-bottom: 2px solid #999;
+        margin: 2em 0px;
       }
     </style>
 
@@ -77,48 +142,39 @@
   <body>
 
     <div class="container">
-    <div class="row">
-      <div class="span12">
-        <h1 style="text-transform: uppercase;">HH Veldstra</h1>
+      <div class="row">
+        <div class="span3 offset1" id="sidebar">
+          <div id="pic">
+          </div>
 
-        <p>
-          I am a 20-something year old guy in Edinburgh. I program computers for a living, and like to go on bike rides and long walks. My favorite tools are Emacs, Excel, OmniGraffle and Unix. I really like Erlang and Lua. Software should be elegant, UIs should be fast and fresh, and ale should always be served at room temperature. :)
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span12">
-        <p>
-        <a href="footnotes/index.html">Footnotes</a> &ndash; notes on work in progress &amp;c<br />
-        on Twitter I'm <a href="http://twitter.com/hhv1">@hhv1</a><br/>
-        on Github I'm <a href="http://github.com/hassy">hassy</a><br/>
-        and on Hacker News I'm <a href="http://news.ycombinator.com/user?id=hassy">hassy</a>
-        </p>
-      </div>
-    </div>
+          <p><strong></strong></p>
+          <ul>
+            <li><a href="footnotes/index.html">Footnotes</a> (blog)</li>
+            <!-- <li><a href=""></a> (blog #2)</li> -->
+            <!-- <li><a href=""></a>tumblr</li> -->
+          </ul>
 
-    <div class="row">
-      <div class="span12">
-        In 2012-2009 I worked on <a href="http://vidiowiki.com">Vidiowiki</a> - an academic publishing platform, and various related projects.<br/>
-        In 2007-2009 I worked on <a href="http://hypernumbers.com">Hypernumbers</a>, a next-gen spreadsheet platform.
-        <br/><br/>
-        some smaller things I've done:<br/>
-        <a href="http://zkombinator.com">Z Kombinator</a> - poked fun at the Samwers (<span style="font-size: 0.8em"><a href="http://thenextweb.com/shareables/2012/05/12/bring-in-the-clones-z-kombinator-rips-off-paul-grahams-startup-incubator-satire/" >TheNextWeb coverage</a></span>)<br/>
-        <a href="https://github.com/hassy/http-twiddle">http-twiddle</a> - maintained an interactive HTTP debugging mode for Emacs<br/>
-        <a href="https://github.com/hassy/obf-onion">Onion</a> - won a special prize at <a href="http://spawnfest.com/">Spawnfest 2011</a> (<span class="small">the "playing your own game" prize</span>)<br/>
-        <a href="http://techmeetup.co.uk">Edinburgh Techmeetup</a> - helped run monthly beer, pizza, and tech talks<br/>
-        <a href="https://github.com/hassy/informatics-explorer">Informatics Explorer</a> - built a data mining &amp; viz project for Edinburgh University's <a href="http://idea.ed.ac.uk/IDEA/Welcome.html">IDEA lab</a><br/>
-        <a href="http://hassy.posterous.com/google-app-engine-is-this-generations-basic">MoustacheWars</a> - built a <a href="http://kittenwar.com/" class="dkt">KittenWar</a> for Movember 2009</a>
 
-      </div>
-    </div>
+          <ul>
+            <li>Twitter: <a href="https://twitter.com/hhv1">@hhv1</a></li>
+            <li>Github: <a href="https://github.com/hassy">hassy</a> (<a href="https://coderwall.com/hassy" class="subtle">coderwall</a>)</li>
+            <li>&amp; hassy on Hacker News</li>
+          </ul>
 
-    <div class="row">
-      <div class="span10">
-        <p style="margin-top: 65px;"><strong>FIN</strong></p>
+        </div>
+        <div class="span8">
+          <h1>H.H. Veldstra</h1>
+
+          <p>I am the creator of <a href="http://wonderwheel.fm" style="font-weight: bold;">Wonderwheel</a>. I live in Edinburgh.</p>
+
+          <p>I've been on founding teams of two startups, and before that I studied at <a href="http://www.inf.ed.ac.uk" class="subtle">The School Of Informatics</a>.
+
+          <p>I'm currently pursuing indie projects and work as a freelance software developer to ensure a steady supply of <a href="http://brewlabcoffee.co.uk" class="subtle">BrewLab</a> coffee. If you have an interesting project, get in touch at <a href="mailto:freelance@veldstra.org" class="subtle">freelance@veldstra.org</a>.</p>
+
+          <!-- <p><a href="projects.html">List of stuff I've worked on</a>.</p> -->
+
+          <p style="margin-top: 30px;">FIN</p>
+        </div>
       </div>
-    </div>
-  </div>
   </body>
 </html>
-
