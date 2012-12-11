@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Codebites by HH Veldstra</title>
+ <link href="http://veldstra.org/codebites/atom.xml" rel="self"/>
+ <link href="http://veldstra.org/"/>
+ <updated>2012-12-11T19:02:36+00:00</updated>
+ <id>http://veldstra.org/</id>
+ <author>
+   <name>HH Veldstra</name>
+   <email>h@veldstra.org</email>
+ </author>
+
+ 
+ <entry>
+   <title>Django i18n checklist</title>
+   <link href="http://veldstra.org/codebites//2012/11/12/django-i18n-checklist.html"/>
+   <updated>2012-11-12T00:00:00+00:00</updated>
+   <id>http://veldstra.org/codebites//2012/11/12/django-i18n-checklist</id>
+   <content type="html">&lt;p&gt;I had to debug an i18n issue in a Django app recently and came up with this checklist. Hope it helps someone else:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;USE_I18N = True in settings.py?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;USE_L10N = True in settings.py?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;django.core.context_processors.i18n is in TEMPLATE_CONTEXT_PROCESSORS?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;django.middleware.locale.LocaleMiddleware is in MIDDLEWARE_CLASSES?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OR, if using django-cms: cms.middleware.multilingual.MultilingualURLMiddleware is in MIDDLEWARE_CLASSES?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;if using django-cms: cms.middleware.multilingual.MultilingualURLMiddleware is &lt;em&gt;right below&lt;/em&gt; session middleware?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#123;% load i18n %&amp;#125; is included in every template using translations? (even templates that inherit from other templates that load that tag &lt;em&gt;must&lt;/em&gt; include it)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#123;% trans %&amp;#125; is actually used to translate messages?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Message files (*.po) exist and can be found? Check:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;LOCALE_PATHS in settings.py&lt;/li&gt;
+&lt;li&gt;&quot;locale&quot; directory for each of the apps in INSTALLED_APPS&lt;/li&gt;
+&lt;li&gt;Default base translations&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>
