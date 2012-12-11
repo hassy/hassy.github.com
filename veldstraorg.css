@@ -1,0 +1,150 @@
+html {
+font-size:100%;
+}
+
+body {
+color: #454545;
+background: #fff url("images/texture1.png");
+font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+line-height: 1.5em;
+margin: 30px;
+}
+
+body, p {
+font-size: 14pt;
+}
+
+p {
+line-height: 1.5em;
+margin-top: 0.8em;
+}
+
+h1, h2, h3 {
+font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+letter-spacing: -1px;
+font-weight: normal;
+-webkit-font-smoothing: antialiased;
+color: #333;
+line-height: 200%;
+}
+
+h1 {
+font-size: 27pt;
+color: #333;
+letter-spacing: -1px;
+}
+
+h2 {
+font-size: 18pt;
+font-weight: bold;
+}
+
+h3 {
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+a {
+color: #00f;
+}
+
+a:hover {
+color: #d03;
+text-decoration: none;
+}
+
+.small {
+font-size: 0.7em;
+color: #696969;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  color: #333;
+  list-style: circle;
+  margin-left: 1em;
+line-height: 1.5em;
+}
+
+.subtle {
+  color: #4f4f4f;
+  border-bottom: 1px dotted #999;
+  text-decoration: none;
+}
+.subtle:hover {
+  color: #454545;
+}
+
+.sidebar, .sidebar p, .sidebar ul {
+  font-size: 90%;
+}
+
+#pic {
+  height: 128px;
+  width: 128px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  border: 4px solid #fff;
+  border-radius: 160px;
+  -webkit-box-shadow: 5px 5px 9px #aaa;
+  background-size: cover;
+  background-image: url("images/nstag.jpg");
+}
+
+#pic:hover {
+
+}
+
+#sidebar p {
+  margin: 1em 0px 0.5em 0px;
+}
+
+#sidebar p, #sidebar li {
+  font-size: 10pt;
+}
+
+hr {
+  border-bottom: 2px solid #999;
+  margin: 2em 0px;
+}
+
+/* -----------------------%- */
+/* projects                  */
+/* -----------------------%- */
+
+#resume {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px 30px;
+  border-radius: 6px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#resume p {
+  font-size: 11pt;
+}
+
+#resume h3 {
+  font-size: 13pt;
+  display: inline;
+}
+
+#resume h3 a {
+  color: #000;
+}
+
+#resume .date {
+  color: #999;
+  font-size: 0.8em;
+}
+
+#resume a {
+  color: #000;
+  border-bottom: 1px dotted #aaa;
+}
