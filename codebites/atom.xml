@@ -4,13 +4,41 @@
  <title>Codebites by HH Veldstra</title>
  <link href="http://veldstra.org/codebites/atom.xml" rel="self"/>
  <link href="http://veldstra.org/"/>
- <updated>2012-12-11T19:02:36+00:00</updated>
+ <updated>2012-12-12T10:54:00+00:00</updated>
  <id>http://veldstra.org/</id>
  <author>
    <name>HH Veldstra</name>
    <email>h@veldstra.org</email>
  </author>
 
+ 
+ <entry>
+   <title>2 ffmpeg recipes - timelapse videos and rescaling videos</title>
+   <link href="http://veldstra.org/codebites//2012/12/12/two-ffmpeg-recipes.html"/>
+   <updated>2012-12-12T00:00:00+00:00</updated>
+   <id>http://veldstra.org/codebites//2012/12/12/two-ffmpeg-recipes</id>
+   <content type="html">&lt;h1&gt;creating a timelapse video:&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;    #!/bin/bash
+    # a script to create a timelapse gif out of a video
+    # Usage: timelapse.sh &amp;lt;input&amp;gt; &amp;lt;output&amp;gt; &amp;lt;frames&amp;gt;
+    # frames is the number of frames per second (1 = fastest, 10 is slower etc)
+    mkdir /tmp/timelapse_tmp
+    ffmpeg -i $1 -r $3 -f image2 /tmp/timelapse_tmp/%05d.png
+    ffmpeg -i /tmp/timelapse_tmp/%05d.png -b 512000 $2
+    rm -rf /tmp/timelapse_tmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;rescaling a video:&lt;/h1&gt;
+
+&lt;p&gt;Turns out rescaling a video is not as straightforward as it might seem, there isn't a single recipe that'll work for everyone. You will have to experiment, however this is a good start:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ffmpeg -i INPUT.mov -vf &quot;scale=356:278:flags=spline,unsharp=2.5:2.5:1.5&quot; -b:v 256k OUTPUT.mov
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;356 is width and 278 is obviously height - replace these with what you need (either can be set to -1 to keep the aspect ratio). &quot;spline&quot; is the scaling method to use, and seemed to work better for me than the default one (full list of scaling methods can be seen here: &lt;a href=&quot;http://gitorious.org/libswscale/mainline/blobs/master/options.c&quot;&gt;http://gitorious.org/libswscale/mainline/blobs/master/options.c&lt;/a&gt;)&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Django i18n checklist</title>

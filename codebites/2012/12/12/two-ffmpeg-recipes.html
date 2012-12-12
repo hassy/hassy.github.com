@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Codebites</title>
+   <title>2 ffmpeg recipes - timelapse videos and rescaling videos</title>
 
 
    <link rel="stylesheet" href="css/syntax.css" type="text/css" />
@@ -16,12 +16,8 @@
     <h1>Codebites</h1> by HH Veldstra<br/>
   </div>
 
-  <div id="home">
-    
-    <div>
-      <h2>2 ffmpeg recipes - timelapse videos and rescaling videos</h2>
-
-      <h1>creating a timelapse video:</h1>
+  <div id="post">
+<h1>creating a timelapse video:</h1>
 
 <pre><code>    #!/bin/bash
     # a script to create a timelapse gif out of a video
@@ -42,41 +38,15 @@
 
 <p>356 is width and 278 is obviously height - replace these with what you need (either can be set to -1 to keep the aspect ratio). "spline" is the scaling method to use, and seemed to work better for me than the default one (full list of scaling methods can be seen here: <a href="http://gitorious.org/libswscale/mainline/blobs/master/options.c">http://gitorious.org/libswscale/mainline/blobs/master/options.c</a>)</p>
 
+</div>
 
-      <div class="permalink"><a href="/2012/12/12/two-ffmpeg-recipes.html">12 Dec 2012</a></div>
-    </div>
-    <hr />
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
     
-    <div>
-      <h2>Django i18n checklist</h2>
-
-      <p>I had to debug an i18n issue in a Django app recently and came up with this checklist. Hope it helps someone else:</p>
-
-<ul>
-<li><p>USE_I18N = True in settings.py?</p></li>
-<li><p>USE_L10N = True in settings.py?</p></li>
-<li><p>django.core.context_processors.i18n is in TEMPLATE_CONTEXT_PROCESSORS?</p></li>
-<li><p>django.middleware.locale.LocaleMiddleware is in MIDDLEWARE_CLASSES?</p></li>
-<li><p>OR, if using django-cms: cms.middleware.multilingual.MultilingualURLMiddleware is in MIDDLEWARE_CLASSES?</p></li>
-<li><p>if using django-cms: cms.middleware.multilingual.MultilingualURLMiddleware is <em>right below</em> session middleware?</p></li>
-<li><p>&#123;% load i18n %&#125; is included in every template using translations? (even templates that inherit from other templates that load that tag <em>must</em> include it)</p></li>
-<li><p>&#123;% trans %&#125; is actually used to translate messages?</p></li>
-<li><p>Message files (*.po) exist and can be found? Check:</p>
-
-<ol>
-<li>LOCALE_PATHS in settings.py</li>
-<li>"locale" directory for each of the apps in INSTALLED_APPS</li>
-<li>Default base translations</li>
-</ol>
-</li>
-</ul>
-
-
-
-      <div class="permalink"><a href="/2012/11/12/django-i18n-checklist.html">12 Nov 2012</a></div>
-    </div>
-    <hr />
+      <li><span>12 Nov 2012</span> &raquo; <a href="/2012/11/12/django-i18n-checklist.html">Django i18n checklist</a></li>
     
+  </ul>
 </div>
 
   <div class="footer">
