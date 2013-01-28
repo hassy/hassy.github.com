@@ -1,0 +1,15 @@
+#app_left, #search_filters, #search_form, input, label {
+  display: none;
+}
+#app_search, #search_map, #search_results, #resourceView{
+  width: 90%;
+}
+
+#app_search{
+    border: none;
+}
+
+#header img{
+    margin-left: -150px;
+}
+

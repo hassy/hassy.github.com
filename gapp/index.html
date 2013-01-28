@@ -1,0 +1,368 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>NHS Social Prescribing for people living with Long Term Conditions</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/blueprint/screen.css" />
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" />
+  <![endif]-->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="css/blueprint/print.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css" />
+
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="js/libs/json2.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  <script src="js/libs/jquery.expander.js"></script>
+  <script src="js/libs/underscore-min.js"></script>
+  <script src="js/libs/backbone-min.js"></script>
+  <script src="js/libs/locache.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/gapp.js"></script>
+
+</head>
+<body>
+
+  <div class="container" role="main">
+
+    <div id="header" class="span-24 last">
+
+      <div class="span-18">
+        <h1>Community Links</h1>
+      </div>
+
+      <div class="prepend-2 span-4 last" style="text-align: right;">
+        <img src="img/nhs_logo_blue_150.jpg" height="48px" alt="NHS GCC" />
+      </div>
+
+    </div>
+
+    <div id="menu" class="span-24 last">
+      <div class="span-12" style="text-align: left;">
+        <ul>
+          <a href="#">Home</a> &rarr;
+          <a href="#">List</a> &rarr;
+          Detail
+        </ul>
+      </div>
+
+      <div class="span-12 last">
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Your Account</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="app" class="span-24 last">
+
+      <div id="app_left" class="span-5">
+
+        <div class="span-5 last">
+          <div style="border: 2px solid #999; text-align: center; line-height: 2em; font-weight: bold; color: #039; padding: 10px 5px; margin: 0 0 5px 0;">
+            Powered by <a href="http://aliss.org" style="color: #039">ALISS</a>
+          </div>
+
+          <div style="border: 2px solid #999; text-align: center; line-height: 2em; font-weight: bold; color: #039; padding: 10px 5px; margin: 0 0 5px 0;">
+            <img src="img/photo.jpg" /> <!-- TODO: alt, width, height etc -->
+          </div>
+
+          <div style="border: 2px solid #999; text-align: center; line-height: 2em; font-weight: bold; color: #039; padding: 10px 5px; margin: 0 0 5px 0;">
+            <h3>saved searches</h3>
+            <p>Your saved searches will appear here.</p>
+          </div>
+        </div>
+
+        <!-- <a href="." class="span-4 last big_link">Start again</a> -->
+
+<!--         <h3 class="span-5 last">Saved searches</h3>
+
+        <div id="saved_searches">
+
+            <a href="#!/search/Substance%20abuse/Glasgow" class="span-4 last big_link saved_search">
+              Substance abuse (Glasgow)
+            </a>
+
+            <a href="#!/search/Mental%20Health" class="span-4 last big_link saved_search">
+              Mental Health
+            </a>
+
+            <a href="#!/search/Cancer" class="span-4 last big_link saved_search">
+              Cancer
+            </a>
+
+            <a href="#!/search/Multiple%20Sclerosis" class="span-4 last big_link saved_search">
+              Multiple Sclerosis
+            </a>
+
+        </div> -->
+      </div>
+
+      <div id="app_search" class="span-19 last">
+
+        <div class="span-8">
+            <div style="padding: 0 20px 0 0;">
+            <h2>Search</h2>
+            <p>
+              To search community resources available in the Glasgow area, enter the location within which you wish to find resources and a word relating to the type of resource you wish to find.
+            </p>
+            <p>
+              e.g. enter 'Govan' in the location box and 'childcare' in the keyword box to see a list of childcare resources available within the Govan area.
+            </p>
+          </div>
+        </div>
+
+        <div class="span-10 last">
+
+          <form method="get" action="." id="search_form">
+            <label for="id_location" class="required">Location:</label>
+            <input id="id_location" type="text" name="location" class="" />
+
+            <label for="id_query" class="required">Text:</label>
+            <input id="id_query" type="text" name="query" class=""/>
+
+            <div id="search_filters">
+              <strong>Filter results:</strong>
+              <input type="radio" name="filter" id="filter_practice" value="Practice" />
+              <label class="" for="filter_practice">Practice</label>
+
+              <input type="radio" name="filter" id="filter_local" value="Local" />
+              <label class="" for="filter_local">Trusted</label>
+
+              <input type="radio" name="filter" id="filter_all" value="All" checked />
+              <label class="" for="filter_all">All</label>
+            </div>
+
+
+            <p><input type="checkbox" id="id_togglemap" /> <label for="id_togglemap">Show map</label></p>
+
+            <p><input id="search" type="submit" value="Search now" class="" style="" /></p>
+
+
+          </form>
+        </div>
+
+        <div class="span-18 last">
+
+<!--           <div id="event_filters" class="big_link span-5 last">
+
+            <input type="checkbox" name="filter" id="id_future_events" value="All" />
+            <label class="append-1" for="filter_all">Future Events only</label>
+
+          </div>
+ -->
+          <div id="search_map" class="box span-18 last pannel">
+          </div>
+
+          <div id="search_results" class="box span-18 last pannel" style="display: none;">
+
+            <!-- <h2>How to search</h2> -->
+
+          </div>
+
+          <div id="resourceView" class="box span-18 last pannel">
+
+          </div>
+
+          <div id="contact" class="box span-18 last">
+
+            <h2>Contact us</h2>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script type="text/template" id="result-loading">
+
+      <h2>Searching for resources</h2>
+
+      <p>Loading...</p>
+
+  </script>
+
+  <script type="text/template" id="result-template">
+
+    <% if (location && query){ %>
+      <h2>Resources found for &ldquo;<%= query %>&rdquo; in &ldquo;<%= location %>&rdquo;</h2>
+    <% } else if (location) {%>
+      <h2>Resources found in &ldquo;<%= location %>&rdquo;</h2>
+    <% } else if (query) {%>
+      <h2>Resources found for &ldquo;<%= query %>&rdquo;</h2>
+    <% } %>
+
+    <% if (resources.length == 0){ %>
+
+      <p>Sorry, we couldn&rsquo;t find anything. Try a more general search.</p>
+
+    <% } else { %>
+
+      <p class="pagination span-18 last">
+
+        <span class="span-3 select_all">
+          <input type="checkbox" class="result-select select_all" name="resources-all" value="1" />
+          <label for="select_all">Select All</label>
+        </span>
+        <span class="span-8 prepend-1 last">
+          <% if (start > 1) { %>
+          <a href="#" class="first">First</a>
+          <% } %>
+
+          <% if (start > 0) { %>
+          <a href="#" class="previous">Previous</a>
+          <% } %>
+
+          Page <%= pageNumber %>
+          <a href="#" class="next">Next</a>
+
+        </span>
+        <span class="span-6 select-action last">
+          <a href="#" class="print_selected">Print Selected</a>
+          <a href="#" class="email_selected">Email Selected</a>
+        </span>
+
+      </p>
+
+      <span class="clearfix"></span>
+
+      <form method="post" action=".">
+        <% var counter = start; _.each(resources, function(resource) { %>
+            <% counter++; %>
+            <% var desc = resource.description; %>
+            <h3><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resource.uri %>"><%= resource.title %></a></h3>
+            <span class="truncate"><%= desc %>&hellip;</span>
+            <p><a href="#" class="detail" data-id="<%= resource.id %>">View details</a></p>
+            <% if(counter % 10 !== 0 ){ %>
+              <hr/>
+            <% } %>
+        <% }); %>
+      </form>
+
+      <p class="pagination span-18 last">
+
+        <span class="span-3 select_all">
+          <input type="checkbox" class="result-select select_all" name="resources-all" value="1" />
+          <label for="select_all">Select All</label>
+        </span>
+        <span class="span-8 prepend-1 last">
+          <% if (start > 1) { %>
+          <a href="#" class="first">First</a>
+          <% } %>
+
+          <% if (start > 0) { %>
+          <a href="#" class="previous">Previous</a>
+          <% } %>
+
+          Page <%= pageNumber %>
+          <a href="#" class="next">Next</a>
+
+        </span>
+
+      </p>
+
+    <% } %>
+
+  </script>
+
+  <script type="text/template" id="saved-search">
+
+      <% _.each(savedSearch, function(saved) { %>
+
+          <% if(saved.query && saved.location){ %>
+
+            <a href="#!/search/<%= saved.query %>/<%= saved.location%>" class="span-4 last big_link saved_search">
+              <%= saved.query %> (<%= saved.location %>)
+            </a>
+
+          <% } else if (saved.query){ %>
+
+            <a href="#!/search/<%= saved.query %>" class="span-4 last big_link saved_search">
+              <%= saved.query %>
+            </a>
+
+          <% } %>
+
+      <% }); %>
+
+  </script>
+
+
+  <script type="text/template" id="resource-template">
+
+    <p class="pagination span-18 last">
+      <a href="#" class="back">Back to results</a>
+    </p>
+
+    <% if (resources.length > 1){ %>
+
+      <% _.each(resources, function(resource) { %>
+
+        <h3><a href="<%= resource.uri %>"><%= resource.title %></a></h3>
+        <p><%= resource.description %></p>
+        <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
+        <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report Resource</a>
+        <br/><br/>
+        <hr/>
+
+      <% }); %>
+
+      <p class="pagination span-18 last">
+        <a href="#" class="email">Email Resources</a> |
+        <a href="#" class="print">Print Resources</a>
+      </p>
+
+    <% } else if(resources.length === 1) { %>
+
+      <% var resource = resources[0]; %>
+      <h3><%= resource.title %></h3>
+      <p><%= resource.description %></p>
+      <hr/>
+      <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
+      <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report Resource</a> |
+      <a href="#" class="email">Email Resource</a> |
+      <a href="#" class="print">Print Resource</a>
+
+    <% } else { %>
+      None?
+    <% } %>
+
+  </script>
+
+
+<!-- Whitespace is important in the below template -->
+<script type="text/template" id="resource-email">Title: <%= title %>
+
+Description;
+<%= description %>
+
+Locations;
+<% _.each(locationnames, function(l){%>
+- <%= l %>
+<% }) %>
+Website: <%= uri %>
+
+----------
+
+</script>
+
+</body>
+</html>

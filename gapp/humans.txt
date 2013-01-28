@@ -1,0 +1,9 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Developer: Dougal Matthews
+  Site: http://dougalmatthews.com
+  Twitter: d0ugal
+  Location: UK
