@@ -3,7 +3,7 @@ h1{
 }
 
 #header {
-  background-color: #039;
+  background-color: #002570;
   color: white;
   border: 2px solid #999;
   padding: 10px 5px;
@@ -105,6 +105,7 @@ h1{
 
 #search_map{
   height: 400px;
+  width: 700px;
 }
 
 .read-more, .read-less{
@@ -140,4 +141,14 @@ hr {
 }
 
 #search {
+}
+
+.sidebarBox {
+  border: 2px solid #999;
+  text-align: center;
+  line-height: 2em;
+  font-weight: bold;
+  color: #039;
+  padding: 10px 5px;
+  margin: 0 0 5px 0;
 }

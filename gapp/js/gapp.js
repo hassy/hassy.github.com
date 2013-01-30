@@ -242,29 +242,35 @@ $(function(){
             this.mapInitialized = true
         },
 
-        addMarker: function(position, content){
+        addMarker: function(position, content, title){
 
             if(!this.mapInitialized){
                 this.$el.show()
                 this.initMap()
             }
 
-            var map = this.map
+            var map = this.map;
+            var that = this;
 
             var marker = new google.maps.Marker({
                 map: this.map,
                 animation: google.maps.Animation.DROP,
-                position: position
+                position: position,
+                title: title
             })
 
-            this.markers.push(marker)
+            this.markers.push(marker);
 
             var infowindow = new google.maps.InfoWindow({
                 content: content
             })
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker)
+                if(that.current) {
+                    that.current.close();
+                }
+                infowindow.open(map, marker);
+                that.current = infowindow;
             })
 
         },
@@ -295,7 +301,8 @@ $(function(){
                     var latlng = location.split(', ')
                     var glatlng = new google.maps.LatLng(latlng[0], latlng[1])
                     markerbounds.extend(glatlng)
-                    that.addMarker(glatlng, resource.title + "<br/>" + '<a href="#!/resource/' + resource.id + '">Details</a>')
+                    //that.addMarker(glatlng, resource.title + "<br/>" + '<a href="#!/resource/' + resource.id + '">Details</a>')
+                    that.addMarker(glatlng, resource.title + "<br/>" + '<a href="#!/resource/' + resource.id + '">Details</a>', resource.title + " (" + resource.locationnames[0] + ")");
                 })
             })
 
@@ -421,6 +428,8 @@ $(function(){
 
     })
 
+    var app;
+
     var SearchView = Backbone.View.extend({
 
         tagName: "li",
@@ -442,7 +451,8 @@ $(function(){
             'click input.result_individual': 'resultSelect',
             'click .print_selected': 'print',
             'click .email_selected': 'email',
-            'click #id_togglemap': 'toggle_map'
+            'click #id_togglemap': 'toggle_map',
+            'click #id_resetsearch': 'reset_search'
         },
 
         results: new ResourceCollection(),
@@ -478,7 +488,8 @@ $(function(){
             this.render(this.templateLoading)
         },
 
-        search: function(){
+        search: function() {
+            $("#id_resetsearch").show();
             this.showLoading()
             var query = $('#id_query').val(), location = $('#id_location').val()
 
@@ -601,6 +612,7 @@ $(function(){
             $('#resourceView').hide()
             $('#contact').hide()
             $('#search_results').show()
+            $("#id_resetsearch").show();
             this.toggle_map();
             if (!$.isFunction(template)){
                 template = this.template
@@ -655,9 +667,28 @@ $(function(){
         },
 
         toggle_map: function(e) {
-            $("#search_map").css("display", $('#id_togglemap').attr("checked") == "checked" ? "block" : "none");
-        }
+            if($("#id_togglemap").attr("checked")) {
+                // can't use .hide() because that'll mess up the map when toggled to be shown
+                $("#search_map").css({"position":"static",
+                                      "top":"auto",
+                                      "left": "auto"});
+            } else {
+                $("#search_map").css({"position": "absolute",
+                                      "top": "-9999px",
+                                      "left": "-9999px"});
+            }
+        },
 
+        reset_search: function(e) {
+            e.preventDefault();
+            $("#id_resetsearch").hide();
+            $("#search_results").hide();
+            $("#id_togglemap").attr("checked", false);
+            this.toggle_map();
+            $("#id_location").val("").focus();
+            $("#id_query").val("");
+            return false;
+        }
     })
 
     var app = new SearchView()

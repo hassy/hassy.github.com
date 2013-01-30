@@ -13,3 +13,6 @@
     margin-left: -150px;
 }
 
+.detail, .print_selected, .email_selected, .result_select, .select_all {
+    display: none;
+}
