@@ -681,6 +681,8 @@ $(function(){
 
         reset_search: function(e) {
             e.preventDefault();
+            this.results.trigger("reset");
+            this.resourceView.trigger("reset");
             $("#id_resetsearch").hide();
             $("#search_results").hide();
             $("#id_togglemap").attr("checked", false);
