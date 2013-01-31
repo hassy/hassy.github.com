@@ -25,6 +25,7 @@ h1{
   background-color: #ccc;
   line-height: 2.5em;
   border: 2px solid #999;
+  padding: 0px 5px;
 }
 
 #menu ul {
@@ -152,3 +153,26 @@ hr {
   padding: 10px 5px;
   margin: 0 0 5px 0;
 }
+
+.detail {
+  display: none;
+}
+
+.resourceTitle {
+  font-weight: bold;
+  font-size: 13pt;
+}
+
+.resourceTitle a {
+  color: #333;
+}
+
+.resourceInlineToolbox {
+  font-size: 0.9em;
+  text-align: right;
+}
+
+.resourceInlineToolbox a {
+  color: #666;
+}
+

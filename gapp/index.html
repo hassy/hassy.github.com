@@ -43,7 +43,7 @@
         <h1>Community Links</h1>
       </div>
 
-      <div class="prepend-2 span-4 last" style="text-align: right;">
+      <div class="span-6 last" style="text-align: right;">
         <img src="img/logo_NHSGGC_white_on_bluesm.jpg" width="53px" height="49px" alt="NHS GCC" />
       </div>
 
@@ -249,11 +249,20 @@
         <% var counter = start; _.each(resources, function(resource) { %>
             <% counter++; %>
             <% var desc = resource.description; %>
-            <h3><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resource.uri %>"><%= resource.title %></a></h3>
+            <h3 class="span-13 resourceTitle"><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
+            <p class="span-5 last resourceInlineToolbox">
+              <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit</a> &bull;
+              <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report</a>
+            </p>
+
+
+
+            <div class="span-18">
             <span><%= desc %></span>
             <p><a href="#" class="detail" data-id="<%= resource.id %>">View details</a></p>
             <% if(counter % 10 !== 0 ){ %>
               <hr/>
+            </div>
             <% } %>
         <% }); %>
       </form>
@@ -317,7 +326,7 @@
 
       <% _.each(resources, function(resource) { %>
 
-        <h3><a href="<%= resource.uri %>"><%= resource.title %></a></h3>
+        <h3><a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
         <p><%= resource.description %></p>
         <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
         <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report Resource</a>
@@ -334,7 +343,7 @@
     <% } else if(resources.length === 1) { %>
 
       <% var resource = resources[0]; %>
-      <h3><a href="<%= resource.uri %>"><%= resource.title %></a></h3>
+      <h3><a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
       <p><%= resource.description %></p>
       <hr/>
       <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
