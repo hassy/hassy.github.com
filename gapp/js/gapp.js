@@ -452,7 +452,8 @@ $(function(){
             'click .print_selected': 'print',
             'click .email_selected': 'email',
             'click #id_togglemap': 'toggle_map',
-            'click #id_resetsearch': 'reset_search'
+            'click #id_resetsearch': 'reset_search',
+            'click #id_savesearch': 'save_search'
         },
 
         results: new ResourceCollection(),
@@ -490,6 +491,7 @@ $(function(){
 
         search: function() {
             $("#id_resetsearch").show();
+            $("#id_savesearch").show();
             this.showLoading()
             var query = $('#id_query').val(), location = $('#id_location').val()
 
@@ -608,11 +610,11 @@ $(function(){
         },
 
         render: function(template){
-
             $('#resourceView').hide()
             $('#contact').hide()
             $('#search_results').show()
             $("#id_resetsearch").show();
+            $("#id_savesearch").show();
             this.toggle_map();
             if (!$.isFunction(template)){
                 template = this.template
@@ -669,13 +671,16 @@ $(function(){
         toggle_map: function(e) {
             if($("#id_togglemap").attr("checked")) {
                 // can't use .hide() because that'll mess up the map when toggled to be shown
-                $("#search_map").css({"position":"static",
+                $("#search_map").css({"position":"static !important",
                                       "top":"auto",
                                       "left": "auto"});
+                $("#search_map > div").css({"position": "absolute", "top": "0", "left":"0"});
+                $("#search_results").css({"margin-top": "440px"});
             } else {
                 $("#search_map").css({"position": "absolute",
                                       "top": "-9999px",
                                       "left": "-9999px"});
+                $("#search_results").css({"margin-top": "30px"});
             }
         },
 
@@ -684,11 +689,29 @@ $(function(){
             this.results.trigger("reset");
             this.resourceView.trigger("reset");
             $("#id_resetsearch").hide();
+            $("#id_savesearch").hide();
             $("#search_results").hide();
             $("#id_togglemap").attr("checked", false);
             this.toggle_map();
             $("#id_location").val("").focus();
             $("#id_query").val("");
+            return false;
+        },
+
+        save_search: function(e) {
+            // TODO: check that search hasn't been saved already
+
+            e.preventDefault();
+            var location = $("#id_location").val();
+            var query = $("#id_query").val();
+            var search = encodeURIComponent(query) + "/" + encodeURIComponent(location);
+            var savedSearches = [];
+            if($.cookie("savedSearches") != undefined) {
+                savedSearches = $.cookie("savedSearches");
+            }
+            savedSearches.push(search);
+            $.cookie("savedSearches", savedSearches, {"expires": 365});
+            renderSavedSearches();
             return false;
         }
     })

@@ -29,8 +29,29 @@
   <script src="js/libs/underscore-min.js"></script>
   <script src="js/libs/backbone-min.js"></script>
   <script src="js/libs/locache.min.js"></script>
+  <script src="js/libs/jquery.cookie.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/gapp.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $.cookie.json = true;
+
+    renderSavedSearches = function() {
+      $("#saved_searches").html("");
+      _.each($.cookie("savedSearches"), function(o) {
+          var location = o.split("/")[0];
+          var query = o.split("/")[1];
+          var text = (location != undefined ? decodeURIComponent(location) : "") + " / " + (query != undefined ? decodeURIComponent(query) : "");
+          var searchUrl = "#!/search/" + o;
+          $("<a></a>").attr("href", searchUrl).attr("class", "saved_search span-4 big_link").html(text).appendTo($("#saved_searches"));
+        });
+    }
+
+    renderSavedSearches();
+    });
+
+  </script>
 
 </head>
 <body>
@@ -58,8 +79,8 @@
 
       <div class="span-12 last">
         <ul>
-          <li><a href="#!/contact">Contact</a></li>
-          <li><a href="http://aliss.org/info/">Help</a></li>
+          <li><a href="http://www.aliss.org/contact/">Contact</a></li>
+          <li><a href="http://www.aliss.org/info/test2/">Help</a></li>
           <li><a href="http://aliss.org/acct/">Your Account</a></li>
         </ul>
       </div>
@@ -86,11 +107,11 @@
 
         <!-- <a href="." class="span-4 last big_link">Start again</a> -->
 
-<!--         <h3 class="span-5 last">Saved searches</h3>
+        <h3 class="span-5 last">Saved searches</h3>
 
         <div id="saved_searches">
 
-            <a href="#!/search/Substance%20abuse/Glasgow" class="span-4 last big_link saved_search">
+<!--             <a href="#!/search/Substance%20abuse/Glasgow" class="span-4 last big_link saved_search">
               Substance abuse (Glasgow)
             </a>
 
@@ -104,9 +125,9 @@
 
             <a href="#!/search/Multiple%20Sclerosis" class="span-4 last big_link saved_search">
               Multiple Sclerosis
-            </a>
+            </a> -->
 
-        </div> -->
+        </div>
       </div>
 
       <div id="app_search" class="span-19 last">
@@ -150,6 +171,7 @@
             <p>
               <input id="search" type="submit" value="Search Now" class="" style="" />
               <button style="margin-left: 25px; display: none;" id="id_resetsearch">Reset Search</button>
+              <button style="margin-left: 25px; display: none" id="id_savesearch">Save Search</button>
             </p>
 
 
@@ -237,8 +259,9 @@
 
         </span>
         <span class="span-6 select-action last">
-          <a href="#" class="print_selected">Print Selected</a>
-          <a href="#" class="email_selected">Email Selected</a>
+          <a href="#" class="print_selected"><img src="img/print.png" /></a> <a href="#" class="print_selected">Print Selected</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#" class="email_selected"><img src="img/email.png" /></a> <a href="#" class="email_selected">Email Selected</a>
         </span>
 
       </p>
