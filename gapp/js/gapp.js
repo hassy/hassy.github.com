@@ -66,7 +66,7 @@ $(function(){
 
         url: function(){
             var id = this.get('id')
-            return 'http://www.aliss.org/api/resources/' + id + '/'
+            return 'http://staging.aliss.org/api/resources/' + id + '/'
         },
 
         parse: function(result){
@@ -82,7 +82,7 @@ $(function(){
     var ResourceCollection = BaseCollection.extend({
 
         model: Resource,
-        url: 'http://www.aliss.org/api/resources/search/',
+        url: 'http://staging.aliss.org/api/resources/search/',
 
         queryData: {
             'max': 10,
@@ -177,7 +177,7 @@ $(function(){
 
     var SavedSearchCollection = BaseCollection.extend({
 
-        url: 'http://www.aliss.org/api/savedsearchesbyIP/',
+        url: 'http://staging.aliss.org/api/savedsearchesbyIP/',
 
         model: SavedSearch,
 
