@@ -670,17 +670,27 @@ $(function(){
 
         toggle_map: function(e) {
             if($("#id_togglemap").attr("checked")) {
+                console.info("toggling ON");
                 // can't use .hide() because that'll mess up the map when toggled to be shown
                 $("#search_map").css({"position":"static !important",
                                       "top":"auto",
                                       "left": "auto"});
                 $("#search_map > div").css({"position": "absolute", "top": "0", "left":"0"});
+                var margin_top = Number($("#search_results").css("margin-top").split("px")[0]);
+                //console.log(margin_top);
+                //console.info("new margin: " + margin_top + 440 + "px");
+                //$("#search_results").css("margin-top", margin_top + 440 + "px");
                 $("#search_results").css({"margin-top": "440px"});
             } else {
+                console.info("toggling OFF");
                 $("#search_map").css({"position": "absolute !important",
                                       "top": "-9999px",
                                       "left": "-9999px"});
-                $("#search_results").css({"margin-top": "30px"});
+                //var margin_top = Number($("#search_results").css("margin-top").split("px")[0]);
+                //console.info("new margin: " + margin_top - 440 + "px");
+                //$("#search_results").css("margin-top", margin_top - 440 + "px");
+
+                $("#search_results").css({"margin-top": "0px"});
             }
         },
 
