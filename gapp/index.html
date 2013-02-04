@@ -255,7 +255,8 @@
         <% var counter = start; _.each(resources, function(resource) { %>
             <% counter++; %>
             <% var desc = resource.description; %>
-            <h3 class="span-13 resourceTitle"><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
+            <% var resourceUrl = resource.uri; if(resourceUrl == "") { resourceUrl = "http://aliss.org/depot/resource/" + resource.id } %>
+            <h3 class="span-13 resourceTitle"><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resourceUrl %>" target="_blank"><%= resource.title %></a></h3>
             <p class="span-5 last resourceInlineToolbox">
               <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/" target="_blank">Edit</a> &bull;
               <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/" target="_blank">Report</a>
@@ -331,8 +332,8 @@
     <% if (resources.length > 1){ %>
 
       <% _.each(resources, function(resource) { %>
-
-        <h3><a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
+        <% var resourceUrl = resource.uri; if(resourceUrl == "") { resourceUrl = "http://aliss.org/depot/resource/" + resource.id } %>
+        <h3><a href="<%= resourceUrl %>" target="_blank"><%= resource.title %></a></h3>
         <p><%= resource.description %></p>
         <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
         <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report Resource</a>
@@ -349,7 +350,8 @@
     <% } else if(resources.length === 1) { %>
 
       <% var resource = resources[0]; %>
-      <h3><a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
+      <% var resourceUrl = resource.uri; if(resourceUrl == "") { resourceUrl = "http://aliss.org/depot/resource/" + resource.id } %>
+      <h3><a href="<%= resourceUrl %>" target="_blank"><%= resource.title %></a></h3>
       <p><%= resource.description %></p>
       <hr/>
       <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
