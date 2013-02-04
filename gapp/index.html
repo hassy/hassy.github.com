@@ -44,7 +44,9 @@
           var query = o.split("/")[1];
           var text = (location != undefined ? decodeURIComponent(location) : "") + " / " + (query != undefined ? decodeURIComponent(query) : "");
           var searchUrl = "#!/search/" + o;
-          $("<a></a>").attr("href", searchUrl).attr("class", "saved_search span-4 big_link").html(text).appendTo($("#saved_searches"));
+          var $li = $("<li></li>");
+          var $a = $("<a></a>").attr("href", searchUrl).attr("class", "saved_search").html(text);
+          $li.append($a).appendTo($("#saved_searches"));
         });
     }
 
@@ -73,7 +75,7 @@
     <div id="menu" class="span-24 last">
       <div class="span-12" style="text-align: left;">
         <ul>
-          <a href="/">Home</a>
+          <a href="http://aliss.org">Home</a>
         </ul>
       </div>
 
@@ -90,44 +92,25 @@
 
       <div id="app_left" class="span-5">
 
-        <div class="span-5 last">
+        <div class="span-5">
           <div class="sidebarBox">
             Powered by <a href="http://aliss.org" style="color: #039">ALISS</a>
           </div>
+        </div>
 
+      <div class="span-5">
           <div class="sidebarBox">
             <img src="img/photo.jpg" /> <!-- TODO: alt, width, height etc -->
           </div>
+        </div>
 
-          <div class="sidebarBox">
-            <h3>saved searches</h3>
-            <p>Your saved searches will appear here.</p>
+        <div class="sidebarBox span-5" style="padding: 0px;">
+            <h3 style="margin-bottom: 0;">saved searches</h3>
+
+            <ul id="saved_searches">
+              <p>Your saved searches will appear here.</p>
+            </ul>
           </div>
-        </div>
-
-        <!-- <a href="." class="span-4 last big_link">Start again</a> -->
-
-        <h3 class="span-5 last">Saved searches</h3>
-
-        <div id="saved_searches">
-
-<!--             <a href="#!/search/Substance%20abuse/Glasgow" class="span-4 last big_link saved_search">
-              Substance abuse (Glasgow)
-            </a>
-
-            <a href="#!/search/Mental%20Health" class="span-4 last big_link saved_search">
-              Mental Health
-            </a>
-
-            <a href="#!/search/Cancer" class="span-4 last big_link saved_search">
-              Cancer
-            </a>
-
-            <a href="#!/search/Multiple%20Sclerosis" class="span-4 last big_link saved_search">
-              Multiple Sclerosis
-            </a> -->
-
-        </div>
       </div>
 
       <div id="app_search" class="span-19 last">
@@ -274,8 +257,8 @@
             <% var desc = resource.description; %>
             <h3 class="span-13 resourceTitle"><input type="checkbox" class="result_individual result-select" name="resources[]" value="<%= resource.id %>" /> <%= counter %>. <a href="<%= resource.uri %>" target="_blank"><%= resource.title %></a></h3>
             <p class="span-5 last resourceInlineToolbox">
-              <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit</a> &bull;
-              <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report</a>
+              <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/" target="_blank">Edit</a> &bull;
+              <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/" target="_blank">Report</a>
             </p>
 
 

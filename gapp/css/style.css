@@ -58,9 +58,21 @@ h1{
   padding: -1px;
 }
 
+#saved_searches {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0 5px;
+}
+
+.edit_saved_searches {
+  color: #666;
+  font-weight: normal;
+  font-size: 0.9em;
+}
+
 .saved_search{
-  overflow: hidden
-  border: 1px solid #999999;
+  /*overflow: hidden;*/
+/*  border: 1px solid #999999;*/
 }
 
 #app_left h3{
