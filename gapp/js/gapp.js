@@ -677,7 +677,7 @@ $(function(){
                 $("#search_map > div").css({"position": "absolute", "top": "0", "left":"0"});
                 $("#search_results").css({"margin-top": "440px"});
             } else {
-                $("#search_map").css({"position": "absolute",
+                $("#search_map").css({"position": "absolute !important",
                                       "top": "-9999px",
                                       "left": "-9999px"});
                 $("#search_results").css({"margin-top": "30px"});
