@@ -695,6 +695,7 @@ $(function(){
             this.toggle_map();
             $("#id_location").val("").focus();
             $("#id_query").val("");
+            window.location.href = window.location.href.split("#")[0];
             return false;
         },
 
