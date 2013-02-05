@@ -35,25 +35,81 @@
 
   <script type="text/javascript">
   $(document).ready(function() {
+
     $.cookie.json = true;
 
-    renderSavedSearches = function() {
-      $("#saved_searches").html("");
-      _.each($.cookie("savedSearches"), function(o) {
-          var location = o.split("/")[0];
-          var query = o.split("/")[1];
-          var text = (location != undefined ? decodeURIComponent(location) : "") + " / " + (query != undefined ? decodeURIComponent(query) : "");
-          var searchUrl = "#!/search/" + o;
+    function SavedSearches() {
+      var self = this;
+      this.initialize = function() {
+        self.saved_searches = {};
+        self.$el = $("#saved_searches");
+      }
+
+      this.create = function(location, query) {
+        var searches = {};
+        var eltid = _.uniqueId("saved_search_");
+        if($.cookie("saved_searches") != undefined) {
+            searches = $.cookie("saved_searches");
+        }
+        searches[eltid] = {"location": location, "query": query};
+        $.cookie("saved_searches", searches, {"expires": 365});
+      }
+
+      this.remove = function(sid) {
+        var searches = $.cookie("saved_searches");
+        $.cookie("saved_searches", null);
+        _.each(searches, function(o, k) {
+          if(k !== sid) {
+            self.create(o.location, o.query);
+          } else {
+          }
+        });
+      }
+
+      this.render = function(selfObjectName) {
+        self.$el.html("");
+        _.each($.cookie("saved_searches"), function(o, k) {
+          var text = ((o.location != "") ? (o.location + " / ") : "") + (o.query != "" ? o.query : "");
+          var searchUrl = "#!/search/" + encodeURIComponent(o.query) + "/" + encodeURIComponent(o.location);
           var $li = $("<li></li>");
           var $a = $("<a></a>").attr("href", searchUrl).attr("class", "saved_search").html(text);
-          $li.append($a).appendTo($("#saved_searches"));
-        });
-    }
+          var eltid = k;
+          var jscode = "javascript:" + "(function(){" + selfObjectName + ".remove('" + eltid + "');" + selfObjectName + ".render('" + selfObjectName + "');" + "})();";
+          var $rma = $("<a></a>").attr("href", jscode).attr("class", "saved_search_delete").html("[x]");
 
-    renderSavedSearches();
+          $li.append($a).append($rma).appendTo(self.$el);
+        });
+      }
+    };
+
+    GAPP.savedSearches = savedSearches = new SavedSearches();
+    savedSearches.initialize();
+    savedSearches.render("GAPP.savedSearches");
+
+    $("#id_savesearch").click(function(e){
+      e.preventDefault();
+      var location = $("#id_location").val();
+      var query = $("#id_query").val();
+      savedSearches.create(location, query);
+      savedSearches.render("GAPP.savedSearches");
+      return false;
+    });
     });
 
   </script>
+
+  <style>
+  .saved_search_delete {
+    float: right;
+    color: #999;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+
+  .saved_search_delete:hover {
+    color: red;
+  }
+  </style>
 
 </head>
 <body>

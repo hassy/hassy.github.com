@@ -452,8 +452,7 @@ $(function(){
             'click .print_selected': 'print',
             'click .email_selected': 'email',
             'click #id_togglemap': 'toggle_map',
-            'click #id_resetsearch': 'reset_search',
-            'click #id_savesearch': 'save_search'
+            'click #id_resetsearch': 'reset_search'
         },
 
         results: new ResourceCollection(),
@@ -697,23 +696,6 @@ $(function(){
             $("#id_location").val("").focus();
             $("#id_query").val("");
             window.location.href = window.location.href.split("#")[0];
-            return false;
-        },
-
-        save_search: function(e) {
-            // TODO: check that search hasn't been saved already
-
-            e.preventDefault();
-            var location = $("#id_location").val();
-            var query = $("#id_query").val();
-            var search = encodeURIComponent(query) + "/" + encodeURIComponent(location);
-            var savedSearches = [];
-            if($.cookie("savedSearches") != undefined) {
-                savedSearches = $.cookie("savedSearches");
-            }
-            savedSearches.push(search);
-            $.cookie("savedSearches", savedSearches, {"expires": 365});
-            renderSavedSearches();
             return false;
         }
     })
