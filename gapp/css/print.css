@@ -1,18 +1,27 @@
 #app_left, #search_filters, #search_form, input, label {
   display: none;
 }
+
 #app_search, #search_map, #search_results, #resourceView{
   width: 90%;
 }
 
-#app_search{
+#app_search {
     border: none;
 }
 
-#header img{
+#header, #searchExplanation, #menu {
+    display: none;
+}
+
+#header img {
     margin-left: -150px;
 }
 
 .detail, .print_selected, .email_selected, .result_select, .select_all {
+    display: none;
+}
+
+.pagination, .resourceInlineToolbox {
     display: none;
 }

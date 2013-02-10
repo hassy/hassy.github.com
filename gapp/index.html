@@ -40,6 +40,7 @@
 
     function SavedSearches() {
       var self = this;
+
       this.initialize = function() {
         self.saved_searches = {};
         self.$el = $("#saved_searches");
@@ -68,7 +69,15 @@
 
       this.render = function(selfObjectName) {
         self.$el.html("");
-        _.each($.cookie("saved_searches"), function(o, k) {
+        var searches = $.cookie("saved_searches");
+        if(!searches) {
+          $("#saved_searches_default").show();
+          return;
+        } else {
+          $("#saved_searches_default").hide();
+        }
+
+        _.each(searches, function(o, k) {
           var text = ((o.location != "") ? (o.location + " / ") : "") + (o.query != "" ? o.query : "");
           var searchUrl = "#!/search/" + encodeURIComponent(o.query) + "/" + encodeURIComponent(o.location);
           var $li = $("<li></li>");
@@ -82,9 +91,59 @@
       }
     };
 
+    function TrustedAccounts() {
+      var self = this;
+
+      this.initialize = function() {
+        self.$el = $("#trusted_accounts");
+      }
+
+      this.practice_id = function() {
+        return $.cookie("my_id")[0];
+      }
+
+      this.trusted_accounts = function() {
+        return $.cookie("trusted_accounts");
+      }
+
+      this.add = function(accountId) {
+        var l = $.cookie("trusted_accounts") || [];
+        l.push(accountId);
+        $.cookie("trusted_accounts", l, {"expires": 365});
+      }
+
+      this.remove = function(eltid) {
+        var accountId = eltid.split("id_")[1];
+        var l = $.cookie("trusted_accounts") || [];
+        var newl = _.reject(l, function(e) {
+          return e === accountId;
+        });
+        $.cookie("trusted_accounts", newl, {"expires": 365});
+      }
+
+      this.render = function(selfObjectName) {
+        self.$el.html("");
+        var accounts = $.cookie("trusted_accounts");
+        if(!accounts) {
+          return;
+        }
+        _.each(accounts, function(o) {
+          var $li = $("<li></li>").html(o);
+          var eltid = "id_" + o;
+          var jscode = "javascript:(function(){" + selfObjectName + ".remove('" + eltid + "');" + selfObjectName + ".render('" + selfObjectName + "');" + "})();";
+          var $rma = $("<a></a>").attr("href", jscode).attr("class", "saved_search_delete").html("[x]");
+          $li.append($rma).appendTo(self.$el);
+        });
+      }
+    }
+
     GAPP.savedSearches = savedSearches = new SavedSearches();
     savedSearches.initialize();
     savedSearches.render("GAPP.savedSearches");
+
+    GAPP.trustedAccounts = trustedAccounts = new TrustedAccounts();
+    trustedAccounts.initialize();
+    trustedAccounts.render("GAPP.trustedAccounts");
 
     $("#id_savesearch").click(function(e){
       e.preventDefault();
@@ -94,6 +153,30 @@
       savedSearches.render("GAPP.savedSearches");
       return false;
     });
+
+    $("#id_add_my_id").click(function() {
+      var myId = prompt("Your ID");
+      $.cookie("my_id", [myId], {"expires": 365});
+      $("#id_my_id").html($.cookie("my_id")[0]);
+    });
+
+    $("#id_add_trusted_id").click(function() {
+      var tid = prompt("A trusted ID");
+      trustedAccounts.add(tid);
+      trustedAccounts.render("GAPP.trustedAccounts");
+    });
+
+    var renderTrustedIds = function() {
+      if(! $.cookie("trusted_ids")) return;
+      _.each($.cookie("trusted_ids"), function(tid) {
+        // render here
+      });
+    }
+
+    if($.cookie("my_id")) {
+      $("#id_my_id").html($.cookie("my_id")[0]);
+    }
+    renderTrustedIds();
     });
 
   </script>
@@ -163,15 +246,33 @@
         <div class="sidebarBox span-5" style="padding: 0px;">
             <h3 style="margin-bottom: 0;">saved searches</h3>
 
+            <p id="saved_searches_default">your saved searches will appear here.</p>
+
             <ul id="saved_searches">
-              <p>Your saved searches will appear here.</p>
+
             </ul>
-          </div>
+        </div>
+
+        <div class="sidebarBox span-5" style="padding: 0px;">
+            <h3 style="margin-bottom: 0;">trusted sources</h3>
+
+            <p>your ID is: <span id="id_my_id">unspecified</span></p>
+
+            <ul id="trusted_accounts">
+              <li>there are no trusted IDs yet</li>
+            </ul>
+
+            <button id="id_add_my_id">Enter my ID</button>
+            <button id="id_add_trusted_id">Add trusted ID</button>
+
+
+        </div>
+
       </div>
 
       <div id="app_search" class="span-19 last">
 
-        <div class="span-8">
+        <div class="span-8" id="searchExplanation">
             <div style="padding: 0 20px 0 0;">
             <h2>Search</h2>
             <p>
@@ -197,7 +298,7 @@
               <input type="radio" name="filter" id="filter_practice" value="Practice" />
               <label class="" for="filter_practice">Practice</label>
 
-              <input type="radio" name="filter" id="filter_local" value="Local" />
+              <input type="radio" name="filter" id="filter_local" value="Trusted" />
               <label class="" for="filter_local">Trusted</label>
 
               <input type="radio" name="filter" id="filter_all" value="All" checked />
@@ -399,8 +500,8 @@
       <% }); %>
 
       <p class="pagination span-18 last">
-        <a href="#" class="email">Email Resources</a> |
-        <a href="#" class="print">Print Resources</a>
+        // <a href="#" class="email">Email Resources</a> |
+        // <a href="#" class="print">Print Resources</a>
       </p>
 
     <% } else if(resources.length === 1) { %>
@@ -412,8 +513,8 @@
       <hr/>
       <a href="http://aliss.org/depot/resource/<%= resource.id %>/edit/">Edit resource</a> |
       <a href="http://aliss.org/depot/resource/<%= resource.id %>/report/">Report Resource</a> |
-      <a href="#" class="email">Email Resource</a> |
-      <a href="#" class="print">Print Resource</a>
+      // <a href="#" class="email">Email Resource</a> |
+      // <a href="#" class="print">Print Resource</a>
 
     <% } else { %>
       None?

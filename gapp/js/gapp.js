@@ -21,7 +21,7 @@ $(function(){
 
     var BaseModel = Backbone.Model.extend({
 
-        cache: true,
+        cache: false,
         cache_time: 600,
         queryData: {},
         currentQueryData: {},
@@ -40,7 +40,7 @@ $(function(){
 
     var BaseCollection = Backbone.Collection.extend({
 
-        cache: true,
+        cache: false,
         cache_time: 600,
         queryData: {},
         currentQueryData: {},
@@ -87,7 +87,7 @@ $(function(){
         queryData: {
             'max': 10,
             'start': 0,
-            'bootlocation': 10
+            'boostlocation': 50
         },
 
         pageNumber: 0,
@@ -104,8 +104,15 @@ $(function(){
             options = options || (options = {})
             var data = options.data
 
+            // TODO: remove this, unused
             var nhs = $('#id_nhs').is(":checked") ? 1 : undefined
             var future_events = $('#id_future_events').is(":checked") ? 1 : undefined
+
+            if($("#filter_practice").is(":checked")) {
+                options.data["accounts"] = GAPP.trustedAccounts.practice_id();
+            } else if($("#filter_local").is(":checked")) {
+                options.data["accounts"] = GAPP.trustedAccounts.trusted_accounts().join("+");
+            }
 
             if (data && (data.query !== this.currentQueryData.query ||
                         data.location !== this.currentQueryData.location ||
@@ -630,6 +637,7 @@ $(function(){
         },
 
         print: function(e){
+
             e.preventDefault();
             var selected = $(".result_individual:checked");
             var ids = [];
