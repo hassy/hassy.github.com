@@ -94,7 +94,9 @@ $(function(){
 
         parse: function(result) {
             if (result.data[0]){
+                //console.log(result.data);
                 return result.data[0].results
+
             }
             return []
         },
@@ -108,12 +110,6 @@ $(function(){
             var nhs = $('#id_nhs').is(":checked") ? 1 : undefined
             var future_events = $('#id_future_events').is(":checked") ? 1 : undefined
 
-            if($("#filter_practice").is(":checked")) {
-                options.data["accounts"] = GAPP.trustedAccounts.practice_id();
-            } else if($("#filter_local").is(":checked")) {
-                options.data["accounts"] = GAPP.trustedAccounts.trusted_accounts().join("+");
-            }
-
             if (data && (data.query !== this.currentQueryData.query ||
                         data.location !== this.currentQueryData.location ||
                         this.currentQueryData.nhs !== nhs ||
@@ -121,8 +117,7 @@ $(function(){
                 this.pageNumber = 0
             }
 
-            return BaseCollection.prototype.fetch.call(this, options)
-
+            BaseCollection.prototype.fetch.call(this, options);
         },
 
         nextPage: function(){
@@ -153,6 +148,8 @@ $(function(){
             this.pageNumber = pageNumber
             var data = _.clone(this.currentQueryData)
             data.start = data.max * this.pageNumber
+            console.log("goToPage, data = ");
+            console.log(data);
             this.fetch({data:data})
 
         }
@@ -332,6 +329,10 @@ $(function(){
                 this.initMap()
             }
 
+            // remove all markers first?
+            console.log("removing markers");
+            this.removeMarkers();
+            console.log(this.results);
             this.addResourceMarkers(this.results.toJSON())
 
         },
@@ -374,10 +375,13 @@ $(function(){
             this.map = google_map
         },
 
+        // FIXME: code duplication
         showResource: function(resource){
             var jsonResource = resource.toJSON()
             this.resources = [jsonResource]
             this.render([jsonResource], [jsonResource])
+            google_map.results = resources;
+            this.searchView.toggle_map();
         },
 
         showResources: function(resources){
@@ -385,6 +389,8 @@ $(function(){
             var jsonResources = this.resources
             var that = this
             this.render(jsonResources, jsonResources)
+            google_map.results = resources;
+            this.searchView.toggle_map();
         },
 
         hide: function(){
@@ -486,7 +492,7 @@ $(function(){
 
             this.resourceView = new ResourceView(this)
 
-            this.setupAutocomplete()
+            //this.setupAutocomplete()
             this.search_timer = null
 
         },
@@ -598,6 +604,7 @@ $(function(){
             var resource = this.results.get(id)
             this.resourceView.showResource(resource)
             this.router.navigate("!/resource/" + resource.id)
+            this.toggle_map();
             return false
         },
 
@@ -612,7 +619,11 @@ $(function(){
             if(!checked){
                 $('input.select_all').attr('checked', checked);
             }
-
+            if(_.any($(".result_individual"), function(e) { return $(e).attr("checked") === "checked" })) {
+                $($(".print_selected")[1]).html("Print Selected");
+            } else {
+                $($(".print_selected")[1]).html("Print All");
+            };
         },
 
         render: function(template){
@@ -621,6 +632,9 @@ $(function(){
             $('#search_results').show()
             $("#id_resetsearch").show();
             $("#id_savesearch").show();
+            console.log("in render, this.results = ");
+            console.log(this.results);
+            google_map.results = this.results;
             this.toggle_map();
             if (!$.isFunction(template)){
                 template = this.template
@@ -632,20 +646,31 @@ $(function(){
 
             $('span.truncate').expander({slicePoint: 200})
 
+            console.log("in render");
+
             this.delegateEvents()
             return this
         },
 
         print: function(e){
-
             e.preventDefault();
             var selected = $(".result_individual:checked");
             var ids = [];
             $.each(selected, function(i, el){
                 ids.push($(el).val())
-            })
+            });
+            console.info(ids);
+            if(ids.length == 0) {
+                window.print();
+                return;
+            }
+            //this.resourceView.print();
+            // FIXME: this is ugly
+            ids.push("print");
             this.router.navigate("!/resource/" + ids.join("-"), {trigger:true})
-            this.resourceView.print()
+
+
+
             return false
         },
 
@@ -677,18 +702,11 @@ $(function(){
 
         toggle_map: function(e) {
             if($("#id_togglemap").attr("checked")) {
-                // can't use .hide() because that'll mess up the map when toggled to be shown
-                $("#search_map").css({"position":"static !important",
-                                      "top":"auto",
-                                      "left": "auto"});
-                $("#search_map > div").css({"position": "absolute", "top": "0", "left":"0"});
-                var margin_top = Number($("#search_results").css("margin-top").split("px")[0]);
-                $("#search_results").css({"margin-top": "440px"});
+                $("#search_map").show();
+                google_map.render();
+                google.maps.event.trigger(google_map.map, 'resize');
             } else {
-                $("#search_map").css({"position": "absolute !important",
-                                      "top": "-9999px",
-                                      "left": "-9999px"});
-                $("#search_results").css({"margin-top": "0px"});
+                $("#search_map").hide();
             }
         },
 
@@ -708,7 +726,7 @@ $(function(){
         }
     })
 
-    var app = new SearchView()
+    var app = new SearchView();
 
     var WorkspaceRouter = Backbone.Router.extend({
 
@@ -733,18 +751,35 @@ $(function(){
 
         resource: function(id){
 
-            var ids = id.split('-')
+            // WHEN DOES THIS GET NAVIGATED TO?
+            // CAN PRINT FROM HERE (maybe look at URL / create a new route?)
+
+            console.info("resource: " + id);
+
+            var ids = id.split('-');
+            var print = false;
+            if(_(ids).contains("print")) {
+                print = true;
+                ids = _(ids).without("print");
+            }
+
+            console.log(print);
 
             if (ids.length == 1){
 
+                if(print) {
+                    id = id.split("-")[0];
+                }
+                console.log("SINGLE RESOURCE " + id);
                 var resource = new Resource({
                     id: id
-                })
+                });
+
                 resource.on("change", function(){
-                    app.resourceView.showResource(resource)
+                    app.resourceView.showResource(resource);
+                    if(print) { window.print(); }
                 })
                 resource.fetch()
-
             } else if (ids.length > 1){
 
                 var resources = new ResourceCollection()
@@ -765,7 +800,7 @@ $(function(){
                     })
                     resource.fetch()
                 })
-
+                if(print) { window.print(); }
 
             }
 

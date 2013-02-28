@@ -117,10 +117,10 @@ h1{
 }
 
 #search_map {
-  position: absolute !important;
+/*  position: absolute !important;
   top: -9999px;
   left: -9999px;
-  height: 400px;
+*/  height: 400px;
   width: 700px;
 }
 
