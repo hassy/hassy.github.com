@@ -91,12 +91,14 @@ $(function(){
         },
 
         pageNumber: 0,
+        numfound: 0, // response from the engine
+        lastPageReached: false, // passed to template context
 
         parse: function(result) {
+            this.numfound = result.data[0].numfound;
+            console.info(this.numfound);
             if (result.data[0]){
-                //console.log(result.data);
                 return result.data[0].results
-
             }
             return []
         },
@@ -121,11 +123,10 @@ $(function(){
         },
 
         nextPage: function(){
-
-            // If this page has less than the max per page, we are alread
-            if(this.length < this.queryData.max){
+            if((this.pageNumber+1) * 10 >= this.numfound) {
                 return
             }
+
             var page = this.pageNumber + 1
             this.goToPage(page)
         },
@@ -144,14 +145,11 @@ $(function(){
         },
 
         goToPage: function(pageNumber){
-
             this.pageNumber = pageNumber
             var data = _.clone(this.currentQueryData)
             data.start = data.max * this.pageNumber
-            console.log("goToPage, data = ");
-            console.log(data);
+            this.lastPageReached = (data.start + 10 >= this.numfound);
             this.fetch({data:data})
-
         }
 
     })
@@ -237,7 +235,7 @@ $(function(){
             this.$el.hide()
         },
 
-        initMap: function(){
+        initMap: function() {
             this.map = new google.maps.Map(this.el, {
               zoom: 13,
               mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -300,17 +298,36 @@ $(function(){
 
             var markerbounds = new google.maps.LatLngBounds()
 
-            _.each(resources, function(resource){
-                _.each(resource.locations, function(location){
-                    var latlng = location.split(', ')
-                    var glatlng = new google.maps.LatLng(latlng[0], latlng[1])
-                    markerbounds.extend(glatlng)
-                    //that.addMarker(glatlng, resource.title + "<br/>" + '<a href="#!/resource/' + resource.id + '">Details</a>')
-                    that.addMarker(glatlng, resource.title + "<br/>" + '<a href="#!/resource/' + resource.id + '">Details</a>', resource.title + " (" + resource.locationnames[0] + ")");
-                })
-            })
+            // Sometimes more than one resource share an address:
 
-            this.map.fitBounds(markerbounds)
+            // Build a hashtable of location -> markers, then add markers based on that.
+            var resourceLocations = _.foldl(resources, function(acc, resource) {
+                _.each(resource.locations, function(loc) {
+                    if(acc[loc] !== undefined) {
+                        acc[loc].push(resource);
+                    } else {
+                        acc[loc] = [resource]
+                    }
+                });
+                return acc;
+            }, {});
+
+            _.each(resourceLocations, function(resloc) {
+                // grab the first (or the only) resource to get the location
+                var resource = resloc[0];
+                var latlng = resource.locations[0].split(", ");
+                var glatlng = new google.maps.LatLng(latlng[0], latlng[1]);
+                markerbounds.extend(glatlng);
+
+                // now construct the html
+                var html = _(resloc).foldl(function(acc, x) {
+                    var s = x.title + "&nbsp;&nbsp;&nbsp;" + '<small>[<a href="#!/resource/' + x.id + '">Details</a>]</small><br/>';
+                    return acc + s;
+                }, "");
+                that.addMarker(glatlng, html, resource.title + " (" + resource.locationnames[0] + ")");
+            });
+
+            this.map.fitBounds(markerbounds);
 
         },
 
@@ -329,12 +346,8 @@ $(function(){
                 this.initMap()
             }
 
-            // remove all markers first?
-            console.log("removing markers");
             this.removeMarkers();
-            console.log(this.results);
             this.addResourceMarkers(this.results.toJSON())
-
         },
 
         setZoom: function(zoom){
@@ -380,7 +393,7 @@ $(function(){
             var jsonResource = resource.toJSON()
             this.resources = [jsonResource]
             this.render([jsonResource], [jsonResource])
-            google_map.results = resources;
+            google_map.results = this.resources;
             this.searchView.toggle_map();
         },
 
@@ -632,8 +645,6 @@ $(function(){
             $('#search_results').show()
             $("#id_resetsearch").show();
             $("#id_savesearch").show();
-            console.log("in render, this.results = ");
-            console.log(this.results);
             google_map.results = this.results;
             this.toggle_map();
             if (!$.isFunction(template)){
@@ -642,11 +653,12 @@ $(function(){
             var context = _.clone(this.results.currentQueryData || {})
             context.resources =  this.results.toJSON()
             context.pageNumber = this.results.pageNumber + 1
+            context.lastPageReached = this.results.lastPageReached;
             $('#search_results').html(template(context))
 
             $('span.truncate').expander({slicePoint: 200})
 
-            console.log("in render");
+            window.scrollTo(0, 0);
 
             this.delegateEvents()
             return this
@@ -659,7 +671,7 @@ $(function(){
             $.each(selected, function(i, el){
                 ids.push($(el).val())
             });
-            console.info(ids);
+
             if(ids.length == 0) {
                 window.print();
                 return;
@@ -734,6 +746,7 @@ $(function(){
             "!/search/:query": 'search',
             "!/search/:query/:location": "search",
             "!/search/:query/:location/page/:page": "search",
+            "!/search//:location": 'search',
             "!/resource/:id": "resource",
             "!/contact": 'contact'
         },
@@ -742,7 +755,11 @@ $(function(){
             if (!location){
                 location = ''
             }
-            app.search_for(decodeURIComponent(query), decodeURIComponent(location))
+            if(query == ":none") {
+                app.search_for("", decodeURIComponent(location));
+            } else {
+                app.search_for(decodeURIComponent(query), decodeURIComponent(location));
+            }
             page = parseInt(page, 10) - 1
             if(page){
                 app.results.goToPage(page)
@@ -750,12 +767,6 @@ $(function(){
         },
 
         resource: function(id){
-
-            // WHEN DOES THIS GET NAVIGATED TO?
-            // CAN PRINT FROM HERE (maybe look at URL / create a new route?)
-
-            console.info("resource: " + id);
-
             var ids = id.split('-');
             var print = false;
             if(_(ids).contains("print")) {
@@ -763,14 +774,12 @@ $(function(){
                 ids = _(ids).without("print");
             }
 
-            console.log(print);
-
             if (ids.length == 1){
 
                 if(print) {
                     id = id.split("-")[0];
                 }
-                console.log("SINGLE RESOURCE " + id);
+
                 var resource = new Resource({
                     id: id
                 });

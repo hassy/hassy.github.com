@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>NHS Social Prescribing for people living with Long Term Conditions</title>
+  <title>Community Links</title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
@@ -78,8 +78,25 @@
         }
 
         _.each(searches, function(o, k) {
-          var text = ((o.location != "") ? (o.location) : "") + ((o.location != "" && o.query != "") ? "/":"") + (o.query != "" ? o.query : "");
-          var searchUrl = "#!/search/" + encodeURIComponent(o.query) + "/" + encodeURIComponent(o.location);
+          var searchUrl = "#!/search/",
+              text;
+          if(o.location == "") {
+            // !/search/depression
+            searchUrl += encodeURIComponent(o.query);
+            text = o.query;
+          }
+          else if(o.query == "") {
+            // !/search/:none/govan
+            searchUrl += ":none/" + encodeURIComponent(o.location);
+            text = o.location;
+          } else {
+            // !/search/depression/govan
+            searchUrl += encodeURIComponent(o.query) + "/" + encodeURIComponent(o.location);
+            text = o.query + " / " + o.location;
+          }
+
+          // var text = ((o.location != "") ? (o.location) : "") + ((o.location != "" && o.query != "") ? "/":"") + (o.query != "" ? o.query : "");
+          // var searchUrl = "#!/search/" + encodeURIComponent(o.query) + "/" + encodeURIComponent(o.location);
           var $li = $("<li></li>");
           var $a = $("<a></a>").attr("href", searchUrl).attr("class", "saved_search").html(text);
           var eltid = k;
@@ -295,13 +312,13 @@
           <% } %>
 
           Page <%= pageNumber %>
-          <a href="#" class="next">Next</a>
+          <% if(!lastPageReached) { %>
+            <a href="#" class="next">Next</a>
+          <% } %>
 
         </span>
         <span class="span-6 select-action last">
           <a href="#" class="print_selected"><img src="img/print.png" /></a> <a href="#" class="print_selected">Print All</a>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" class="email_selected"><img src="img/email.png" /></a> <a href="#" class="email_selected">Email Selected</a>
         </span>
 
       </p>
@@ -346,8 +363,9 @@
           <a href="#" class="previous">Previous</a>
           <% } %>
 
-          Page <%= pageNumber %>
-          <a href="#" class="next">Next</a>
+          <% if(!lastPageReached) { %>
+            <a href="#" class="next">Next</a>
+          <% } %>
 
         </span>
 
