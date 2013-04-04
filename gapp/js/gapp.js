@@ -96,7 +96,6 @@ $(function(){
 
         parse: function(result) {
             this.numfound = result.data[0].numfound;
-            console.info(this.numfound);
             if (result.data[0]){
                 return result.data[0].results
             }
