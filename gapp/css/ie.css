@@ -1,0 +1,26 @@
+/* fix overlow issue on 1024x768 */
+
+.span-1 {width:30px;}
+.span-2 {width:70px;}
+.span-3 {width:110px;}
+.span-4 {width:130px;}
+.span-5 {width:170px;}
+.span-6 {width:210px;}
+.span-7 {width:250px;}
+.span-8 {width:290px;}
+.span-9 {width:330px;}
+.span-10 {width:370px;}
+.span-11 {width:410px;}
+.span-12 {width:450px;}
+.span-13 {width:490px;}
+.span-14 {width:530px;}
+.span-15 {width:570px;}
+.span-16 {width:620px;}
+.span-17 {width:650px;}
+.span-18 {width:690px;}
+.span-19 {width:730px;}
+.span-20 {width:770px;}
+.span-21 {width:810px;}
+.span-22 {width:850px;}
+.span-23 {width:890px;}
+.span-24 {width:930px;margin-right:0;}

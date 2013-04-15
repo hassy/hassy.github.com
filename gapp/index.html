@@ -11,7 +11,7 @@
 
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/blueprint/screen.css" />
-  <!--[if lt IE 8]>
+  <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" />
   <![endif]-->
@@ -35,6 +35,11 @@
 
   <script type="text/javascript">
   $(document).ready(function() {
+
+    $("#id_hide_help").click(function() {
+      $("#help").hide();
+      window.location.href = "/";
+    });
 
     $.cookie.json = true;
 
@@ -135,6 +140,11 @@
   .saved_search_delete:hover {
     color: red;
   }
+
+  #search, #id_resetsearch, #id_savesearch {
+      width: 100px;
+      font-size: 1em;
+  }
   </style>
 
 </head>
@@ -149,7 +159,7 @@
       </div>
 
       <div class="span-6 last" style="text-align: right;">
-        <img src="img/logo_NHSGGC_white_on_bluesm.jpg" width="53px" height="49px" alt="NHS GCC" />
+        <img src="img/NHSscotLogoBlue.png" width="53px" alt="NHS Scotland" />
       </div>
 
     </div>
@@ -164,7 +174,10 @@
       <div class="span-12 last" style="text-align: right">
         <ul>
           <li><a href="http://www.aliss.org/contact/">Contact</a></li>
-          <li><a href="http://www.aliss.org/info/test2/">Help</a></li>
+          <!-- <li><a href="#">Tour</a></li> -->
+          <!-- <li><a href="#!/help">Community Links Help</a></li> -->
+          <li><a target="_blank" href="img/help.png">Community Links Help</a></li>
+          <li><a href="http://www.aliss.org/info/test2/">Aliss Help</a></li>
           <li><a href="http://aliss.org/acct/">Your Account</a></li>
         </ul>
       </div>
@@ -206,11 +219,9 @@
             <div style="padding: 0 20px 0 0;">
             <h2>Search</h2>
             <p>
-              To search community resources available in the Glasgow area, enter the location within which you wish to find resources and a word relating to the type of resource you wish to find.
+              To search community resources available in your area, enter the location within which you wish to find resources in the 'location' box, and/or a word relating to the type of resource you wish to find in the 'keyword' box.
             </p>
-            <p>
-              e.g. enter 'Govan' in the location box and 'childcare' in the keyword box to see a list of childcare resources available within the Govan area.
-            </p>
+
           </div>
         </div>
 
@@ -227,8 +238,8 @@
 
             <p>
               <input id="search" type="submit" value="Search Now" class="" style="" />
-              <button style="margin-left: 25px; display: none;" id="id_resetsearch">Reset Search</button>
-              <button style="margin-left: 25px; display: none" id="id_savesearch">Save Search</button>
+              <button style="margin-left: 10px; display: none;" id="id_resetsearch">Reset Search</button>
+              <button style="margin-left: 10px; display: none" id="id_savesearch">Save Search</button>
             </p>
 
 
@@ -244,6 +255,13 @@
 
           </div>
  -->
+
+          <div id="help" class="box span-18 last">
+            <a href="img/help.png" target="_blank"><img src="img/help.png" width="650" alt="Community Links Help" title="Community Links Help" /></a>
+            <p>Click to enlarge the diagram.</p>
+            <p style="text-align: center"><button id="id_hide_help" style="margin-top: 2em; width: 100px;">Close Help</button></p>
+          </div>
+
           <div id="search_map" class="box span-18 last pannel">
           </div>
 

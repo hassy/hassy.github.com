@@ -95,7 +95,12 @@ $(function(){
         lastPageReached: false, // passed to template context
 
         parse: function(result) {
-            this.numfound = result.data[0].numfound;
+            if(result.data[0] && result.data[0].numfound) {
+                this.numfound = result.data[0].numfound;
+            } else {
+                this.numfound = 100;
+            }
+            this.lastPageReached = (this.numfound <= 10);
             if (result.data[0]){
                 return result.data[0].results
             }
@@ -365,6 +370,7 @@ $(function(){
 
     $('#resourceView').hide()
     $('#contact').hide()
+    $("#help").hide();
 
     var ResourceView = Backbone.View.extend({
 
@@ -641,6 +647,7 @@ $(function(){
         render: function(template){
             $('#resourceView').hide()
             $('#contact').hide()
+            $("#help").hide();
             $('#search_results').show()
             $("#id_resetsearch").show();
             $("#id_savesearch").show();
@@ -747,7 +754,8 @@ $(function(){
             "!/search/:query/:location/page/:page": "search",
             "!/search//:location": 'search',
             "!/resource/:id": "resource",
-            "!/contact": 'contact'
+            "!/contact": 'contact',
+            "!/help": "help"
         },
 
         search: function(query, location, page) {
@@ -818,6 +826,10 @@ $(function(){
             $('div.pannel').hide()
             $('#contact').show()
 
+        },
+
+        help: function(id) {
+            $("#help").show();
         }
 
     });
