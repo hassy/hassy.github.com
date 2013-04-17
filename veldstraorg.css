@@ -4,23 +4,24 @@ font-size:100%;
 
 body {
 color: #454545;
-background: #fff url("images/texture1.png");
-font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+background: #fff; /* url("images/texture1.png");*/
+font-family: "Helvetica Neue", Arial, sans-serif;
 line-height: 1.5em;
 margin: 30px;
+text-align: center;
 }
 
 body, p {
-font-size: 14pt;
+font-size: 12pt;
 }
 
 p {
 line-height: 1.5em;
-margin-top: 0.8em;
+margin-bottom: 0.8em;
 }
 
 h1, h2, h3 {
-font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+font-family: "Helvetica Neue", Arial, sans-serif;
 letter-spacing: -1px;
 font-weight: normal;
 -webkit-font-smoothing: antialiased;
@@ -29,9 +30,10 @@ line-height: 200%;
 }
 
 h1 {
-font-size: 27pt;
+font-size: 21pt;
 color: #333;
 letter-spacing: -1px;
+margin: 0;
 }
 
 h2 {
@@ -53,9 +55,22 @@ color: #d03;
 text-decoration: none;
 }
 
+a.gray1 {
+  text-decoration: underline;
+}
+
+.gray1 {
+  color: #666;
+}
+
+.smaller {
+  font-size: 0.8em;
+}
+
 .small {
-font-size: 0.7em;
-color: #696969;
+  -font-family: 'Lucida Grande', Tahoma, sans-serif;
+  font-size: 0.7em;
+  color: #696969;
 }
 
 ul {
@@ -90,15 +105,16 @@ line-height: 1.5em;
   background-repeat: no-repeat;
   cursor: pointer;
   display: inline-block;
-  border: 4px solid #fff;
-  border-radius: 160px;
-  -webkit-box-shadow: 5px 5px 9px #aaa;
+  border: 6px solid #ff6;
+  border-radius: 144px;
+  /*-webkit-box-shadow: 5px 5px 9px #aaa;*/
   background-size: cover;
-  background-image: url("images/nstag.jpg");
+  background-image: url("images/hassy.png");
 }
 
 #pic:hover {
-
+  -webkit-transform: rotate(-6deg);
+  border: 6px solid #6f3;
 }
 
 #sidebar p {
@@ -110,8 +126,8 @@ line-height: 1.5em;
 }
 
 hr {
-  border-bottom: 2px solid #999;
-  margin: 2em 0px;
+  border-bottom: 1px solid #999;
+  margin: 1em 0px 1em 0px;
 }
 
 /* -----------------------%- */
@@ -148,3 +164,4 @@ hr {
   color: #000;
   border-bottom: 1px dotted #aaa;
 }
+
