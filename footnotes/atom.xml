@@ -4,13 +4,35 @@
  <title>Footnotes by HH Veldstra</title>
  <link href="http://veldstra.org/footnotes/atom.xml" rel="self"/>
  <link href="http://veldstra.org/"/>
- <updated>2013-04-22T12:46:49+01:00</updated>
+ <updated>2013-04-22T12:52:19+01:00</updated>
  <id>http://veldstra.org/</id>
  <author>
    <name>HH Veldstra</name>
    <email>h@veldstra.org</email>
  </author>
 
+ 
+ <entry>
+   <title>ghetto Erlang deployment</title>
+   <link href="http://veldstra.org/footnotes//2013/04/22/ghetto-erlang-deployment.html"/>
+   <updated>2013-04-22T00:00:00+01:00</updated>
+   <id>http://veldstra.org/footnotes//2013/04/22/ghetto-erlang-deployment</id>
+   <content type="html">&lt;p&gt;Sometimes you just don't have the time to do things properly. For a side project I'm hacking on, my deployment process is this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;ssh into the server&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rebar compile&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;And that's it (Mochiweb's &lt;code&gt;reloader&lt;/code&gt; reloads the code on the fly).&lt;/p&gt;
+
+&lt;p&gt;Erlang is running under &lt;code&gt;screen&lt;/code&gt; so I can always poke around in the shell and do some good old printf debugging when I need to.&lt;/p&gt;
+
+&lt;p&gt;It works well and will serve me fine until I know I need to make it more robust.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Spotify talk at Techmeetup</title>
@@ -36,28 +58,6 @@
    <updated>2012-10-17T00:00:00+01:00</updated>
    <id>http://veldstra.org/footnotes//2012/10/17/hello</id>
    <content type="html">&lt;p&gt;Here goes my 4th attempt at keeping a blog. Posts from Posterous to be moved when I can be bothered. I have also salvaged two posts that might be of interest to someone from my previous Jekyll blog.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>ghetto Erlang deployment</title>
-   <link href="http://veldstra.org/footnotes//2012/04/22/ghetto-erlang-deployment.html"/>
-   <updated>2012-04-22T00:00:00+01:00</updated>
-   <id>http://veldstra.org/footnotes//2012/04/22/ghetto-erlang-deployment</id>
-   <content type="html">&lt;p&gt;Sometimes you just don't have the time to do things properly. For a side project I'm hacking on, my deployment process is this:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;ssh into the server&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;rebar compile&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;p&gt;And that's it (Mochiweb's &lt;code&gt;reloader&lt;/code&gt; reloads the code on the fly).&lt;/p&gt;
-
-&lt;p&gt;Erlang is running under &lt;code&gt;screen&lt;/code&gt; so I can always poke around in the shell and do some good old printf debugging when I need to.&lt;/p&gt;
-
-&lt;p&gt;It works well and will serve me fine until I know I need to make it more robust.&lt;/p&gt;
 </content>
  </entry>
  
