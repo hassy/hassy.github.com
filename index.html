@@ -13,7 +13,15 @@
     <style>
     body {
       padding: 1em;
-      font-family: Tahoma, sans-serif;
+      font-family: "Helvetica Neue", sans-serif;
+      text-align: center;
+      background: url('images/qbert.png') no-repeat center center fixed;
+      background-size: cover;
+
+    }
+    .paper {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px 20px;
     }
     p, li {
       font-size: 12pt;
@@ -21,20 +29,171 @@
       color: #454545;
     }
     h1 {
-      font-size: 1.2em;
+      font-size: 2.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+      color: #212121;
+      line-height: 1em;
+      letter-spacing: -1px;
     }
+
+    h3 {
+      font-size: 1.2em;
+      color: #666;
+      margin-top: 1.5em;
+    }
+
     a {
-      color: #00f;
+      color: #33c;
     }
     a:hover {
-      color: #c03;
+      color: #00c;
     }
     .gray1 {
       color: #999;
     }
+
+    #blocks {
+      text-align: center;
+    }
+
+    .block {
+      display: inline-block;
+      margin: 0 1px;
+      width: 14px;
+      height: 3px;
+    }
+
+    .block.blue {
+      background-color: #0054FD;
+    }
+
+    .block.yellow {
+      background-color: #F3D106;
+    }
+
+    .block.red {
+      background-color: #94060F;
+    }
+
+    .block.lightblue {
+      background-color: #66CCFF;
+    }
+
+    .block.green {
+      background-color: #00CD66;
+    }
+
+    .highlighted {
+      height: 6px;
+    }
+
+    #byline {
+      font-size: 0.8em;
+      color: #999;
+      text-align: center;
+      margin: 1.5em 0;
+    }
+
+    .tile {
+/*      width: 100px;
+      height: 130px;
+*/
+      display: inline-block;
+      margin-right: 27px;
+/*      border: 1px solid #999;*/
+    }
+
+    .tile img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .tile p {
+      padding-top: 8px;
+      letter-spacing: -1px;
+    }
+
+    .tile a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    .tile a:hover {
+      color: #39c;
+      text-decoration: underline;
+    }
+
+    .wall {
+      width: 400px;
+      margin: 0 auto 5em auto;
+      text-align: center;
+    }
+
+    #links {
+      margin: 2em auto 3em auto;
+      text-align: center;
+
+    }
+
+    #links ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #services {
+      width: 25em;
+      margin: 0 auto;
+      text-align: left;
+      border-radius: 1em;
+      border: 1px solid #F3D106;
+      padding: 0 2em 2em 2em;
+      display: none;
+    }
+
+    #services h3 {
+      text-align: center;
+    }
+
+    #services p, #services li {
+      font-size: 10pt;
+    }
+
+    #services li {
+
+    }
+
+    #footer {
+      margin-top: 5em;
+      font-size: 80%;
+    }
+
     </style>
 
     <script type="text/javascript">
+    $(document).ready(function() {
+      var highlight = function(current) {
+        var next = (current == $("#blocks li").length) ? 0 : current+1;
+
+        $("#blocks li:nth-child(" + current + ")").removeClass("highlighted");
+        $("#blocks li:nth-child(" + next + ")").addClass("highlighted");
+
+        var timeout = next == 0 ? 3000:400;
+
+        setTimeout(function() {
+          highlight(next);
+        }, timeout);
+      }
+      setTimeout(function() {
+        highlight(0);
+      }, 4000);
+
+      $("#servicesLink").click(function() {
+        $("#services").fadeIn(1000);
+      });
+    });
     </script>
 
     <script type="text/javascript">
@@ -53,41 +212,79 @@
 
     <div class="container">
       <div class="row">
-        <div class="span12">
-          <h1>veldstra.org</h1>
-
-          <p>
-            <strong>currently</strong>: <a href="http://wonderwheel.fm">wonderwheel.fm</a>, <a href="http://statc.at">statcat</a>, and freelancing.<br />
-            previously: principal at <a href="http://zkombinator.com">zkombinator.com</a> ¯\_(ツ)_/¯<br />
-            previously previously: <a href="http://vixo.com">vixo</a>, <a href="http://vidiowiki.com">vidiowiki</a>, <a href="http://confbuzz.com">confbuzz</a><br />
-            previously previously previously: <a href="http://www.inf.ed.ac.uk">School Of Informatics</a>, BSc in CS
-          </p>
-
-          <hr />
-
-          <p>
-            <strong>services</strong>:
-            <ul>
-              <li>rapid prototyping / building version 1 of anything / building an MVP</li>
-              <li>full stack web development</li>
-              <li>Spotify app development</li>
-              <li>emergency troubleshooting</li>
-            </ul>
-            <p>Keywords: Python, Erlang, Node.js, Django.</p>
-            <p>Hit me up if you have an interesting project: <a href="mailto:freelance@veldstra.org">freelance@veldstra.org</a>.</p>
-            <p>I am expensive.</p>
-          </p>
-
-          <hr />
-
-          <p>
-            I have some blogs: <a href="footnotes">footnotes</a> &amp; <a href="codebites">codebites</a>, and also a Twitter: <a href="https://twitter.com/hhv1">@hhv1</a>.
-          </p>
-
-          <hr />
-
-          <p><strong><span style="color: red;">&hearts;</span>, Hassy Veldstra</strong><br/> <span class="gray1">(new homepage coming soon)</span></p>
+        <div class="span10 offset3">
+          <div class="paper">
+          <h1>hassy veldstra</h1>
+          <div id="blocks">
+            <li class="block blue"></li>
+            <li class="block yellow"></li>
+            <li class="block red"></li>
+            <li class="block lightblue"></li>
+            <li class="block green"></li>
+            <li class="block blue"></li>
+            <li class="block yellow"></li>
+            <li class="block red"></li>
+            <li class="block lightblue"></li>
+            <li class="block green"></li>
         </div>
+
+        <p id="byline"></p>
+
+        <div id="links">
+          <a href="http://twitter.com/hhv1">@hhv1</a>,
+          <a href="/footnotes">footnotes</a>,
+          <a href="/codebites">coding notes</a>,
+          <a href="http://uk.linkedin.com/in/hveldstra">linkedin</a>,
+          <a href="#" id="servicesLink">services</a>
+        </div>
+
+
+        <ul class="wall">
+          <li class="tile">
+            <p><a href="http://wonderwheel.fm"><img src="images/wonderwheel.gif" /></a></p>
+            <p><a href="http://wonderwheel.fm">wonderwheel</a></p>
+          </li>
+
+          <li class="tile">
+            <p><a href="http://heyso.im"><img src="images/heyso.gif" /></a></p>
+            <p><a href="http://heyso.im">heyso</a></p>
+          </li>
+
+          <li class="tile">
+            <p><a href="http://statc.at"><img src="images/statcat.gif" /></a></p>
+            <p><a href="http://statc.at">statcat</a></p>
+          </li>
+        </ul>
+
+<!--         <div>
+          also see: <a href="#">Why Erlang</a>, <a href="http://zkombinator.com">Z Kombinator</a>
+        </div>
+ -->
+
+        <div id="services">
+          <h3>services</h3>
+            <ul>
+            <li>rapid prototyping / building an MVP</li>
+            <li>full stack web development</li>
+            <li>Spotify app development</li>
+            <li>load-testing of webapps and APIs</li>
+          </ul>
+          <p>I've written production code in: Python, JS &amp; Erlang, using Node.js, Django etc.</p>
+          <p>Hit me up if you have an interesting project: <a href="mailto:freelance@veldstra.org">freelance@veldstra.org</a>.</p>
+          <p>I am expensive.</p>
+        </div>
+
+        <div id="footer">
+          MUCH <span style="color: #94060F">&hearts;</span>
+        </div>
+
+        </div>
+
+
+
+
+        </div> <!-- row -->
+      </div> <!-- paper -->
       </div>
   </body>
 </html>
