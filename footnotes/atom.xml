@@ -4,13 +4,26 @@
  <title>Footnotes by HH Veldstra</title>
  <link href="http://veldstra.org/footnotes/atom.xml" rel="self"/>
  <link href="http://veldstra.org/"/>
- <updated>2013-04-22T12:52:19+01:00</updated>
+ <updated>2013-05-14T18:36:16+01:00</updated>
  <id>http://veldstra.org/</id>
  <author>
    <name>HH Veldstra</name>
    <email>h@veldstra.org</email>
  </author>
 
+ 
+ <entry>
+   <title>how I built a Node.js chat app that scales to a million concurrent users</title>
+   <link href="http://veldstra.org/footnotes//2013/05/13/scotlandjs-talk-million-user-realtime-nodejs.html"/>
+   <updated>2013-05-13T00:00:00+01:00</updated>
+   <id>http://veldstra.org/footnotes//2013/05/13/scotlandjs-talk-million-user-realtime-nodejs</id>
+   <content type="html">&lt;p&gt;I presented at &lt;a href=&quot;http://scotlandjs.com&quot;&gt;ScotlandJS&lt;/a&gt; last Friday on &lt;a href=&quot;http://heyso.im&quot;&gt;Heyso&lt;/a&gt;'s Node.js/Sockjs/Redis-based backend and load-testing properly (i.e. not by &lt;code&gt;curl&lt;/code&gt;ing the same URL in a loop or sending the same WebSocket message over and over)&lt;/p&gt;
+
+&lt;p&gt;I am not publishing the slides since they won't make much sense on their own, but I'm hoping to publish a series of blog posts on topics covered in my talk, SOON.&lt;/p&gt;
+
+&lt;p&gt;Thank god for Red Bull - it just wouldn't've happened without it.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>ghetto Erlang deployment</title>
