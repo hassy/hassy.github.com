@@ -1,0 +1,16 @@
+---
+layout: post
+title: Erlang is pragmatic
+---
+
+Yeah, Erlang "is not":http://james-iry.blogspot.com/2009/05/erlang-is-not-functional.html a functional programming language.
+
+Erlang is a language that makes it easier to write fault-tolerant applications. (And OTP is the platform that makes it even easier, but not "easy" of course.)
+
+It's all about the context.  From day one, the goal of the project that resulted in Erlang as we know it today was to come up with something that made it cheaper and faster to develop telephony systems -- ATM switches and the like.  There was a lot of tinkering, rewriting, and questioning everything -- even the most basic of assumptions.  There was a solid business requirement, which the Erlang team at Ericsson's CS Lab understood well.  They were experienced hackers, with expertise in Prolog, C, Lisp and other programming languages.  They were also experienced in building fault-tolerant systems, and ruthlessly pragmatic.  It was simple: if something helped them get closer to their objective, it went into the language.  If it didn't, it got thrown out.
+
+It turned out that discouraging mutable state brought the language closer to the goal.  Cheap lightweight isolated processes at the core of the language did too.  Currying, algebraic data types and many other features didn't.
+
+Erlang is highly pragmatic, and this seems to get overlooked by many newcomers to the language.  It may be considered functional, and it may also be considered object-oriented, but that does not really matter.  (Some people also call it concurrency-oriented, which is my favorite classification of Erlang.)
+
+"This paper":http://www.cs.chalmers.se/Cs/Grundutb/Kurser/ppxt/HT2007/general/languages/armstrong-erlang_history.pdf helps understand Erlang better.  It sheds light on why Erlang is the way it is, and explains why it's by far the best choice for solving certain problems.

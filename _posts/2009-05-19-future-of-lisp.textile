@@ -1,0 +1,21 @@
+---
+layout: post
+title: the future of Lisp...
+---
+
+...is "Clojure":http://clojure.org/, "LFE":http://github.com/rvirding/lfe/tree etc, i.e. implementations of Lisp running on top of popular virtual machines. There are two advantages to this approach:
+
+# You get a lot of libraries for free, as long as the author spent a bit of time thinking about interop.
+# (new) Lisp code can live side-by-side with (older) Java, Erlang &c code. There is no need for a radical rewrite or any interop difficulties -- you simply write parts of your system in Lisp where it makes sense, perhaps gradually replacing older non-Lisp code.
+
+This would also mean that:
+
+"Common Lisp":http://en.wikipedia.org/wiki/Common_Lisp is not going to get mainstream for three reasons:
+
+# It's full of what looks like cruft to beginners.
+# It's not straightforward to get started with. Advising newbies to learn Emacs & SLIME is not wise and doesn't work. Choosing an implementation to start with can be tricky too.
+# The community is not making an effort to make CL seem cool.
+
+"PLT Scheme":http://www.plt-scheme.org/ is not a contender either, because it's perceived as little more than a Lisp for teaching, which isn't true, but the community isn't doing much to shatter this perception.
+
+*Update* discussion over at "Hacker News":http://news.ycombinator.com/item?id=443948

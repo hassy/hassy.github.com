@@ -1,0 +1,4 @@
+markdown: rdiscount
+pygments: true
+baseurl: /
+url: http://localhost:4000
