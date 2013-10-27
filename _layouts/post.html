@@ -2,9 +2,10 @@
 layout: default
 ---
 
+<div id="post">
+
 <h1>{{ post.title }}</h1>
 
-<div id="post">
 {{ content }}
 </div>
 
@@ -15,8 +16,4 @@ layout: default
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
-</div>
-
-<div class="footer">
-	<p>currently: geek-in-residence at <a href="http://www.thearches.co.uk/">The Arches</a></p>
 </div>
