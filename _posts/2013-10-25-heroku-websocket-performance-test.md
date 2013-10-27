@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Load-testing Heroku WebSockets
+title: Heroku WebSocket Performance
 ---
 
 Just over two weeks ago, Heroku announced (the long-awaited) [experimental support](https://blog.heroku.com/archives/2013/10/8/websockets-public-beta) for WebSockets. Just like you would expect from Heroku, getting set up is painless and there's good documentation and good sample code to help you.
