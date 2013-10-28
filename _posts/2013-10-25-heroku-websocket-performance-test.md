@@ -7,10 +7,12 @@ Just over two weeks ago, Heroku announced (the long-awaited) [experimental suppo
 
 I was curious to see what kind of performance one could expect, so I did a quick performance test to find out. (I used [Heavy Artillery](http://artillery.io) to generate the load)
 
-## Results
+## Results - updated (28/10)
 
 1. You can maintain around 6,000 open connections on a single dyno
 2. Creating more than 160 connections/sec will cause H11 errors ([backlog too deep](https://devcenter.heroku.com/articles/error-codes#h11-backlog-too-deep))
+
+For comparison, an entry-level box from Digital Ocean (512MB RAM, Ubuntu 13.10) can handle 350+ new connections/sec, and seems to max out at around 7,200 open connections.
 
 Here is the code for the server:
 
