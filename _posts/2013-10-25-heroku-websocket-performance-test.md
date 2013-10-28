@@ -32,6 +32,6 @@ The other 5 were me doing a binary search to find the number of connections/seco
 
 ## Comments?
 
-If you think I may have messed something up or should've done something differently, please share your thoughts on <a href="https://news.ycombinator.com/item?id=6615694">Hacker News</a> or tweet at me - <a href="https://twitter.com/hhv1">@hhv1</a>. You can also send me an email at <a href="mailto:h@veldstra.org">h@veldstra.org</a>
+If you think I may have messed something up or should've done something differently, please share your thoughts on <a href="https://news.ycombinator.com/item?id=6628109">Hacker News</a> or tweet at me - <a href="https://twitter.com/hhv1">@hhv1</a>. You can also send me an email at <a href="mailto:h@veldstra.org">h@veldstra.org</a>
 
 I will be updating this post with more numbers as I run more benchmarks. Scaling WebSocket-based apps is a subject dear to my heart.
