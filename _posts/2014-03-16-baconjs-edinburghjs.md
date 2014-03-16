@@ -60,6 +60,12 @@ I’m also using Bacon on the server side too to speed up search autocomplete fo
 
 (Here I'd also like to give a shout out to Phil Roberts who introduced me to Bacon.)
 
+## Worzone
+
+<a href="https://github.com/raimohanska/worzone">Worzone</a> is this little game written by the guy who wrote Bacon is a nice short read to help you wrap your head around using Bacon. We are not going to go through the whole source, but I’ll quickly highlight some of the code in it.
+
+_TODO: I'll update the post with this later._
+
 ## Fin
 
 Bacon is just library, not a framework and it’s very small, and you can start small and just sprinkle bits of it in a few places without having to rewrite all of your code. You can use it in the browser or on the server.
