@@ -35,8 +35,8 @@ Bacon gives you functions to manipulate streams, like `map`, `filter`, `merge` e
     .asEventStream('click') // returns an event stream of clicks on that element
     .map(1) // returns an event stream that emits "1" every time the element is clicked
 
-Exhibit #1: http://jsfiddle.net/6f6uA/1/ - increment/decrement a number in a text box (DOM event streams, DOM updates)
-Exhibit #2: http://jsfiddle.net/hktn6/1/ - autocomplete search (AJAX requests to an external API)
+- Exhibit #1: <a href="http://jsfiddle.net/6f6uA/1/">http://jsfiddle.net/6f6uA/1/</a> - increment/decrement a number in a text box (DOM event streams, DOM updates)
+- Exhibit #2: <a href="http://jsfiddle.net/hktn6/1/">http://jsfiddle.net/hktn6/1/</a> - autocomplete search (AJAX requests to an external API)
 
 ## Wonderwheel
 
