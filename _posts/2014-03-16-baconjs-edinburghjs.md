@@ -31,9 +31,14 @@ A property is a dynamic value derived from a stream. For example, a property of 
 
 Bacon gives you functions to manipulate streams, like `map`, `filter`, `merge` etc.
 
-    $('.increment') // select an element
-    .asEventStream('click') // returns an event stream of clicks on that element
-    .map(1) // returns an event stream that emits "1" every time the element is clicked
+	// select an element
+    $('.increment')
+    // returns an event stream of clicks on that element
+    .asEventStream('click')
+    // returns an event stream that emits "1" every time the element is clicked
+    .map(1)
+
+Two examples:
 
 - Exhibit #1: <a href="http://jsfiddle.net/6f6uA/1/">http://jsfiddle.net/6f6uA/1/</a> - increment/decrement a number in a text box (DOM event streams, DOM updates)
 - Exhibit #2: <a href="http://jsfiddle.net/hktn6/1/">http://jsfiddle.net/hktn6/1/</a> - autocomplete search (AJAX requests to an external API)
