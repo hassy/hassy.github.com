@@ -3,6 +3,8 @@ layout: post
 title: Bacon.js
 ---
 
+<img src="images/hassy_edinburghjs.jpg" alt="Hassy Veldstra at EdinburghJS" title="Hassy Veldstra at EdinburghJS" width="400" />
+
 (The following is based on a talk about Bacon.js I gave at the last EdinburghJS meetup.)
 
 ## Intro
