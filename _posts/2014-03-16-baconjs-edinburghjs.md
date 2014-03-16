@@ -5,8 +5,6 @@ title: Bacon.js
 
 (The following is based on a talk about Bacon.js I gave at the last EdinburghJS meetup.)
 
-[ MAYBE: PICTURE FROM EDINBURGHJS ]
-
 ## Intro
 
 If your code is full of callbacks inside callbacks inside callbacks, or full of promises and you're unhappy with that, you should give Bacon.js a try. It can make your code shorter, easier to read and modify, easier to test, and just more pleasant to work with.
@@ -16,8 +14,6 @@ Bacon allows you to do something called Functional Reactive Programming in the b
 ## FRP
 
 In a nutshell, FRP allows you to say this: `A = B + C` is to always be true, at any given point in time while my program is running. Every time `B` or `C` change, `A` will _react_ and recalculate itself. Just like cells in a spreadsheet.
-
-[ PICTURE: EXCEL ]
 
 Bacon allows us to set up these "magic" values that react to changes in values they depend on. The functions your write that will run in reaction to changes can do anything of course - update DOM, make AJAX requests etc.
 
@@ -38,8 +34,6 @@ Bacon gives you functions to manipulate streams, like `map`, `filter`, `merge` e
     $('.increment') // select an element
     .asEventStream('click') // returns an event stream of clicks on that element
     .map(1) // returns an event stream that emits "1" every time the element is clicked
-
-[ PICTURE AND LINK: diagrams ]
 
 Exhibit #1: http://jsfiddle.net/6f6uA/1/ - increment/decrement a number in a text box (DOM event streams, DOM updates)
 Exhibit #2: http://jsfiddle.net/hktn6/1/ - autocomplete search (AJAX requests to an external API)
