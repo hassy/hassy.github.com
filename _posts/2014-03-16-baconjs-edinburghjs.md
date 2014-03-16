@@ -58,7 +58,7 @@ Bacon allowed me to decouple animation code from network code, get rid of nested
 
 I’m also using Bacon on the server side too to speed up search autocomplete for popular artists. So there you have calls to 7Digital and calls to Redis which acts as an object cache - it’s not a lot of code, but it’s also much nicer thanks to Bacon.
 
-(Here I'd also like to give a shout out to Phil Roberts who introduced me to Bacon.)
+(Here I'd also like to give a shout out to <a href="http://latentflip.com/">Phil Roberts</a> who introduced me to Bacon.)
 
 ## Worzone
 
