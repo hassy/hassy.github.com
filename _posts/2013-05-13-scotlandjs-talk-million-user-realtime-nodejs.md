@@ -9,4 +9,4 @@ I am not publishing the slides since they won't make much sense on their own, bu
 
 Thank god for Red Bull - it just wouldn't've happened without it.
 
-<img src="images/hassy_scotlandjs.jpg" alt="Hassy Veldstra at ScotlandJS" title="Hassy Veldstra at ScotlandJS" width="400" />
+<img src="/images/hassy_scotlandjs.jpg" alt="Hassy Veldstra at ScotlandJS" title="Hassy Veldstra at ScotlandJS" width="400" />
