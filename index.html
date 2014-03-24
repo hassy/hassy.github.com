@@ -1,22 +1,70 @@
----
-layout: default
-title: Footnotes
----
+<head>
+<title>Hassy Veldstra</title>
+<style>
+body {
+  font-size: 15pt;
+  color: #454545;
+  font-family: Roboto, Tahoma, "Helvetica Neue", Heletica, sans-serif;
+  line-height: 150%;
+  background-color: #efefef;
+  margin: 1em 3em;
+  background-image: url('/images/photo.jpg');
+  background-size: cover;
+}
+p {
+  margin: 0;
+}
+p span, li span {
+   background-color: rgba(244, 244, 244, 0.6);
+   padding: 1px 1px;
+}
+ul {
+  margin: 0;
+}
+a {
+  color: #33f;
+}
+a:hover {
+  color: #c03;
+}
+small {
+  font-size: 70%;
+}
+a.blend {
+  color: #727272;
+}
+a.blend:hover {
+  color: #212121;
+}
+</style>
+</head>
+<body>
+<p><span><strong>Hassy Veldstra</strong> is a startup programmer.</span></p>
+<br/>
+<br/>
+<p><span><strong>Work</strong></span></p>
+<p><span><a href="http://artillery.io">Heavy Artillery</a> - ship with confidence</span></p>
+<br/>
 
-<div id="home">
-	<div>
-	</div>
-    <ul>
-    {% for post in site.posts %}
-    <li><span style="color: #aaa">{{ post.date | date_to_string }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
-<!--     <div>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
- -->
-      <!-- {{ post.content }} -->
+<p><span><strong>Also of interest</strong></span></p>
+<ul>
+  <li><span>Find tunes on <a href="http://wonderwheel.fm/reddit">Wonderwheel</a></span></li>
+  <li><span><a href="http://github.com/hassy/http-twiddle">http-twiddle</a> - work with HTTP APIs from Emacs</span></li>
+</ul>
+<br/>
 
-      <!-- <div class="permalink"><a href="{{ post.url }}">{{ post.date | date_to_string }}</a></div> -->
-<!--     </div>
- -->
+<p><span><strong>Consulting</strong></span></p>
+<p><span>I'm available for short-term projects (rapid prototyping of web apps, performance benchmarking, Node.js)</span></p>
+<p><span><small>(I've worked with <a href="http://www.edinburghartfestival.com/" class="blend">Edinburgh Art Festival</a>, <a href="http://www.thearches.co.uk/" class="blend">The Arches</a>, <a class="blend" href="http://www.alliance-scotland.org.uk/">NHS Scotland</a>, <a class="blend" href="http://www.welcometosync.com/">Sync</a>, <a class="blend" href="http://uk.queryclick.com/">Queryclick</a> and more.)</small></span></p>
+<br/>
+<p><span><strong>Contact</strong></span></p>
+<p><span>h@veldstra.org, hveldstra on Skype, <a class="blend" href="http://twitter.com/hhv1">@hhv1</a></span></p>
+<br/>
+<p><span><strong>Blog</strong></span></p>
+
+<ul>
+  {% for post in site.posts %}
+  <li><span style="color: #aaa">{{ post.date | date_to_string }}</span> <span><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}
-    </ul>
-</div>
+ </ul>
+ </body>
