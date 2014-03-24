@@ -5,7 +5,7 @@ body {
 	font-size: 15pt;
 	color: #454545;
 	font-family: Roboto, Tahoma, "Helvetica Neue", Heletica, sans-serif;
-	line-height: 150%;
+	line-height: 160%;
 	background-color: #efefef;
 	margin: 1em 3em;
 	background-image: url('/images/photo.jpg');
@@ -64,7 +64,7 @@ a.blend:hover {
 
 <ul>
 	{% for post in site.posts %}
-	<li><span style="color: #aaa">{{ post.date | date_to_string }}</span> <span><a href="{{ post.url }}">{{ post.title }}</a></span></li>
+	<li><span style="color: #aaa; font-size: 0.7em;">{{ post.date | date_to_string }}</span> <span><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}
 </ul>
 
