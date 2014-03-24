@@ -1,3 +1,3 @@
 ---
-layout: homepage.html
+layout: homepage
 ---
