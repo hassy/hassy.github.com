@@ -3,6 +3,8 @@ layout: post
 title: A tale of debugging with git-bisect
 ---
 
+# A tale of debugging with git-bisect
+
 ## Houston, we have a problem
 
 One day after upgrading a bunch of [Artillery](https://artillery.io)'s dependencies, a test case
