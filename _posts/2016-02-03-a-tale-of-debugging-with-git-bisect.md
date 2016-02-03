@@ -92,5 +92,3 @@ What can we learn from this?
 1. `git-bisect` is very neat
 2. Innocuous-looking changes can have unexpected impact on performance
 3. Pin your dependencies to **exact** versions in production code. `npm i --save-exact` is your friend.
-
-P.S. I've PR'd the change - ; let's hope it gets merged soon.
