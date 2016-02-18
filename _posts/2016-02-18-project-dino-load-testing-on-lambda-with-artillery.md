@@ -3,7 +3,7 @@ layout: post
 title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
 ---
 
-<pre style="font-family: courier; font-size: 12pt;">
+<pre style="font-family: menlo, courier; font-size: 11pt;">
 
                           _._
                         _/:|:
