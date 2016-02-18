@@ -3,6 +3,8 @@ layout: post
 title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
 ---
 
+# Project Dino: Massive Scale Load Testing With Artillery And AWS Lambda
+
 <pre style="font-family: menlo, courier, monospace;">
 
                           _._
@@ -28,8 +30,6 @@ title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
                        /  //
                       <_oo_>
 </pre>
-
-# Project Dino: Massive Scale Load Testing With Artillery And AWS Lambda
 
 ```
 $ npm install artillery-dino
