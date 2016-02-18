@@ -148,21 +148,23 @@ ul.posts {
   margin-bottom: 5em;
 }
 
-  .site .title a {
-    text-decoration: none;
+  .title a {
+    text-decoration: underline;
+    background: none;
+    color: #666;
   }
 
-  .site .title a:hover {
+  .title a:hover {
     color: black;
   }
 
-  .site .title a.extra {
+  .title a.extra {
     color: #aaa;
     text-decoration: none;
     margin-left: 1em;
   }
 
-  .site .title a.extra:hover {
+  .title a.extra:hover {
     color: black;
   }
 
