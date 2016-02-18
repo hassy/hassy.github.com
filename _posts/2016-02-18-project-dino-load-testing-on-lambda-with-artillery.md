@@ -36,7 +36,7 @@ Say hello to Dino.
 ```
 $ npm install artillery-dino
 $ dino setup -r $role_arn # see below
-$ dino -n 500 -c 10 -l 20 -t http://myapp.com/
+$ dino -n 500 -c 10 -l 20 -t http://indestructible.io/
 ```
 
 ## Project Dino In 100 Words
