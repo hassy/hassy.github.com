@@ -203,6 +203,10 @@ ul.posts {
 
 }
 
+  #post h2 {
+    margin-top: 2em;
+  }
+
   /* standard */
 
   #post pre {
