@@ -3,7 +3,7 @@ layout: post
 title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
 ---
 
-```
+<pre style="font-family: courier; font-size: 12pt;">
 
                           _._
                         _/:|:
@@ -27,7 +27,8 @@ title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
          <_oo_>         /  //
                        /  //
                       <_oo_>
-```
+</pre>
+
 # Project Dino: Massive Scale Load Testing With Artillery And AWS Lambda
 
 ```
