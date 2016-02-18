@@ -54,7 +54,7 @@ hhv
 body {
   background-color: white;
   background: url("../images/bg.png");
-  font: 12pt "Duru Sans", Helvetica, Arial, sans-serif;
+  font: 12pt 'Helvetica Neue', helvetica, Arial, sans-serif;
   text-align: center;
 }
 
