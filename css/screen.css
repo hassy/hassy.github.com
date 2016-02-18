@@ -139,9 +139,12 @@ ul.posts {
   line-height: 1.5em;
 }
 
+.title h1 {
+  margin-bottom: 0;
+}
 .title {
   color: #666;
-  font-family: Georgia, serif;
+  font-size: 0.9em;
   margin-bottom: 5em;
 }
 
