@@ -50,3 +50,11 @@ Massive scale? Up to 100 lambdas can be spun up, each sending 500-1000 RPS for 5
 Experimental? Dino has a very limited feature-set right now (think on par with `ab`) rather than a sophisticated load-generator like Artillery or JMeter. The goal is to run full Artillery on Lambda (at which point Dino will be merged into the Artillery CLI).
 
 Artillery? Artillery is an advanced load-testing tool. It’s written in Node.js and is open-source. Check it out: [https://artillery.io](https://artillery.io)
+
+## More
+
+- Source code: [https://github.com/hassy/artillery-dino](https://github.com/hassy/artillery-dino)
+- Questions / suggestions / comments:
+  - tweet me [@hveldstra](https://twitter.com/hveldstra)
+  - drop me a line on [h@veldstra.org](h@veldstra.org)
+  - or [create an Issue](https://github.com/hassy/artillery-dino) on Github
