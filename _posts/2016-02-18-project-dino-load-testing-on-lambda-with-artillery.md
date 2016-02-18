@@ -114,6 +114,8 @@ $ dino -n 1000 -c 10 -l 20 http://indestructible.io/
 
 ## How Does It Work?
 
+Dino in a nutshell:
+
 1. Dino CLI creates the Lambda function when you run “dino setup”, along with an SQS queue for the running lambdas to communicate with the CLI.
 2. The lambda function is a thin wrapper on top of [`artillery-core`](https://github.com/shoreditch-ops/artillery-core) - hacked up and transpiled to ES5 with Babel in order to run on Lambda.
 3. Dino CLI invokes this function a number of times when you run a test with something like “dino -n 500 -c 10 -l 20”.
