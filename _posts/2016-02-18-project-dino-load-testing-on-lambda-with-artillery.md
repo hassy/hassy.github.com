@@ -31,6 +31,8 @@ title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
                       <_oo_>
 </pre>
 
+Say hello to Dino.
+
 ```
 $ npm install artillery-dino
 $ dino setup -r $role_arn # see below
