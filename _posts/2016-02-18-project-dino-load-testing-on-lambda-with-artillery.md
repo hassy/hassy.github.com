@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Project Dino - Large Scale Load Testing With Artillery And AWS Lambda
+title: Project Dino - Large-scale Load Testing With AWS Lambda
 ---
 
-# Project Dino: Large Scale Load Testing With Artillery And AWS Lambda
+# Project Dino - Large-scale Load Testing With AWS Lambda
 
 <pre style="font-family: menlo, courier, monospace;">
 
