@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project Dino: Massive Scale Load Testing With Artillery And AWS Lambda
+title: Project Dino - Massive Scale Load Testing With Artillery And AWS Lambda
 ---
 
 ```
