@@ -22,7 +22,7 @@ body {
 
 h1 {
   margin-bottom: 1em;
-  line-height: 1.8em;
+  line-height: 1.5em;
   text-align: left;
 }
 
@@ -133,6 +133,7 @@ ul.posts {
 /*****************************************************************************/
 
 .site {
+  text-align: left;
   width: 40em;
   margin: 3em auto 2em auto;
   line-height: 1.5em;
