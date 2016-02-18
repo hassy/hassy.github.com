@@ -54,7 +54,7 @@ hhv
 body {
   background-color: white;
   background: url("../images/bg.png");
-  font: 10pt "Duru Sans", Helvetica, Arial, sans-serif;
+  font: 12pt "Duru Sans", Helvetica, Arial, sans-serif;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@ a:visited {
 }
 
 img {
-  max-width: 40em;
+  max-width: 50em;
 }
 
 hr {
@@ -134,7 +134,7 @@ ul.posts {
 
 .site {
   text-align: left;
-  width: 40em;
+  width: 50em;
   margin: 3em auto 2em auto;
   line-height: 1.5em;
 }
