@@ -45,7 +45,7 @@ Dino is an experimental project.
 
 Dino is based on [Artillery](https://artillery.io), and the goal is to eventually get the whole of Artillery running on Lambda.
 
-Massive scale? Up to 100 lambdas can be spun up, each sending up to 500 RPS for 50,000 RPS in total.
+Massive scale? Up to 100 lambdas can be spun up, each sending 500-1000 RPS for 50k-100k RPS in total.
 
 Experimental? Dino has a very limited feature-set right now (think on par with `ab`) rather than a sophisticated load-generator like Artillery or JMeter. The goal is to run full Artillery on Lambda (at which point Dino will be merged into the Artillery CLI).
 
