@@ -5,6 +5,8 @@ title: Project Dino - Large-scale Load Testing With AWS Lambda
 
 # Project Dino: Large-scale Load Testing With AWS Lambda
 
+Say hello to Dino.
+
 <pre style="font-family: menlo, courier, monospace;">
 
                           _._
@@ -31,7 +33,6 @@ title: Project Dino - Large-scale Load Testing With AWS Lambda
                       <_oo_>
 </pre>
 
-Say hello to Dino.
 
 ```
 $ npm install artillery-dino
@@ -48,6 +49,24 @@ Dino is an experimental project, based on [Artillery](https://artillery.io). (Th
 Large scale? Up to 100 lambdas can be spun up, each sending 500-1000 RPS for 50k-100k RPS in total.
 
 Experimental? Dino has a very limited feature-set right now - think distributed `ab`/`wrk` (or [Bees With Machine Guns](https://github.com/newsapps/beeswithmachineguns)) rather than an advanced load-generator like Artillery (or JMeter). The goal is to run full Artillery on Lambda (at which point Dino will be merged into the Artillery CLI).
+
+## How Does It Work?
+
+Dino in a nutshell:
+
+1. Dino CLI creates the Lambda function when you run “dino setup”, along with an SQS queue for the running lambdas to communicate with the CLI.
+2. The lambda function is a thin wrapper on top of [`artillery-core`](https://github.com/shoreditch-ops/artillery-core) - hacked up and transpiled to ES5 with Babel in order to run on Lambda.
+3. Dino CLI invokes this function a number of times when you run a test with something like “dino -n 500 -c 10 -l 20”.
+4. The lambda function accepts a “scenario spec” and a test id, then feeds the scenario to `artillery-core` which actually runs it. As stats come back from `artillery-core`, the lambda pushes them as messages onto an SQS queue via SNS.
+5. The CLI listens for those messages, reads them, and displays test stats for you in real time.
+
+Here's a dinogram to illustrate:
+
+![how it works - a dinogram](/images/blog/dinogram.png)
+
+## Demo!
+
+<script type="text/javascript" src="https://asciinema.org/a/36616.js" id="asciicast-36616" async></script>
 
 ## Setting Up
 
@@ -108,23 +127,7 @@ Run a test:
 $ dino -n 1000 -c 10 -l 20 http://indestructible.io/
 ```
 
-## Demo!
-
-<script type="text/javascript" src="https://asciinema.org/a/36616.js" id="asciicast-36616" async></script>
-
-## How Does It Work?
-
-Dino in a nutshell:
-
-1. Dino CLI creates the Lambda function when you run “dino setup”, along with an SQS queue for the running lambdas to communicate with the CLI.
-2. The lambda function is a thin wrapper on top of [`artillery-core`](https://github.com/shoreditch-ops/artillery-core) - hacked up and transpiled to ES5 with Babel in order to run on Lambda.
-3. Dino CLI invokes this function a number of times when you run a test with something like “dino -n 500 -c 10 -l 20”.
-4. The lambda function accepts a “scenario spec” and a test id, then feeds the scenario to `artillery-core` which actually runs it. As stats come back from `artillery-core`, the lambda pushes them as messages onto an SQS queue via SNS.
-5. The CLI listens for those messages, reads them, and displays test stats for you in real time.
-
-Here's a dinogram to illustrate:
-
-![how it works - a dinogram](/images/blog/dinogram.png)
+You can run as many as `100` lambdas concurrently - if you need more, you'll need to contact AWS.
 
 ## IMPORTANT: Disclaimers
 
