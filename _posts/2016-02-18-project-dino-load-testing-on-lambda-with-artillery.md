@@ -41,13 +41,11 @@ $ dino -n 500 -c 10 -l 20 -t http://indestructible.io/
 
 ## Project Dino In 100 Words
 
-Dino lets you run large scale load tests from AWS Lambda.
-
-Dino is an experimental project, based on [Artillery](https://artillery.io). (The goal is to eventually get the whole of Artillery running on Lambda.)
+Dino lets you run large scale load tests from AWS Lambda. It's an experimental project based on [Artillery](https://artillery.io).
 
 Large scale? Up to 100 lambdas can be spun up, each sending 500-1000 RPS for 50k-100k RPS in total.
 
-Experimental? Dino has a very limited feature-set right now - think distributed `ab`/`wrk` (or [Bees With Machine Guns](https://github.com/newsapps/beeswithmachineguns)) rather than an advanced load-generator like Artillery (or JMeter). The goal is to run full Artillery on Lambda (at which point Dino will be merged into the Artillery CLI).
+Experimental? Dino has a very limited feature-set right now - think distributed `ab`/`wrk` (or [Bees With Machine Guns](https://github.com/newsapps/beeswithmachineguns)) rather than an advanced load-generator like Artillery or JMeter. The goal is to run full Artillery on Lambda (at which point Dino will be merged into the Artillery CLI).
 
 ## How Does It Work?
 
