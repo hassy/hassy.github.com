@@ -5,9 +5,7 @@ title: Project Dino - Large-scale Load Testing With AWS Lambda
 
 # Project Dino: Large-scale Load Testing With AWS Lambda
 
-Say hello to Dino.
-
-<pre style="font-family: menlo, courier, monospace;">
+<pre style="font-family: menlo, courier, monospace; font-size: 0.9em">
 
                           _._
                         _/:|:
@@ -33,6 +31,7 @@ Say hello to Dino.
                       <_oo_>
 </pre>
 
+Say hello to Dino.
 
 ```
 $ npm install artillery-dino
