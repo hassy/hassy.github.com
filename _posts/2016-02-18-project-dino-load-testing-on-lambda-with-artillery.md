@@ -72,7 +72,7 @@ Dino runs on AWS Lambda, so you need to have an AWS account. (AWS Lambda comes w
 1. Log into the [AWS Console](https://console.aws.amazon.com/)
 2. Navigate to IAM -> Users -> Create New Users
   - Name the new user something like `dino_cli`
-  - Copy the **Access Key ID** and **Secret Access Key** into `~/aws/credentials`:
+  - Copy the **Access Key ID** and **Secret Access Key** into `~/.aws/credentials`:
     ```
     [dino]
     aws_access_key_id=YOUR_KEY_ID_HERE
