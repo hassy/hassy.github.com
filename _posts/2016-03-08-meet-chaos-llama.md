@@ -46,6 +46,8 @@ and the [AWS Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/welcom
 
 ## Getting Started With Chaos Llama
 
+### Installation
+
 Install the CLI with:
 
 ```
@@ -53,6 +55,8 @@ npm install -g llama-cli
 ```
 
 (If you don't have Node.js/npm installed, grab an installer for your platform from [nodejs.org](https://nodejs.org/en/).)
+
+### AWS Config
 
 To deploy Llama, you'll need an IAM User (for the CLI to run as) and an IAM
 Role (for the lambda).
@@ -81,6 +85,8 @@ Then, create a Role for Llama's lambda function:
   3. Select `AmazonEC2FullAccess` in the list of policies
   4. Take note of the **Role ARN** somewhere
 
+### Deploy the llama
+
 Once the IAM User is set up and your have the role ARN, run:
 
 ```
@@ -90,13 +96,15 @@ llama deploy -r $LAMBDA_ROLE_ARN
 This will deploy Chaos Llama to your AWS environment, but it **won't actually
 do anything** by default.
 
+### Configure Chaos Llama
+
 To configure termination rules, run `deploy` with a [Llamafile](https://github.com/hassy/llama-cli/blob/master/Llamafile.json):
 
 ```
 llama deploy -c Llamafile.json
 ```
 
-### Llama Configuration
+#### Llama Configuration
 
 A Llamafile is a JSON file that configures your Chaos Llama:
 
