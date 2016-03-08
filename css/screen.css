@@ -208,7 +208,7 @@ ul.posts {
 
 }
 
-  #post h2 {
+  #post h2, #post h3 {
     margin-top: 2em;
   }
 
