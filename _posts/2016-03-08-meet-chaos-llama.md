@@ -130,6 +130,8 @@ If both `enableForASGs` and `disableForASGs` are specified, then only
 
 ## Further Plans
 
+&nbsp;
+
 - Adopting [ZeroMQ's C4 contribution model](http://rfc.zeromq.org/spec:22).
 - Integrating with Slack and other team chat tools
 - Support for email notifications via AWS SES
@@ -138,6 +140,8 @@ If both `enableForASGs` and `disableForASGs` are specified, then only
 Would you like to contribute? The [Issues](https://github.com/hassy/llama-cli/issues) is a good place to start for some ideas. Feel free to email me on [h@veldstra.org](mailto:h@veldstra.org) if you have any questions.
 
 ## More
+
+&nbsp;
 
 - Source code: [https://github.com/hassy/llama-cli](https://github.com/hassy/llama-cli)
 - Questions / suggestions / comments:
