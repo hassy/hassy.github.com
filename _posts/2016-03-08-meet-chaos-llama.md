@@ -5,7 +5,7 @@ title: Meet Chaos Llama
 
 # Meet Chaos Llama
 
-Chaos Llama, a new open-source project from Shoreditch Ops has been released and is available on [http://llamajs.com](http://llamajs.com).
+I'm excited to release v1 of [Chaos Llama](https://github.com/hassy/llama-cli), my latest open-source project under the banner of [Shoreditch Ops](https://twitter.com/shoreditchops).
 
 <a class="github-button" href="https://github.com/hassy/llama-cli" data-style="medium" data-count-href="/hassy/llama-cli/stargazers" data-count-api="/repos/hassy/llama-cli#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star hassy/llama-cli on GitHub">Star</a>
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
