@@ -40,7 +40,7 @@ There are two parts to Chaos Llama: the CLI that lets you deploy and configure L
 and the [AWS Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) which picks and terminates an instance when it's run.
 
 1. The CLI
-  The [llama-cli](llama-cli) package is a Node.js CLI application (using the awesome [yargs](https://github.com/bcoe/yargs/) library) that uses the AWS Node.js SDK to create and update the lambda function and to create an invokation schedule for it with [Cloud Watch Events](https://aws.amazon.com/blogs/aws/new-cloudwatch-events-track-and-respond-to-changes-to-your-aws-resources/).
+  The [llama-cli](llama-cli) package is a Node.js CLI application (using the awesome [yargs](https://github.com/bcoe/yargs/) library) that uses the AWS [Node.js SDK](https://aws.amazon.com/sdk-for-node-js/) to create and update the lambda function and to create an invokation schedule for it with [Cloud Watch Events](https://aws.amazon.com/blogs/aws/new-cloudwatch-events-track-and-respond-to-changes-to-your-aws-resources/).
 2. The lambda function
   The [lambda function](https://github.com/hassy/llama-cli/blob/master/lambda/index.js) that contains the logic for selecting and terminating EC2 instances.
 
