@@ -10,7 +10,7 @@ Chaos Llama, a new open-source project from Shoreditch Ops has been released and
 <a class="github-button" href="https://github.com/hassy/llama-cli" data-style="medium" data-count-href="/hassy/llama-cli/stargazers" data-count-api="/repos/hassy/llama-cli#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star hassy/llama-cli on GitHub">Star</a>
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 
-<pre style="font-family: courier, monospace; font-size: 0.9em; font-weight: bold;">
+<pre style="font-family: courier, monospace; font-size: 0.9em; font-weight: bold; color: #7bd9c5; background-color: #333">
                  V
                 /'>>>
                /*/  _____ _____ _____ _____ _____
@@ -40,7 +40,7 @@ There are two parts to Chaos Llama: the CLI that lets you deploy and configure L
 and the [AWS Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) which picks and terminates an instance when it's run.
 
 1. The CLI
-  The [llama-cli](llama-cli) package is a Node.js CLI application (using the awesome [yargs](https://github.com/)) library) that uses the AWS Node.js SDK to create and update the lambda function and to create an invokation schedule for it with [Cloud Watch Events](https://aws.amazon.com/blogs/aws/new-cloudwatch-events-track-and-respond-to-changes-to-your-aws-resources/).
+  The [llama-cli](llama-cli) package is a Node.js CLI application (using the awesome [yargs](https://github.com/bcoe/yargs/) library) that uses the AWS Node.js SDK to create and update the lambda function and to create an invokation schedule for it with [Cloud Watch Events](https://aws.amazon.com/blogs/aws/new-cloudwatch-events-track-and-respond-to-changes-to-your-aws-resources/).
 2. The lambda function
   The [lambda function](https://github.com/hassy/llama-cli/blob/master/lambda/index.js) that contains the logic for selecting and terminating EC2 instances.
 
