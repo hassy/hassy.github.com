@@ -67,13 +67,15 @@ Sset up an IAM user (if you don't have one already):
 2. Navigate to IAM -> Users -> Create New Users
   - Name the new user something like `chaos_llama`
   - Copy the **Access Key ID** and **Secret Access Key** into `~/.aws/credentials`:
+
     ```
     [llama]
     aws_access_key_id=YOUR_KEY_ID_HERE
     aws_secret_access_key=YOUR_ACCESS_KEY_HERE
     ```
+
   - In the list of users click on `llama_cli` and go to the Permissions tab and attach these policies:
-    1. `AmazonLambdaFullAccess`
+    - `AmazonLambdaFullAccess`
 
     These will allow the Llama CLI to create the lambda.
 
@@ -90,7 +92,7 @@ Then, create a Role for Llama's lambda function:
 Once the IAM User is set up and your have the role ARN, run:
 
 ```
-llama deploy -r $LAMBDA_ROLE_ARN
+AWS_PROFILE=llama llama deploy -r $LAMBDA_ROLE_ARN
 ```
 
 This will deploy Chaos Llama to your AWS environment, but it **won't actually
@@ -101,7 +103,7 @@ do anything** by default.
 To configure termination rules, run `deploy` with a [Llamafile](https://github.com/hassy/llama-cli/blob/master/Llamafile.json):
 
 ```
-llama deploy -c Llamafile.json
+AWS_PROFILE=llama llama deploy -c Llamafile.json
 ```
 
 #### Llama Configuration
