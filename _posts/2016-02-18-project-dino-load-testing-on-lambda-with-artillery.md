@@ -146,6 +146,7 @@ hold no responsibility for the result of any of your actions.
 ## More
 
 - Source code: [https://github.com/hassy/artillery-dino](https://github.com/hassy/artillery-dino)
+<a class="github-button" href="https://github.com/hassy/artillery-dino" data-style="medium" data-count-href="/hassy/artillery-dino/stargazers" data-count-api="/repos/hassy/artillery-dino#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star hassy/artillery-dino on GitHub">Star</a>
 - Questions / suggestions / comments:
   - tweet me [@hveldstra](https://twitter.com/hveldstra)
   - drop me a line on [h@veldstra.org](h@veldstra.org)
