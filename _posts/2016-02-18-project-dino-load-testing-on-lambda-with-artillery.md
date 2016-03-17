@@ -5,6 +5,9 @@ title: Project Dino - Large-scale Load Testing With AWS Lambda
 
 # Project Dino: Large-scale Load Testing With AWS Lambda
 
+<a class="github-button" href="https://github.com/hassy/artillery-dino" data-style="medium" data-count-href="/hassy/artillery-dino/stargazers" data-count-api="/repos/hassy/artillery-dino#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star hassy/artillery-dino on GitHub">Star</a>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
 <pre style="font-family: menlo, courier, monospace; font-size: 0.9em">
 
                           _._
