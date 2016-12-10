@@ -2,18 +2,20 @@
 <title>Hassy Veldstra</title>
 <style>
 body {
-	font-size: 15pt;
+	font-size: 21pt;
 	color: #454545;
 	font-family: "Helvetica Neue", Heletica, sans-serif;
 	line-height: 160%;
 	background-color: #efefef;
 	margin: 1em 3em;
-	background-image: url('/images/photo.jpg');
+	background-image: url('/images/airplane.jpg');
 	background-size: cover;
 }
 p {
-	margin: 1em 0 0 0;
-  width: 600px;
+  margin: 1em 0 0 0;
+}
+p, li {
+  width: 740px;
 }
 p span, li span {
 	 background-color: rgba(244, 244, 244, 0.6);
@@ -42,22 +44,18 @@ a.blend:hover {
 <body>
 <p><span><strong>Hassy Veldstra</strong></span></p>
 
-<p><span><strong>About</strong></span></p>
-<ul>
-  <li>Performance testing, DevOps, and Node.js consultant in London</li>
-  <li>Lead developer of <a href="https://artillery.io">artillery.io</a>, an open-source load-testing framework, and <a href="http://llamakit.com">Llama Kit</a> - a <a href="http://principlesofchaos.org/">chaos engineering</a> toolkit for AWS</li>
-</ul>
+<p>Software developer in Hackney, London.</p>
+
+<p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit. DevOps practitioner. Open-source enthusiast.</p>
 
 <p><span><strong>Consulting</strong></span></p>
 <ul>
-  <li>API development with Node.js</li>
-  <li>Building continuous delivery pipelines</li>
-  <li>Production deployments on AWS</li>
-  <li>Performance and reliability testing</li>
+  <li>Shipping high-quality backend services with Node.js</li>
+  <li>Production architectures on AWS (including serverless)</li>
+  <li>Implementing and improving continuous delivery pipelines</li>
+  <li>Performance and reliability testing strategy and implementation</li>
+  <li>Full stack web performance audits</li>
 </ul>
-
-
-<!-- <p>I also created <a href="http://wonderwheel.fm/reddit">Wonderwheel</a> and maintain <a href="http://github.com/hassy/http-twiddle">http-twiddle</a>.</p> -->
 
 <!--
 <p><span><small>(I've worked with <a href="http://www.edinburghartfestival.com/" class="blend">Edinburgh Art Festival</a>, <a href="http://www.thearches.co.uk/" class="blend">The Arches</a>, <a class="blend" href="http://www.alliance-scotland.org.uk/">NHS Scotland</a>, <a class="blend" href="http://www.welcometosync.com/">Sync</a>, <a class="blend" href="http://uk.queryclick.com/">Queryclick</a> and a number of startups.)</small></span></p>
@@ -65,15 +63,14 @@ a.blend:hover {
  -->
 <p><span><strong>Contact</strong></span></p>
 <ul>
-<li>Email: <a class="blend" href="hi@veldstra.org">hi@veldstra.org</a></li>
+<li>Email: <a class="blend" href="hi@veldstra.org">h@veldstra.org</a></li>
 <li>LinkedIn: <a class="blend" href="https://uk.linkedin.com/in/hveldstra">https://uk.linkedin.com/in/hveldstra</a></li>
 <li>Twitter: <a class="blend" href="http://twitter.com/hveldstra">@hveldstra</a>
-<li>Skype: hveldstra</li>
 </ul>
 <br/>
 
 <p><span><strong>Blog</strong></span></p>
-<ul style="list-style-type: none;">
+<ul style="list-style-type: none; font-size: 80%">
 	{% for post in site.posts %}
 	<li><span style="color: #aaa; font-size: 0.7em;">{{ post.date | date_to_string }}</span> <span><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}

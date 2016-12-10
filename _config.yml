@@ -1,4 +1,4 @@
-markdown: rdiscount
+#markdown: rdiscount
 highlighter: true
 baseurl: /
 url: http://localhost:4000
