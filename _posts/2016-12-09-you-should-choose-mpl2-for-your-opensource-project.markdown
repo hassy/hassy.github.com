@@ -13,7 +13,7 @@ You should use MPL 2.0 for your next open-source project. It should be one's def
 
 MPL stands for "Mozilla Public License", and as the name would suggest, it's a license for open-source software developed by Mozilla. The **version number is very important** - nothing in this blog post applies to MPL v1. I would encourage you to go ahead and [give MPL 2.0 a read](https://www.mozilla.org/en-US/MPL/2.0/), it's not too dense. **The gist of it** is that MPL 2.0 is a *file-level copyleft license*, meaning that if someone uses your MPL 2.0 code, it does NOT affect the choice of license for any of *their* code but any fixes and enhancements to *YOUR* code have to be shared back<sup>[1]</sup>.
 
-It's basically **the best of both worlds** and a perfect balance between the two competing definitions of "freedom": the BSD camp that place *developers'* freedom above everything else vs the GPL camp that prioritize *users'* freedom.
+It's basically **the best of both worlds** and a perfect balance between the two competing definitions of "freedom": the BSD camp that places *developers'* freedom above everything else vs the GPL camp that prioritizes *users'* freedom.
 
 ## The Pitch
 
@@ -25,7 +25,7 @@ If your code is licensed under MPL 2.0 however, everybody retains the freedom to
 
 ### Or do you prefer the GPL?
 
-Now, if your preference for the GPL is purely faith-based, I don't expect you to be convinced easily, however, consider that MPL 2.0 is *almost* like the GPL, but companies that would NEVER EVER touch any GPL-licensed code, can now use your code because MPL 2.0 is not viral, *and* any of the improvements they might make to the code will be shared back.
+Now, if your preference for the GPL is purely belief-based, I don't expect you to be convinced easily, however, consider that MPL 2.0 is *almost* like the GPL, but companies that would NEVER EVER touch any GPL-licensed code, can now use your code because MPL 2.0 is not viral, *and* any of the improvements they might make to the code will be shared back.
 
 If you want your work to benefit as many people as possible, this should sound quite attractive.
 
@@ -49,11 +49,15 @@ You're writing open-source in your job (lucky you) and your company has an open-
 
 ### 2. You want to do dual-licensing
 
-This is where you basically say "hey, if you're not reselling something built on top of my software, you can use it for free. Otherwise, you have to compensate me for the value I created." In this case, you probably want LGPL or AGPL + a commercial license of some kind. Two successful examples off the top of my head are [Mongo](https://www.mongodb.com/blog/post/the-agpl/) (AGPL with Apache for drivers - an important detail; a large project) and [Sidekiq](http://sidekiq.org/products/enterprise) (LGPL; a micro-ISV). Another one is [MySQL](http://www.mysql.com/about/legal/licensing/oem/) (GPL).
+This is where you basically say "hey, if you're not reselling something built on top of my software, you can use it for free. Otherwise, you have to compensate me for the value I created." In this case, you probably want LGPL or AGPL + a commercial license of some kind. Two successful examples off the top of my head are [Mongo](https://www.mongodb.com/blog/post/the-agpl/) (AGPL with Apache for drivers - an important detail; a large project) and [Sidekiq](http://sidekiq.org/products/enterprise) (LGPL; a micro-ISV). Another one is [MySQL](http://www.mysql.com/about/legal/licensing/oem/) (GPL, worked out very well for them).
 
 ### 3. A dependency mandates the license
 
 Is a critical dependency of your project under GPL? Then you probably need to pick GPL too.
+
+## Who uses MPL 2.0?
+
+Mozilla, obviously. [Hashicorp](https://www.hashicorp.com). [Artillery](https://artillery.io). [Lots of others](https://github.com/search?q=%22Mozilla+Public+License+Version+2%22&ref=searchresults&type=Code&utf8=%E2%9C%93).
 
 ## Fin
 
