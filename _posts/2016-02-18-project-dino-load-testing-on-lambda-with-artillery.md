@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project Dino - serverless load testing with Lambda &amp; Artillery.io
+title: Project Dino - serverless load testing with Lambda and Artillery.io
 ---
 
 # Project Dino: Large-scale Load Testing With AWS Lambda
