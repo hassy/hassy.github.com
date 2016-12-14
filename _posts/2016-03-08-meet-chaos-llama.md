@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Meet Chaos Llama
+title: Meet Chaos Llama, a serverless chaos monkey
 ---
 
 # Meet Chaos Llama
