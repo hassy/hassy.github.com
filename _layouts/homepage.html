@@ -46,14 +46,14 @@ a.blend:hover {
 
 <p>Software developer in Hackney, London.</p>
 
-<p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit. DevOps practitioner. Open-source enthusiast.</p>
+<p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit.</p>
 
-<p><span><strong>Consulting</strong></span></p>
+<p><span><strong>Skills</strong></span> <span style="margin: 0; color: #696969; font-size: 70%; background: none;">(DevOps, backend Node.js, web performance)</span></p>
 <ul>
   <li>Shipping high-quality backend services with Node.js</li>
   <li>Production architectures on AWS (including serverless)</li>
   <li>Implementing and improving continuous delivery pipelines</li>
-  <li>Performance and reliability testing strategy and implementation</li>
+  <li>Performance and reliability testing (strategy and implementation)</li>
   <li>Full stack web performance audits</li>
 </ul>
 
@@ -63,7 +63,7 @@ a.blend:hover {
  -->
 <p><span><strong>Contact</strong></span></p>
 <ul>
-<li>Email: <a class="blend" href="hi@veldstra.org">h@veldstra.org</a></li>
+<li>Email: <a class="blend" href="mailto:h@veldstra.org">h@veldstra.org</a></li>
 <li>LinkedIn: <a class="blend" href="https://uk.linkedin.com/in/hveldstra">https://uk.linkedin.com/in/hveldstra</a></li>
 <li>Twitter: <a class="blend" href="http://twitter.com/hveldstra">@hveldstra</a>
 </ul>
@@ -72,7 +72,7 @@ a.blend:hover {
 <p><span><strong>Blog</strong></span></p>
 <ul style="list-style-type: none; font-size: 80%">
 	{% for post in site.posts %}
-	<li><span style="color: #aaa; font-size: 0.7em;">{{ post.date | date_to_string }}</span> <span><a href="{{ post.url }}">{{ post.title }}</a></span></li>
+	<li><span style="color: #aaa; font-size: 0.7em; padding: 0.2em;">{{ post.date | date_to_string }}</span> <span style="padding: 0.2em 0.5em"><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}
 </ul>
 
