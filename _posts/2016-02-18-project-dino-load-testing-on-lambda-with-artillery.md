@@ -9,7 +9,6 @@ title: Project Dino - serverless load testing with Lambda and Artillery.io
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 
 <pre style="font-family: menlo, courier, monospace; font-size: 0.9em">
-
                           _._
                         _/:|:
                        /||||||.
@@ -27,13 +26,13 @@ title: Project Dino - serverless load testing with Lambda and Artillery.io
      _.--=.-~       _.._          {_       }
  _.-~   @-,        {    '-._     _. '~==+  |
 ('          }       \_      \_.=~       |  |
-`======='  /_         ~-_    )         <_oo_>
+`======='  /_         ~-_    )         (_oo_)
 `-----~~/ /'===...===' +   /
-         <_oo_>         /  //
+         (_oo_)         /  //
                        /  //
-                      <_oo_>
-
+                      (_oo_)
 </pre>
+
 
 Say hello to Dino.
 
