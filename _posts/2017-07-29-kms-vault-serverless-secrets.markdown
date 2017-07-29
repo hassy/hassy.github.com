@@ -40,4 +40,4 @@ kms-vault decrypt private_key.pem.encrypted
 
 The combination of 1 & 2 makes `kms-vault` very handy for storing all kinds of secrets inside git repos for example. There's no need to share a password as is the case with [`ansible-vault`](http://docs.ansible.com/ansible/latest/playbooks_vault.html), and access to keys can be controlled with IAM policies on AWS accounts of other members of your team.
 
-Finally, AWS Lambda has transparent integration with KMS, which makes `kms-vault` a nice simple solution for managing secrets in [Serverless-based](https://serverless.com/) projects (this is reason I whipped up `kms-vault` in the first place).
+Finally, AWS Lambda integrates with KMS, which makes `kms-vault` a nice simple solution for managing secrets in [Serverless-based](https://serverless.com/) projects (this is reason I whipped up `kms-vault` in the first place).
