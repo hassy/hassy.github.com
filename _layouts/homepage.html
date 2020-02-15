@@ -1,83 +1,83 @@
 <head>
-<title>Hassy Veldstra</title>
-<style>
-body {
-	font-size: 21pt;
-	color: #454545;
-	font-family: "Helvetica Neue", Heletica, sans-serif;
-	line-height: 160%;
-	background-color: #efefef;
-	margin: 1em 3em;
-	background-image: url('/images/airplane.jpg');
-	background-size: cover;
-}
-p {
-  margin: 1em 0 0 0;
-}
-p, li {
-  width: 740px;
-}
-p span, li span {
-	 background-color: rgba(244, 244, 244, 0.6);
-	 padding: 1px 1px;
-}
-ul {
-	margin: 0;
-}
-a {
-	color: #33f;
-}
-a:hover {
-	color: #c03;
-}
-small {
-	font-size: 70%;
-}
-a.blend {
-	color: #636363;
-}
-a.blend:hover {
-	color: #212121;
-}
-</style>
+  <title>Hassy Veldstra</title>
+  <style>
+    body {
+        font-size: 21pt;
+        color: #454545;
+        font-family: Courier, "Courier New", monospace;
+        line-height: 160%;
+        background-color: #efefef;
+        margin: 1em 3em;
+        background-image: url('/images/airplane.jpg');
+        background-size: cover;
+    }
+    p {
+        margin: 1em 0 0 0;
+    }
+    p, li {
+        width: 740px;
+    }
+    p span, li span {
+        background-color: rgba(244, 244, 244, 0.6);
+        padding: 1px 1px;
+    }
+    ul {
+        margin: 0;
+    }
+    a {
+        color: #33f;
+    }
+    a:hover {
+        color: #c03;
+    }
+    small {
+        font-size: 70%;
+    }
+    a.blend {
+        color: #636363;
+    }
+    a.blend:hover {
+        color: #212121;
+    }
+  </style>
 </head>
 <body>
-<p><span><strong>Hassy Veldstra</strong></span></p>
+  <h1 style="letter-spacing: -1px">Hassy Veldstra</h1>
 
-<p>Software developer in Hackney, London.</p>
+  <p>Software developer in Hackney, London.</p>
 
-<p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit.</p>
+  <p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit.</p>
 
-<p><span><strong>Skills &amp; Specialities</strong></span> <span style="margin: 0; color: #696969; font-size: 70%; background: none;">(performance &amp; reliability, programmable infrastructure, DevOps, Node.js)</span></p>
-<ul>
-  <li>Performance and reliability testing (strategy and implementation)</li>
-  <li>Production architectures on AWS (including serverless)</li>
-  <li>Implementing and improving continuous delivery pipelines</li>
-  <li>Shipping high-quality backend services with Node.js</li>
-</ul>
+  <p><span><strong>Skills &amp; Specialities</strong></span> <span style="margin: 0; color: #696969; font-size: 70%; background: none;">(performance &amp; reliability, programmable infrastructure, DevOps, Node.js)</span></p>
+  <ul>
+    <li>Performance and reliability testing (strategy and implementation)</li>
+    <li>Production architectures on AWS</li>
+    <li>Implementing and improving continuous delivery pipelines</li>
+    <li>Shipping high-quality backend services with Node.js or Golang</li>
+  </ul>
 
-<p><span><strong>Contact</strong></span></p>
-<ul>
-<li>Email: <a class="blend" href="mailto:h@veldstra.org">h@veldstra.org</a></li>
-<li>LinkedIn: <a class="blend" href="https://uk.linkedin.com/in/hveldstra">https://uk.linkedin.com/in/hveldstra</a></li>
-<li>Twitter: <a class="blend" href="http://twitter.com/hveldstra">@hveldstra</a>
-</ul>
-<br/>
+  <p><span><strong>Contact</strong></span></p>
+  <ul>
+    <li>Email: <a class="blend" href="mailto:h@veldstra.org">h@veldstra.org</a></li>
+    <li>LinkedIn: <a class="blend" href="https://uk.linkedin.com/in/hveldstra">https://uk.linkedin.com/in/hveldstra</a></li>
+    <li>Twitter: <a class="blend" href="http://twitter.com/hveldstra">@hveldstra</a>
+  </ul>
+  <br/>
 
-<p><span><strong>Blog</strong></span></p>
-<ul style="list-style-type: none; font-size: 80%">
-	{% for post in site.posts %}
-	<li><span style="color: #aaa; font-size: 0.7em; padding: 0.2em;">{{ post.date | date_to_string }}</span> <span style="padding: 0.2em 0.5em; font-size: 0.8em"><a href="{{ post.url }}">{{ post.title }}</a></span></li>
+  <p><span><strong>Blog</strong></span></p>
+  <ul style="list-style-type: none; font-size: 80%">
+    {% for post in site.posts %}
+    <li><span style="color: #aaa; font-size: 0.7em; padding: 0.2em;">{{ post.date | date_to_string }}</span> <span style="padding: 0.2em 0.5em; font-size: 0.8em"><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}
-</ul>
+  </ul>
 
- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-2143105-7', 'veldstra.org');
-  ga('send', 'pageview');
-</script>
- </body>
+    ga('create', 'UA-2143105-7', 'veldstra.org');
+    ga('send', 'pageview');
+  </script>
+</body>
