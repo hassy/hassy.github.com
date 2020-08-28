@@ -4,7 +4,7 @@
     body {
         font-size: 21pt;
         color: #454545;
-        font-family: Courier, "Courier New", monospace;
+        font-family: Helvetica Neue, Helvetica, sans-serif;
         line-height: 160%;
         background-color: #efefef;
         margin: 1em 3em;
@@ -13,9 +13,6 @@
     }
     p {
         margin: 1em 0 0 0;
-    }
-    p, li {
-        width: 740px;
     }
     p span, li span {
         background-color: rgba(244, 244, 244, 0.6);
@@ -44,17 +41,7 @@
 <body>
   <h1 style="letter-spacing: -1px">Hassy Veldstra</h1>
 
-  <p>Software developer in Hackney, London.</p>
-
-  <p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern load testing toolkit.</p>
-
-  <p><span><strong>Skills &amp; Specialities</strong></span> <span style="margin: 0; color: #696969; font-size: 70%; background: none;">(performance &amp; reliability, programmable infrastructure, DevOps, Node.js)</span></p>
-  <ul>
-    <li>Performance and reliability testing (strategy and implementation)</li>
-    <li>Production architectures on AWS</li>
-    <li>Implementing and improving continuous delivery pipelines</li>
-    <li>Shipping high-quality backend services with Node.js or Golang</li>
-  </ul>
+  <p>Creator of <a href="https://artillery.io">artillery.io</a>, a modern performance testing toolkit.</p>
 
   <p><span><strong>Contact</strong></span></p>
   <ul>
@@ -64,12 +51,14 @@
   </ul>
   <br/>
 
+  <!--
   <p><span><strong>Blog</strong></span></p>
   <ul style="list-style-type: none; font-size: 80%">
     {% for post in site.posts %}
     <li><span style="color: #aaa; font-size: 0.7em; padding: 0.2em;">{{ post.date | date_to_string }}</span> <span style="padding: 0.2em 0.5em; font-size: 0.8em"><a href="{{ post.url }}">{{ post.title }}</a></span></li>
     {% endfor %}
   </ul>
+  -->
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
