@@ -105,7 +105,7 @@ First, can you actually run production like workloads? For a transcational API t
 
 Production load tests will usually need to generate a lot of traffic, more than a handful of machines can create. How easy is it to run distributed tests, e.g. a load test from 100 nodes for example?
 
-(Ability to generate a large amount of traffic isn't the only reason to want to distribute load generation. Using a large number of nodes can help spread traffic more evenly, as some load balancer will use source IPs for load balancing.)
+(Ability to generate a large amount of traffic isn't the only reason to want to distribute load generation. For example, using a large number of nodes can help spread traffic more evenly, as some load balancer will use source IPs for load balancing.)
 
 ### How about geographical distribution?
 
@@ -117,7 +117,7 @@ You will also need real-time reporting from your load tests. You need to be able
 
 ### Will it break the bank?
 
-You need to be able to generate enough load, and do it without breaking the bank. This rules out a lot if not all hosted SaaS solutions, and generally points you towards something that you can run on-prem (whether that's your own DC or AWS). If you want to run these tests regularly, you need to be able to run them cost effectively.
+You need to be able to generate enough load, and do it without breaking the bank. This rules out a lot, if not all, hosted SaaS solutions, and generally points you towards something that you can run on-prem (whether that's your own DC or AWS). If you want to run these tests regularly, you need to be able to run them cost effectively.
 
 ### Ease of customization
 
@@ -140,31 +140,42 @@ Of course, it’s natural to shift between these, e.g. you can start by running 
 
 ## General principles for production load testing
 
-This brings me to some general principles which underpin production load testing.
+This brings us to some general principles which underpin production load testing.
+
+### Build up in small chunks
 
 The first one is that you will be building up your production load testing capabilities in iterations and in layers. In that sense it’s similar to developing any new piece of software. You start with something small but still useful, and build up from there. In practical terms, this means that it’s fine to start with a production load test, which is run once a week, by a human following a simple run-book but with little automation, testing only one user journey. That’s a great place to start. It does not have to do everything on day one.
 
+Your team may be keen on load testing in `prod` but other teams may need to be convinced. Trailblaze and start with your own microservices, the rest of the system can come later.
+
+### It's OK to take time
+
 The second one is that it will take time. It will take time to put everything together and to build up capacity to run these tests safely and address everyone’s concerns. Plan at least a couple of months for conversations to be had, teams to allocate time to gather data you may need, put extra monitoring in place, make changes to some of the services, and just get comfortable with the idea. It doesn’t mean that nothing will happen for a couple of months - no, you should be able to start adding some extra traffic to production within a couple of weeks, but you won’t run a Big Production Load Test for a while. It cannot be a last-minute effort. It takes time.
 
-The third one, and this one clears up all of the common objections to production load testing once it is internalised, is: you will need to instrument your code for load testing, and add load testing specific code. That’s not as weird as it may sound - we add code to do monitoring, to do logging, feature flags and A/B testing, security controls. Adding code to aid load testing is just one more of those. Let’s look at specific examples of this in the context of common concerns and objections to load testing.
+### Instrumenting code for load testing
+
+
+The third one, and this one clears up all of the common objections to production load testing once it is internalised, is: you will need to **instrument your code for load testing**, and add load testing specific code. **That’s not as weird as it may sound** - we add code to do monitoring, to do logging, feature flags and A/B testing, and security controls. Adding code to aid load testing is just one more of those.
+
+Let’s look at specific examples of this in the context of common concerns and objections to load testing.
 
 ## Common concerns
 
-### What about junk in our database?
+### What about junk in our database? or other side effects?
 
-Synthetic traffic in production is going to add database records to your production database. It’s going to make your code send out more logs and send more metrics. Your traffic dashboards will show that extra traffic. It will affect analytics, it will affect all sorts of reports assembled by other teams, such as marketing, data, analytics, advertising etc.
+Synthetic traffic in production *is* going to add database records to your production database. It’s going to make your code send out more logs and send more metrics. Your traffic dashboards will show that extra traffic. It will affect analytics, it will affect all sorts of reports assembled by other teams, such as marketing, data, analytics, advertising etc.
 
 This is where extra instrumentation comes in.
 
 You will need a way to distinguish real traffic from synthetic traffic, possibly as it propagates through the system too. For example - if service A is the entry point into the system, and it calls service B, then service B will need to able to know when a request was triggered by a load test. One common way of doing this is via an extra HTTP header, which is then propagated across every subsequent request inside the system, similar to how distributed request tracing works.
 
-You will also need a way to distinguish any persistent objects or database records created by load testing traffic. You might want to clear those out periodically, or you will want to be able to ignore them in reports created by your data or analytics team for example. One simple way to do it for example is to use a convention for usernames or email addresses associated with accounts in your system, whether that’s the domain used, part of the username or a combination of both. You can get creative here.
+You will also need a way to distinguish any persistent objects or database records created by load testing traffic. You might want to clear those out periodically, or you will want to be able to ignore them in reports created by your data or analytics team for example. One way to do it for example is to use a convention for usernames or email addresses associated with accounts in your system, whether that’s the domain used, part of the username or a combination of both. You can get creative, there's no one-size-fits-all approach here.
 
 ### What about irreversible or destructive operations?
 
 There may also be some operations that you don’t want to trigger from synthetic tests - attempting to charge a credit card or send out an email being a classic example. These will need to be a no-op when the request is from a virtual user.
 
-It will take time to discover and identify those places in a system, and then to implement that branching, which is why you need to allow for plenty of time for this.
+It will take time to discover and identify those places in a system, and then to implement that branching, and you will need to allow for plenty of time for it.
 
 ### Breaking stuff for real users
 
@@ -172,7 +183,7 @@ The other common concern is of course affecting real users by increasing tail la
 
 The way you work around this is two-fold:
 
-One, you always ramp up load slowly and over time so that negative effects of extra traffic can be spotted early, and the test run can be paused or stopped. You never go the whole hog from the start. It’s important to exercise caution, especially early on, and also to be seen to exercise caution.
+One, you always ramp up load slowly and over time so that negative effects of extra traffic can be spotted early, and the test run can be paused or stopped. You never go the whole hog from the start. It’s important to exercise caution, especially early on, and also to **be seen to exercise caution** (see below on why production load testing is only partly about technology).
 
 The second part of this is to have your production SLOs and KPIs monitored and for those metrics to be available - for people running tests when they’re run manually, and programmatically later on for automation. As an operator of a production load test, you need to have a dashboard which tracks conformance to SLOs, defined in terms of real user experience, and it shows you how close you are to breaching those SLOs. You need to be able to have them right there.
 
@@ -184,6 +195,8 @@ This concern is usually a variation of “are we going to load test our payment 
 
 That 100% coverage point is often related to load testing third-party services and dependencies. This has to be decided on a case by case basis, but again: you can always add a load testing specific branch in your code and no-op some operations, or call a mock. It’s OK to do that if you have a 10 step process and you’re not really testing the last one - you’ve still tested the other 9.
 
+Some vendors have specific policies around load testing. Either way, it can't hurt to reach out and ask.
+
 ### Cost
 
 Yes, you will be be using additional resources by adding extra traffic, both to generate that traffic and to serve it. Ultimately, it’s a case-by-case call. You might need to put an estimation together. At the end of the day, it’s up to you to decide whether it’s worth it or not, but the arguments against could probably be used against other kinds of testing, like spending time to write unit tests, or pay for non-prod environments — and you probably have both of those.
@@ -194,31 +207,31 @@ The other 50% is the social side of it. You will need to talk to a lot of people
 
 ## Pre-requisites and pre-requirements
 
-Let’s look at what we need to have in place before we consider production load testing.
+Let’s look at what we need to have in place *before* we consider production load testing.
 
-As mentioned earlier, we need the ability to monitor our production SLOs and KPIs in real time, and be able to see at a glance when we’re getting close to breaching one of them. We also need to decide on what our tolerances are, or what our abort condition is. If for example your response time SLO is p95 of 500ms calculate over a sliding 5m window, are you OK to breach that SLO for 5m or 10m while a load test runs, perhaps to give autoscaling time to kick in? If the typical value is 300, you might say stop the test once it gets to 450. You can define similar stop conditions for other SLOs, such as the ratio of 5xx responses to total requests for example. The key here is that the operator: whether that’s a human to start with, or an automated system can continuously and unambiguously check that the load test is not causing issues.
+As mentioned earlier, we need the ability to monitor our production SLOs and KPIs in real time, and be able to see at a glance when we’re getting close to breaching one of them. We also need to decide on what our tolerances are, or what our abort condition is. If for example your response time SLO is p95 of 500ms calculated over a sliding 5m window, are you OK to breach that SLO for 5m or 10m while a load test runs, perhaps to give autoscaling time to kick in? If the typical value is 300, you might say stop the test once it's exceeded by 10%. You can define similar stop conditions for other SLOs, such as the ratio of 5xx responses to total requests for example. The key here is that the operator -- whether that’s a human to start with, or an automated system -- can continuously and unambiguously check that the load test is not causing issues.
 
 If you don’t have this, load testing in production is too dangerous.
 
 In a similar vein, you should have monitoring across all layers of your system, from CDN down to EC2 instances that make up your Kubernetes worker pool and everything in between. You’re running a production system, at scale, so you probably have that in place already.
 
-Again, this has already been mentioned – but we want to start mapping out different components of the system that may be affected by initial load tests, and make a list of actions that may need to be branched for synthetic traffic, such as sending an actual email, and talking to teams responsible for those components and getting them involved.
+Again, this has already been mentioned – but we want to start **mapping out different components** of the system that may be affected by initial load tests, and make a list of actions that may need to be branched for synthetic traffic, such as sending an actual email, and talking to teams responsible for those components and getting them involved.
 
-Request tracing and metadata propagation across the system - again, this will help us distinguish synthetic traffic from real traffic where needed. Without this capability the surface area of the system you will be able to load test in production is going to shrink. It’s a worthwhile investment to make if you don’t have that in place already.
+**Request tracing and metadata propagation** across the system - again, this will help us distinguish synthetic traffic from real traffic where needed. Without this capability the surface area of the system you will be able to load test in production is going to shrink. It’s a worthwhile investment to make if you don’t have that in place already.
 
 Don’t forget your monitoring system here. Let’s say you use Datadog. You want to be able to plot a timeseries which shows all requests to production, and then split it by real traffic vs load testing traffic. The way to do that is through metric tagging, the exact mechanics may depend on how exactly you’re tracking metrics, but it should be possible.
 
-This goes without saying, but you should be able to stop your load test almost instantly when needed. This is some hard-won experience right there, where we were running tests and we did have the ability to stop them, just not instantly but over about 5 to 10m, which can feel like a looooong time when you’re seeing error rate on production start climbing.
+This goes without saying, but **you should be able to stop your load test almost instantly** when needed. This is some hard-won experience right there. We were running tests one day, and we did have the ability to stop them, just not instantly it turned out, and that five minutes can feel like a loooooong time when you’re seeing error rate on `prod` start climbing. Sigh.
 
 ## Roadmap - getting to your first production load test
 
 So, what will this look like in practical terms? You starting point is that you are not running any load tests in production. Let’s say you don’t run any load tests whatsoever.
 
-The overall idea is this - iterate. And communicate your progress to teams and people who may be interested.
+The overall idea is to iterate, and communicate your progress to teams & people who may be interested.
 
-The first thing you want to do is pick your load testing tooling. We covered the evaluation criteria you can use.
+The first thing you want to do is pick your load testing tooling. We have covered the evaluation criteria you can use.
 
-In parallel, start talking to relevant people and teams. Usually a project like this would be championed by the SRE team or its equivalent in your organization. Obviously, we want to include dev teams in charge of any services and components which are going to be hit with extra load. We want to let data and analytics teams know well in advance too and get as much feedback from them as possible – their data analysis and reporting pipelines are likely to be affected. Someone from marketing and product should be included too - if for no other reason than to let them know how seriously you’re taking reliability. In my experience, almost no one does not want to know that you’re working towards being able to show that `prod` can handle extra traffic spikes at any moment. Everyone regardless of their role tends to understand the important of reliability, and production load testing sounds cool.
+In parallel, start talking to relevant people and teams. Usually a project like this would be championed by the SRE team or its equivalent in your organization. Obviously, we want to include dev teams in charge of any services and components which are going to be hit with extra load. We want to let data and analytics teams know well in advance too and get as much feedback from them as possible – their data analysis and reporting pipelines are likely to be affected. Someone from marketing and product should be included too - if for no other reason than to let them know **how seriously you’re taking reliability**. In my experience, almost no one does not want to know that you’re working towards being able to show that `prod` can handle extra traffic spikes at any moment. Everyone regardless of their role tends to understand the importance of reliability, and production load testing sounds cool.
 
 You will also want to set up a situation room or an initiative room in Slack or your real time communication platform of choice. You will use this for updates on the project and when load tests are being run.
 
@@ -230,13 +243,13 @@ It will also help you make sure that synthetic traffic is realistic and exercise
 
 This is where you start putting together a new set of dashboards which a human operator can use when running the first few production load tests. These need to display top-level SLOs and KPIs, with the ability to tell at a glance when they start degrading.
 
-As this information is being put together, start writing a run book for running these load tests. This is how you prepare the test, do a dry run, run a full run, this is where you watch key metrics, these are the thresholds for stopping the test early, this is how you prepare test data if needed, this is how you clean up etc — start with this. It will serve as basis for automation later.
+As this information is being put together, start writing a run book for running these load tests. This is how you prepare the test, do a dry run, run a full run; this is where you watch key metrics, these are the thresholds for stopping the test early, this is how you prepare test data if needed, this is how you clean up etc — start with this. It will serve as basis for automation later.
 
 Finally, you have your scenarios ready to go, you have a time window for your first test, you have your monitoring set up… pick a modest amount of extra traffic to start with. Announce the test run ahead of time, ideally the day before at least and then again on the day using a distribution list or a relevant Slack channel to give someone who might have a reason for you to hold off plenty of time to be able to tell you… and then, just run your test. At this point, it should not feel dangerous at all because if nothing else you won’t be adding much extra load.
 
-If everything goes well, and you’ve confirmed that for example you can tell synthetic traffic apart, request headers are being propagated correctly, no-op operations are firing as expected… dial up that level of load and run again. And then again. Something might go wrong, but your blast radius will be minimal at every step. And eventually, you will arrive at a point where you’re running with 20% extra traffic, in production, and things just work.
+If everything goes well, and you’ve confirmed that for example you can tell synthetic traffic apart, request headers are being propagated correctly, no-op operations are firing as expected… dial up that level of load and run again. And then again. Something might go wrong, but **your blast radius will be minimal** at every step. And eventually, you will arrive at a point where you’re running with 20% extra traffic, in production, and things just work.
 
-At this point - celebrate! This is hugely important. Spread the good news. A production load test is something to be proud of.
+At this point - **celebrate**! 🎉 This is hugely important. Spread the good news. **A production load test is something to be proud of.**
 
 ## Conclusion
 
