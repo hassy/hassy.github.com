@@ -6,36 +6,42 @@ permalink: /production-load-testing/
 
 # Load testing. In production.
 
-Let's go straight to the central idea of this write up: load testing in production is possible. Not only is it possible, it is also very doable and very valuable. I would nearly go as far as to say that production load testing is the best way to squeeze the most value out of running load tests altogether. Load testing in dev or staging environments is more likely than not to be a waste of time.
+## In production?!
+
+Let's go straight to the central idea of this write up: load testing in production is possible. Not only is it possible, it is also very doable and very valuable. I would nearly go as far as to say that production load testing is the best way to squeeze the most value out of running load tests altogether. <!-- Load testing in dev or staging environments is more likely than not to be a waste of time. -->
 
 ## Load testing in production can sound weird
 
-In my experience, responses to the suggestion of running production load tests fall into one of three buckets:
+In my experience, there are three kinds of people when it comes to production load testing:
 
-1. Small minority of "yep, great idea. been there, done that, got the t-shirt!" To you folks I raise my glass. I wouldn't be surprised if you also didn't have any qualms about deploying to prod on Friday afternoons. We're few but proud. I'd love to talk about load testing in production with you.
-2. Another small minority of "hell no, no way, that's stupid. reckless. risky. dangerous." This group can be further divided into two groups again: those who cannot test in prod for legal or compliance reasons (those do exist), and hardcore skeptics. The skeptics may have logical reasons, but more often than not the reason for skepticism is worry. That's OK. There's nothing wrong with worrying about fragility of a system. However, I would argue that the productive way out is to improve the system where some extra traffic in prod does not constitute grave danger, rather than skepticism.
-3. By far the absolute majority is people with a mixed reaction. A reaction along the lines of: "yeah, that sounds interesting, valuable, and even somewhat exciting. But also rather dangerous and risky. We'd like to give it a go, but how do we do it safely?" High five to you folks!
+1. Small minority of "yep, great idea. been there, done that, got the t-shirt!" To you folks I raise my glass. I wouldn't be surprised if you also didn't have any qualms about deploying to `prod` on Friday afternoons. We're few but proud. I'd love to talk about load testing in production with you.
+2. Another small minority of "hell no, no way, that's stupid. reckless. risky. dangerous." This group can be further divided into two groups again: those who cannot test in `prod` for legal or compliance reasons (those do exist), and hardcore skeptics. The skeptics may have logical reasons, but more often than not the reason for skepticism is worry. That's OK. There's nothing wrong with worrying about fragility of a system. However, I would argue that the productive way out is to improve the system where some extra traffic in `prod` does not constitute grave danger, rather than skepticism.
+3. By far the absolute majority is people with a mixed reaction. A reaction along the lines of: "yeah, that sounds interesting, valuable, and even somewhat exciting. But also rather dangerous and risky. We'd like to give it a go, but how do we do it safely?" High five to you folks! This article is for you.
 
-## Production load testing is another excellent tool in the box
+## Mindset: Production load testing is another excellent tool in the box
 
 ### Complexity is the beast we're fighting
 
 Engineers with experience of working on complex systems are likely to have an intuitive understanding of the value production load testing can bring. **Running production systems at scale is hard.** It's not getting easier either. The two main factors that make running systems at scale a challenge are:
 
 1. Architectural complexity (which is usually there for a reason - a production system probably does a lot of stuff). That architectural complexity can manifest itself in many ways: microservice-based architectures, mixtures of modern and legacy stacks & components, or code & configuration to support operational capabilities such as auto-scaling and auto-healing or blue-green deployments.
-2. Rate of change. CI/CD is table stakes today, we deploy to prod many times a day, and so do teams that our services depend on. We're not just deploying code either -- configuration changes and infrastructure changes go out all the time too, and change equals risk.
+2. Rate of change. CI/CD is table stakes today, we deploy to `prod` many times a day, and so do teams that our services depend on. We're not just deploying code either -- configuration changes and infrastructure changes go out all the time too, and change equals risk.
 
-Given a certain level of complexity in a system, its performance and its behavior become an emergent property. Component-level guarantees don't translate into system-level guarantees, as interactions between those components and properties of the environment they're running in give rise to whole new behaviors and failure modes. The only way to understand and get some guarantees about the performance of a complex system is to test that very system.
+Given a certain level of complexity in a system, its performance and its behavior become an **emergent property**. Component-level guarantees **don't translate** into system-level guarantees, as interactions between those components and properties of the environment they're running in give rise to whole new behaviors and failure modes. The only way to get some guarantees about the performance of a complex system is to **test that very system**.
 
 ### Do you test in production?
 
-Which is of course why various ways of testing in production are being embraced by more and more teams. It’s impossible to predict how a system may behave when a dependency fails, so we run chaos tests to experiment and see what happens. We need to be able to peek into our systems as they're running production workloads, so we [instrument for observability](https://www.honeycomb.io). That's why we do canary releases and rolling updates. We've come up with many ways to reduce the risks inherent in complexity and to help us when something goes wrong. Load testing in production is another one of those.
+Which is of course why various ways of testing in production are being embraced by more and more teams. It’s impossible to predict how a system may behave when a dependency fails, so we run [chaos tests](https://principlesofchaos.org) to experiment and see what happens. We need to be able to peek into our systems as they're running production workloads, so we [instrument for observability](https://www.honeycomb.io). That's why we do canary releases and rolling updates. We've come up with many ways to reduce the risks inherent in complexity and to help us when something goes wrong. **Load testing in production is another one of those.**
 
 ### Production load testing = confidence
 
 It’s really as simple as that. Increasing confidence is the reason we do any kind of testing of course: from unit tests, to integration tests, functional tests, acceptance tests, security tests etc etc. On a spectrum of 0 confidence that things will work, to 100% confidence (which of course is the unattainable ideal) we want to move as far to the right as possible.
 
-And the confidence that you will get from load testing in production cannot be given by any other kind of testing. It’s amazing. There’s a real shift in attitude once you've run your first production load test, provided that you don’t cause an outage of course. It feels good, you just know that stuff works. Stuff that’s very hard to test otherwise. Not just APIs and services, but stuff like CDN configuration, autoscaling at different layers of your system, auto healing, circuit breakers, backoff and retry logic, monitoring, logging — everything that adds to a beautiful symphony of a working production system. A successful production load test is clear proof that things are running as they should be.
+<!--
+TODO: graph
+-->
+
+And the confidence that you will get from load testing in production cannot be given by any other kind of testing. It’s amazing. There’s a real shift in attitude once you've run your first production load test, provided that you don’t cause an outage of course. It feels good, you just know that stuff works. Stuff that’s very hard to test otherwise. Not just APIs and services, but stuff like CDN configuration, autoscaling at different layers of your system, auto healing, circuit breakers, backoff and retry logic, monitoring, logging — everything that adds to a beautiful symphony of a working production system. A successful production load test is clear proof that things are running as they should be, under extra stress.
 
 ### Production load testing as a fitness function
 
@@ -53,33 +59,33 @@ but most teams don't... not yet. If your team did it, you'd be in good company([
 Does your team run load tests in production? Please let me know on Twitter and I'll add you to the list.
 -->
 
-## It is risky, but those risks can be managed
+## It *is* risky, but those risks can be managed
 
-Yes indeed, the idea can feel dangerous, and running load tests on prod can introduce extra risk, but it can also be done safely and in a measured and managed manner. Risk can be managed, that's a huge chunk of what we do as engineers.
+Yes indeed, the idea can feel dangerous, and running load tests on `prod` does introduce extra risk, but it *can* be done safely and in a measured and managed manner. Risk can be managed -- that's a huge chunk of what we do as engineers.
 
-Production load testing is not rocket science, and it's not magic. No arcane knowledge is required to run production load tests. All that's needed is a perspective shift and some communication across teams and departments to get everyone on board. The rest is straightforward engineering that you're probably already doing.
+Production load testing **is not rocket science, and it's not magic**. No arcane knowledge is required to run production load tests. All that's needed is a perspective shift and some communication across teams and departments to get everyone on board. The rest is straightforward engineering that you're probably already doing.
 
 ## Types of production load tests
 
-There are three ways to add load in production (which can be mixed and matched when needed):
+There are three ways to add load in production (which can be mixed and matched as needed):
 
 1. Traffic replay and amplification
 2. Adding synthetic traffic
 3. Dark traffic
 
-(These same approaches is how you’d test an isolated component or a subset of a system in a staging environment for example. They're not unique to prod.)
+(These same approaches is how you’d also test an isolated component or a subset of a system in a staging environment for example. They're not unique to prod.)
 
 ### Traffic replay
 
-Traffic replay & amplification is as the name suggests capturing some production traffic and replaying it, perhaps with an amplification factor, back onto production. This works well for systems which respond to or process isolated single requests with no dependencies between them. For websites, a classic example would be a news website without much personalisation, or a classifieds website. For an API, a good example might be an analytics event ingestion API which receives JSON payloads describing some events.
+Traffic replay & amplification is, as the name suggests, capturing some production traffic and replaying it, perhaps with an amplification factor, back onto production. This works well for systems which respond to or process isolated single requests with no dependencies between them. For websites, a classic example would be a news website without much personalisation, or a classifieds website. For an API, a good example might be an analytics event ingestion API which receives JSON payloads describing some discrete events.
 
-There is one obvious caveat here - you don’t want to create a runaway loop here which infinitely feeds itself and blows everything up. The way you avoid that is by being able to distinguish real traffic from replayed traffic at the capture point, and having some intelligence in the traffic replay layer to make sure it does not exceed a certain threshold of extra traffic above real traffic.
+There is one obvious caveat here - you don’t want to create a runaway loop which infinitely feeds itself and blows everything up. The way you avoid that is by being able to distinguish real traffic from replayed traffic at the capture point, and having some intelligence in the traffic replay layer to make sure it does not exceed a certain threshold of extra traffic above real traffic.
 
 ### Synthetic traffic
 
 For systems which expose a transactional interface, i.e. where later requests can depend on earlier requests - you will probably not be replaying traffic. This can as simple as an API with an authentication step, where the first request may request a token which is then included with every subsequent request, or something more complex like a headless CMS system or an e-commerce system, where a client searches for keywords, browses results returned based on those searches, adds products to basket, and eventually goes through a checkout process. Essentially anything with a session of some sort.
 
-For these systems, what you would do is write definitions of common user journeys and scenarios, parameterised and randomised of course, and run them against production.
+For these systems, what you would do is write definitions of common user journeys and scenarios, parameterised and randomised to send realistic requests to the system, and run them against production.
 
 ### Dark traffic
 
@@ -130,7 +136,7 @@ Usually, there are two main motivations for running production load tests:
   - Run on a schedule, e.g. weekly, with extra load added to go above weekly natural peak
   - Run extra load continuously as a percentage of real load or a fixed margin above weekly peak
 
-Of course, it’s natural to shift between these, e.g. you can start by running load tests before a busy period with a lot of human oversight, and then continue running them regularly afterwards. You can start with weekly tests, and as you improve automation and failsafe mechanisms, you start running them daily, or maybe even on certain releases to prod automatically and with no human oversight.
+Of course, it’s natural to shift between these, e.g. you can start by running load tests before a busy period with a lot of human oversight, and then continue running them regularly afterwards. You can start with weekly tests, and as you improve automation and failsafe mechanisms, you start running them daily, or maybe even on certain releases to `prod` automatically and with no human oversight.
 
 ## General principles for production load testing
 
@@ -212,7 +218,7 @@ The overall idea is this - iterate. And communicate your progress to teams and p
 
 The first thing you want to do is pick your load testing tooling. We covered the evaluation criteria you can use.
 
-In parallel, start talking to relevant people and teams. Usually a project like this would be championed by the SRE team or its equivalent in your organization. Obviously, we want to include dev teams in charge of any services and components which are going to be hit with extra load. We want to let data and analytics teams know well in advance too and get as much feedback from them as possible – their data analysis and reporting pipelines are likely to be affected. Someone from marketing and product should be included too - if for no other reason than to let them know how seriously you’re taking reliability. In my experience, almost no one does not want to know that you’re working towards being able to show that prod can handle extra traffic spikes at any moment. Everyone regardless of their role tends to understand the important of reliability, and production load testing sounds cool.
+In parallel, start talking to relevant people and teams. Usually a project like this would be championed by the SRE team or its equivalent in your organization. Obviously, we want to include dev teams in charge of any services and components which are going to be hit with extra load. We want to let data and analytics teams know well in advance too and get as much feedback from them as possible – their data analysis and reporting pipelines are likely to be affected. Someone from marketing and product should be included too - if for no other reason than to let them know how seriously you’re taking reliability. In my experience, almost no one does not want to know that you’re working towards being able to show that `prod` can handle extra traffic spikes at any moment. Everyone regardless of their role tends to understand the important of reliability, and production load testing sounds cool.
 
 You will also want to set up a situation room or an initiative room in Slack or your real time communication platform of choice. You will use this for updates on the project and when load tests are being run.
 
