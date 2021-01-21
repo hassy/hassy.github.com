@@ -240,8 +240,8 @@ At this point - celebrate! This is hugely important. Spread the good news. A pro
 
 ## Conclusion
 
-My hope for this write up is to share what I learned implementing production load testing at a number of companies, to provide some clarity on what it takes to run load tests against prod, and to show that it's actually not that hard. It takes time, it takes team work, it takes a perspective shift, but it’s very doable.
+My hope for this write up is to share what I learned implementing production load testing at a number of companies, to provide some clarity on what it takes to run load tests against `prod`, and to show that it's actually not that hard. It takes time, it takes team work, it takes a perspective shift, but it’s very doable.
 
 I’m hoping that you will want to give it a go, and get to experience how fun it is and how great it feels to have that level of confidence that your production system can handle that extra traffic without breaking a sweat.
 
-I’d love to talk to anyone who might have any questions, or share experiences with people who have run production load tests. Feel free to email me on h@artillery.io or message me on Twitter - [@hveldstra](https://twitter.com/hveldstra). Thank you!
+Questions? Feedback? Vigorous objections? I'd love to hear from you! Drop me a line on [h@veldstra.org](h@veldstra.org) or ping me on Twitter - [@hveldstra](https://twitter.com/hveldstra).
