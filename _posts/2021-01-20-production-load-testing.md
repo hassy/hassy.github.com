@@ -47,7 +47,7 @@ And the confidence that you will get from load testing in production cannot be g
 
 Production load testing is a great tool for identifying all sorts of unknown unknowns in your system. It’s a great fitness function - in evolutionary architecture terms, for proactively and very visibly enforcing certain performance related properties of your system.
 
-It’s a great guard rail for helping you build safety margins around your SLOs, because just because your system could handle its usual daily traffic peak yesterday, does not mean it will still be able to do it today. And again, if you’re expecting a high-traffic event, the only way to be able to say that “yes, we can handle it” with a high degree of confidence is to test it. You don’t want real users to do it for you, and you don’t want to “hope” that things will be OK.
+It’s a great guard rail for helping you build safety margins around your SLOs -- just because your system could handle its usual daily traffic peak yesterday, it won't necessarily still be able to do it today. And again, if you’re expecting a high-traffic event, the only way to be able to say that “yes, we can handle it” with a high degree of confidence is to test it. You don’t want real users to do it for you, and you don’t want to “hope” that things will be OK.
 
 The ability to load test in production is a signal, a very good signal, of a high overall quality bar.
 
@@ -105,7 +105,7 @@ First, can you actually run production like workloads? For a transcational API t
 
 Production load tests will usually need to generate a lot of traffic, more than a handful of machines can create. How easy is it to run distributed tests, e.g. a load test from 100 nodes for example?
 
-(Ability to generate a large amount of traffic isn't the only reason to want to distribute load generation. For example, using a large number of nodes can help spread traffic more evenly, as some load balancer will use source IPs for load balancing.)
+(Ability to generate a large amount of traffic isn't the only reason to want to distribute load generation. For example, using a large number of nodes can help spread traffic more evenly, as some load balancers will use source IPs for load balancing.)
 
 ### How about geographical distribution?
 
