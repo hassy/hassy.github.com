@@ -31,7 +31,7 @@ Given a certain level of complexity in a system, its performance and its behavio
 
 ### Do you test in production?
 
-Which is of course why various ways of testing in production are being embraced by more and more teams. It’s impossible to predict how a system may behave when a dependency fails, so we run [chaos tests](https://principlesofchaos.org) to experiment and see what happens. We need to be able to peek into our systems as they're running production workloads, so we [instrument for observability](https://www.honeycomb.io). That's why we do canary releases and rolling updates. We've come up with many ways to reduce the risks inherent in complexity and to help us when something goes wrong. **Load testing in production is another one of those.**
+Which is of course why various ways of [testing in production](https://increment.com/testing/i-test-in-production/) are being embraced by more and more teams. It’s impossible to predict how a system may behave when a dependency fails, so we run [chaos tests](https://principlesofchaos.org) to experiment and see what happens. We need to be able to peek into our systems as they're running production workloads, so we [instrument for observability](https://www.honeycomb.io). That's why we do canary releases and rolling updates. We've come up with many ways to reduce the risks inherent in complexity and to help us when something goes wrong. **Load testing in production is another one of those.**
 
 ### Production load testing = confidence
 
